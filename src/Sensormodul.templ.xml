@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KNX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" CreatedBy="KNX MT" ToolVersion="5.1.255.16695" 
+  xmlns:xi="http://www.w3.org/2001/XInclude" 
+  xmlns="http://knx.org/xml/project/11">
+  <Parameters>
+    <xi:include href="../../knx-logic/src/Logikmodul.templ.xml" xpath="//Parameters/*"/>
+  </Parameters>
+  <ParameterRefs>
+    <xi:include href="../../knx-logic/src/Logikmodul.templ.xml" xpath="//ParameterRefs/*"/>
+  </ParameterRefs>
+  <ComObjectTable>
+    <xi:include href="../../knx-logic/src/Logikmodul.templ.xml" xpath="//ComObjectTable/*"/>
+  </ComObjectTable>
+  <ComObjectRefs>
+    <xi:include href="../../knx-logic/src/Logikmodul.templ.xml" xpath="//ComObjectRefs/*"/>
+  </ComObjectRefs>
+  <Dynamic>
+    <choose ParamRefId="M-00FA_A-0001-01-0000_P-61_R-61">
+      <when test="1">
+        <xi:include href="../../knx-logic/src/Logikmodul.templ.xml" xpath="//Channel"/>
+      </when>
+    </choose>
+  </Dynamic>
+</KNX>

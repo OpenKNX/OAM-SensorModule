@@ -1,0 +1,109 @@
+;PlatformIO Project Configuration File
+;
+;   Build options: build flags, source filter
+;   Upload options: custom upload port, speed and extra flags
+;   Library options: dependencies, extra library storages
+;   Advanced options: extra scripting
+;
+; Please visit documentation for the other options and examples
+; https://docs.platformio.org/page/projectconf.html
+
+[platformio]
+default_envs = build
+libdeps_dir = /tmp/libdeps
+
+[env]
+platform = atmelsam
+board = zeroUSB
+framework = arduino
+; build_type = debug
+build_flags = 
+  -D DEBUG_DELAY=10000
+  -D BOARD_MASIFI_V2
+  -D SERIAL_DEBUG=SerialUSB
+  -D SMALL_GROUPOBJECT
+  -D WATCHDOG
+  -D SENSORMODULE
+  -D MASK_VERSION=0x07B0
+  -D KNX_FLASH_SIZE=0x4000
+  -Wno-unknown-pragmas 
+  -Wno-switch
+  -Wno-write-strings
+  -Wno-format-overflow
+  -L../OGM-SensorDevices/src/bsec/cortex-m0plus
+  -lalgobsec
+  ; trace logic execution in logicmodule
+  ; -DLOGIC_TRACE
+  ; debug timing in knx stack
+  ; -DDEBUG_TIMING
+  ; debug 1-Wire-Search
+  ; -DDebugInfoBM
+  ; -DDebugInfoSearch
+  ; -DONEWIRE_TRACE_SEARCH
+  ; -DCRYSTALLESS
+monitor_speed = 115200
+lib_ldf_mode = deep+
+lib_extra_dirs = 
+  ${PROJECT_DIR}\..
+lib_deps = 
+  SPI
+  Wire
+  adafruit/Adafruit SleepyDog Library @ 1.4.0
+  adafruit/Adafruit BME280 Library @ 2.1.2
+  ; adafruit/Adafruit SCD30 @ ^1.0.6
+  sparkfun/SparkFun SCD30 Arduino Library @ 1.0.14
+  sensirion/Sensirion I2C SCD4x @ 0.3.1
+  pololu/VL53L1X @ 1.2.1
+  ; https://github.com/mumpf/knx.git#release
+  
+; segger jlink works just in skip pre-debug mode
+; after debugger start (at first init() breakpoint)
+; it needs a restart (green button in vscode) to debug
+; otherwise it stops with a segfault.
+debug_tool = jlink
+; debug_tool = atmel-ice
+debug_build_flags = -O0 -ggdb3
+[env:build]
+upload_protocol = sam-ba
+[env:debug]
+build_type = debug
+; debug_build_flags = 
+;   -Og 
+;   -ggdb2 
+;   -g2
+; debug_build_flags = -O0 -ggdb3 -g3
+; debug_init_cmds =
+  ; target extended-remote $DEBUG_PORT
+  ; $INIT_BREAK
+  ; ; monitor reset 0
+  ; $LOAD_CMDS
+  ; ; monitor init
+  ; monitor reset 0
+[env:uploadUSB]
+upload_protocol = sam-ba
+[env:uploadJLINK]
+upload_protocol = jlink
+[env:uploadATMEL]
+upload_protocol = atmel-ice
+
+; board_build.core = samd
+; ; change microcontroller 
+; board_build.mcu = samd21g18a
+; ; change MCU frequency
+; board_build.f_cpu = 48000000L
+; ; place it into the root of project or use full path
+; extra_scripts = upload_script.py
+; upload_protocol = custom
+; each flag in a new line
+; upload_command = $UPLOADER $UPLOAD_FLAGS $SOURCES
+; upload_flags =
+;   --info
+;   --port
+;   "$UPLOAD_PORT"
+;   --write
+;   --verify
+;   --reset
+;   -U
+;   true
+;   --erase
+;   ; --debug

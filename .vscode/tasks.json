@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build PlatformIO",
+            "label": "Build SAMD",
             "type": "shell",
             "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
             "args": [
@@ -16,7 +16,7 @@
             "problemMatcher": []
         },
         {
-            "label": "Upload JLINK",
+            "label": "Upload JLINK SAMD",
             "type": "shell",
             "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
             "args": [
@@ -30,21 +30,7 @@
             "problemMatcher": []
         },
         {
-            "label": "Upload ATMEL",
-            "type": "shell",
-            "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
-            "args": [
-                "run",
-                "-e",
-                "uploadATMEL",
-                "--target",
-                "upload"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Upload USB",
+            "label": "Upload USB SAMD",
             "type": "shell",
             "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
             "args": [
@@ -58,9 +44,9 @@
             "problemMatcher": []
         },
         {
-            "label": "MultiplyChannels",
+            "label": "OpenKNXproducer",
             "type": "shell",
-            "command": "${env:USERPROFILE}\\bin\\MultiplyChannels.exe",
+            "command": "${env:USERPROFILE}\\bin\\OpenKNXproducer.exe",
             "args": [
                 "create",
                 "--Debug",
@@ -70,17 +56,9 @@
             "group": "test"
         },
         {
-            "label": "MultiplyChannels-Release",
+            "label": "Build-Release",
             "type": "shell",
             "command": "release\\BuildRelease.cmd",
-            "args": [],
-            "problemMatcher": [],
-            "group": "test"
-        },
-        {
-            "label": "MultiplyChannels-Beta",
-            "type": "shell",
-            "command": "beta\\BuildRelease.cmd",
             "args": [],
             "problemMatcher": [],
             "group": "test"

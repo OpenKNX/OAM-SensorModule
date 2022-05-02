@@ -1,5 +1,5 @@
 #include "Helper.h"
-#include "Hardware.h"
+#include "HardwareDevices.h"
 
 #include "Sensor.h"
 #include "SensorBME680.h"
@@ -76,7 +76,7 @@ bool callOneWire() {
 void ProcessHeartbeat()
 {
     // the first heartbeat is send directly after startup delay of the device
-    if (gHeartbeatDelay == 0 || delayCheck(gHeartbeatDelay, knx.paramInt(LOG_Heartbeat) * 1000))
+    if (gHeartbeatDelay == 0 || delayCheck(gHeartbeatDelay, getDelayPattern(LOG_HeartbeatDelayBase)))
     {
         // we waited enough, let's send a heartbeat signal
         knx.getGroupObject(LOG_KoHeartbeat).value(true, getDPT(VAL_DPT_1));
@@ -176,10 +176,10 @@ void loopSubmodules() {
     gLogic.loop();
 }
 
-// true solgange der Start des gesamten Moduls verzögert werden soll
+// true solange der Start des gesamten Moduls verzögert werden soll
 bool startupDelay()
 {
-    return !delayCheck(gStartupDelay, knx.paramInt(LOG_StartupDelay) * 1000);
+    return !delayCheck(gStartupDelay, getDelayPattern(LOG_StartupDelayBase));
 }
 
 // this callback is used by BME680 during delays while mesauring
@@ -292,7 +292,7 @@ void ProcessSensor(sSensorInfo* cData, getSensorValue fGetSensorValue, MeasureTy
     bool lSend = lForce;
 
     // process send cycle
-    uint32_t lCycle = knx.paramInt(iParamIndex + 1) * 1000;
+    uint32_t lCycle = getDelayPattern(iParamIndex + 1);
 
     // we waited enough, let's send the value
     if (lCycle && delayCheck(cData->sendDelay, lCycle))

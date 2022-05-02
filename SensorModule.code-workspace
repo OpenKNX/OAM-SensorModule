@@ -25,7 +25,11 @@
 			"PLATFORMIO_CALLER": "vscode"
 		},
 		"files.associations": {
-			"*.yaml": "home-assistant"
-		}
+			"*.json": "jsonc",
+			"*.yaml": "home-assistant",
+			"istream": "cpp",
+			"ostream": "cpp"
+		},
+		"cSpell.language": "en,de-DE"
 	}
 }

@@ -424,7 +424,7 @@
 #define SENS_KoLux 87
 #define SENS_KoTof 88
 
-#define LOG_ChannelCount 2
+#define LOG_ChannelCount 80
 
 // Parameter per channel
 #define LOG_ParamBlockOffset 165
@@ -1091,10 +1091,10 @@
 #define LOG_KoKOfE2 1
 #define LOG_KoKOfO 2
 
-#define WIRE_ChannelCount 2
+#define WIRE_ChannelCount 30
 
 // Parameter per channel
-#define WIRE_ParamBlockOffset 337
+#define WIRE_ParamBlockOffset 7045
 #define WIRE_ParamBlockSize 18
 #define WIRE_sDeviceId                  0      // char*, 7 Byte
 #define WIRE_sFamilyCode                0      // 8 Bits, Bit 7-0

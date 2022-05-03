@@ -7,3 +7,4 @@
 Restart.txt
 *.cppbak
 **/*.debug.xml
+release/*

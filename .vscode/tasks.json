@@ -10,7 +10,19 @@
             "args": [
                 "run",
                 "-e",
-                "build"
+                "build_SAMD"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build RP2040",
+            "type": "shell",
+            "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
+            "args": [
+                "run",
+                "-e",
+                "build_RP2040"
             ],
             "group": "build",
             "problemMatcher": []
@@ -22,7 +34,21 @@
             "args": [
                 "run",
                 "-e",
-                "uploadJLINK",
+                "upload_JLINK_SAMD",
+                "--target",
+                "upload"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Upload JLINK RP2040",
+            "type": "shell",
+            "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
+            "args": [
+                "run",
+                "-e",
+                "upload_JLINK_RP2040",
                 "--target",
                 "upload"
             ],
@@ -36,7 +62,35 @@
             "args": [
                 "run",
                 "-e",
-                "uploadUSB",
+                "upload_USB_SAMD",
+                "--target",
+                "upload"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Upload USB RP2040",
+            "type": "shell",
+            "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
+            "args": [
+                "run",
+                "-e",
+                "upload_USB_RP2040",
+                "--target",
+                "upload"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Upload ENDUSER",
+            "type": "shell",
+            "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
+            "args": [
+                "run",
+                "-e",
+                "upload_enduser",
                 "--target",
                 "upload"
             ],
@@ -58,7 +112,7 @@
         {
             "label": "Build-Release",
             "type": "shell",
-            "command": "release\\BuildRelease.cmd",
+            "command": "scripts/Build-Release.ps1 ",
             "args": [],
             "problemMatcher": [],
             "group": "test"

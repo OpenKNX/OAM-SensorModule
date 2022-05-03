@@ -1245,4 +1245,4 @@
 
 #define MAIN_OpenKnxId 0xA0
 #define MAIN_ApplicationNumber 17
-#define MAIN_ApplicationVersion 3
+#define MAIN_ApplicationVersion 4

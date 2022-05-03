@@ -249,7 +249,7 @@
               </Union>
               <Union SizeInBit="88">
                 <Memory CodeSegment="M-00FA_A-0001-01-0000_RS-04-00000" Offset="139" BitOffset="0" />
-                <Parameter Id="M-00FA_A-0001-01-0000_UP-%T%000180" Name="LuxOffset"        ParameterType="M-00FA_A-0001-01-0000_PT-OffsetLux"    Offset="0"  BitOffset="0" Text="Helligkeit anpassen (Bereich in der Nähe von 0 Lux)"                   SuffixText="Lux"      Value="0" />
+                <Parameter Id="M-00FA_A-0001-01-0000_UP-%T%000180" Name="LuxOffset"        ParameterType="M-00FA_A-0001-01-0000_PT-OffsetLux"    Offset="0"  BitOffset="0" Text="Helligkeit anpassen&#10;(Bereich in der Nähe von 0 Lux)"                   SuffixText="Lux"      Value="0" />
                 <!-- Delay pattern -->
                 <Parameter Id="M-00FA_A-0001-01-0000_UP-%T%000181" Name="LuxCycleBase"     ParameterType="M-00FA_A-0001-01-0000_PT-DelayBase"    Offset="1"  BitOffset="0" Text="Zeitbasis" Value="0" />
                 <Parameter Id="M-00FA_A-0001-01-0000_UP-%T%000381" Name="LuxCycleTime"     ParameterType="M-00FA_A-0001-01-0000_PT-DelayTime"    Offset="1"  BitOffset="2" Text="Zeit"      Value="0" />
@@ -503,8 +503,10 @@
               <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000200_R-%T%00020001">
                 <when test=">0">
                   <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-70" Name="Temperatur" Text="Temperatur">
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Temperatur" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000110_R-%T%00011001" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-79" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Externe Werte" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000115_R-%T%00011501" />
                     <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000115_R-%T%00011501">
                       <when test=">0">
@@ -524,6 +526,7 @@
                       </when>
                     </choose>
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-80" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Sendeverhalten" UIHint="Headline" />
                     <!-- Temp Delay pattern -->
                     <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-nnn" Name="TempDelayCycle" Inline="true" Layout="Grid">
                       <Columns>
@@ -541,6 +544,7 @@
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000112_R-%T%00011201" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000113_R-%T%00011301" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-93" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Glättungsfunktion" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000114_R-%T%00011401" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-94" Text="Glättungsformel: Xneu = Xalt + (M - Xalt) / P mit" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-95" Text="  Xneu: neu errechneter Messwert" />
@@ -558,8 +562,10 @@
               <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000201_R-%T%00020101">
                 <when test=">0">
                   <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-71" Name="Luftfeuchte" Text="Luftfeuchte">
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Luftfeuchte" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000120_R-%T%00012001" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-81" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Externe Werte" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000125_R-%T%00012501" />
                     <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000125_R-%T%00012501">
                       <when test=">0">
@@ -579,6 +585,7 @@
                       </when>
                     </choose>
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-82" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Sendeverhalten" UIHint="Headline" />
                     <!-- Hum Delay pattern -->
                     <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-nnn" Name="HumDelayCycle" Inline="true" Layout="Grid">
                       <Columns>
@@ -596,6 +603,7 @@
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000122_R-%T%00012201" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000123_R-%T%00012301" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-20" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Glättungsfunktion" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000124_R-%T%00012401" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-21" Text="Glättungsformel: Xneu = Xalt + (M - Xalt) / P mit" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-22" Text="  Xneu: neu errechneter Messwert" />
@@ -613,8 +621,10 @@
               <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000202_R-%T%00020201">
                 <when test=">0">
                   <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-72" Name="Luftdruck" Text="Luftdruck">
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Luftdruck" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000130_R-%T%00013001" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-83" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Externe Werte" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000135_R-%T%00013501" />
                     <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000135_R-%T%00013501">
                       <when test=">0">
@@ -634,6 +644,7 @@
                       </when>
                     </choose>
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-84" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Sendeverhalten" UIHint="Headline" />
                     <!-- Pre Delay pattern -->
                     <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-nnn" Name="PreDelayCycle" Inline="true" Layout="Grid">
                       <Columns>
@@ -651,6 +662,7 @@
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000132_R-%T%00013201" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000133_R-%T%00013301" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-27" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Glättungsfunktion" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000134_R-%T%00013401" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-28" Text="Glättungsformel: Xneu = Xalt + (M - Xalt) / P mit" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-29" Text="  Xneu: neu errechneter Messwert" />
@@ -668,8 +680,10 @@
               <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000203_R-%T%00020301">
                 <when test=">0">
                   <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-73" Name="Voc" Text="Voc">
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Voc" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000140_R-%T%00014001" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-70" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Externe Werte" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000145_R-%T%00014501" />
                     <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000145_R-%T%00014501">
                       <when test=">0">
@@ -689,6 +703,7 @@
                       </when>
                     </choose>
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-71" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Sendeverhalten" UIHint="Headline" />
                     <!-- Voc Delay pattern -->
                     <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-nnn" Name="VocDelayCycle" Inline="true" Layout="Grid">
                       <Columns>
@@ -706,6 +721,7 @@
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000142_R-%T%00014201" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000143_R-%T%00014301" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-34" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Glättungsfunktion" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000144_R-%T%00014401" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-35" Text="Glättungsformel: Xneu = Xalt + (M - Xalt) / P mit" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-36" Text="  Xneu: neu errechneter Messwert" />
@@ -723,8 +739,10 @@
               <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000204_R-%T%00020401">
                 <when test=">0">
                   <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-74" Name="Co2" Text="CO2">
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="CO2" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000150_R-%T%00015001" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-74" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Externe Werte" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000155_R-%T%00015501" />
                     <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000155_R-%T%00015501">
                       <when test=">0">
@@ -744,6 +762,7 @@
                       </when>
                     </choose>
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-75" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Sendeverhalten" UIHint="Headline" />
                     <!-- Co2 Delay pattern -->
                     <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-nnn" Name="Co2DelayCycle" Inline="true" Layout="Grid">
                       <Columns>
@@ -761,6 +780,7 @@
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000152_R-%T%00015201" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000153_R-%T%00015301" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-41" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Glättungsfunktion" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000154_R-%T%00015401" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-42" Text="Glättungsformel: Xneu = Xalt + (M - Xalt) / P mit" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-43" Text="  Xneu: neu errechneter Messwert" />
@@ -792,8 +812,10 @@
                 <when test=">0">
                   <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-77" Name="Lux" Text="Helligkeit">
                     <ComObjectRefRef RefId="M-00FA_A-0001-01-0000_O-%T%000050_R-%T%00005001" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Helligkeit" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000180_R-%T%00018001" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-89" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Externe Werte" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000185_R-%T%00018501" />
                     <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000185_R-%T%00018501">
                       <when test=">0">
@@ -813,6 +835,7 @@
                       </when>
                     </choose>
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-92" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Sendeverhalten" UIHint="Headline" />
                     <!-- Lux Delay pattern -->
                     <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-nnn" Name="LuxDelayCycle" Inline="true" Layout="Grid">
                       <Columns>
@@ -830,6 +853,7 @@
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000182_R-%T%00018201" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000183_R-%T%00018301" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-93" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Glättungsfunktion" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000184_R-%T%00018401" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-94" Text="Glättungsformel: Xneu = Xalt + (M - Xalt) / P mit" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-95" Text="  Xneu: neu errechneter Messwert" />
@@ -848,8 +872,10 @@
                 <when test=">0">
                   <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-77" Name="Tof" Text="Entfernung">
                     <ComObjectRefRef RefId="M-00FA_A-0001-01-0000_O-%T%000050_R-%T%00005001" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Entfernung" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000190_R-%T%00019001" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-89" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Externe Werte" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000195_R-%T%00019501" />
                     <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000195_R-%T%00019501">
                       <when test=">0">
@@ -869,6 +895,7 @@
                       </when>
                     </choose>
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-92" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Sendeverhalten" UIHint="Headline" />
                     <!-- Tof Delay pattern -->
                     <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-nnn" Name="TofDelayCycle" Inline="true" Layout="Grid">
                       <Columns>
@@ -886,6 +913,7 @@
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000192_R-%T%00019201" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000193_R-%T%00019301" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-93" Text="" UIHint="HorizontalRuler" />
+                    <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Glättungsfunktion" UIHint="Headline" />
                     <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000194_R-%T%00019401" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-94" Text="Glättungsformel: Xneu = Xalt + (M - Xalt) / P mit" />
                     <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-95" Text="  Xneu: neu errechneter Messwert" />
@@ -908,10 +936,12 @@
                       <when test=">0">
                         <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000201_R-%T%00020101">
                           <when test=">0">
+                            <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Taupunkt" UIHint="Headline" />
                             <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000101_R-%T%00010101" />
                             <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000101_R-%T%00010101">
                               <when test="1">
                                 <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000170_R-%T%00017001" />
+                                <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Sendeverhalten" UIHint="Headline" />
                                 <!-- Dew Delay pattern -->
                                 <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-nnn" Name="DewDelayCycle" Inline="true" Layout="Grid">
                                   <Columns>
@@ -929,6 +959,7 @@
                                 <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000172_R-%T%00017201" />
                                 <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000173_R-%T%00017301" />
                                 <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-48" Text="" UIHint="HorizontalRuler" />
+                                <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Glättungsfunktion" UIHint="Headline" />
                                 <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000174_R-%T%00017401" />
                                 <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-49" Text="Glättungsformel: Xneu = Xalt + (M - Xalt) / P mit" />
                                 <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-50" Text="  Xneu: neu errechneter Messwert" />
@@ -940,6 +971,7 @@
                               </when>
                             </choose>
                             <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-55" Text="" UIHint="HorizontalRuler" />
+                            <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Behaglichkeit" UIHint="Headline" />
                             <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000102_R-%T%00010201" />
                             <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000102_R-%T%00010201">
                               <when test="1">
@@ -958,6 +990,7 @@
                     <!-- Luftgüteampel -->
                     <choose ParamRefId="M-00FA_A-0001-01-0000_P-%T%000212_R-%T%00021201">
                       <when test="1">
+                        <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Luftgüte" UIHint="Headline" />
                         <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000103_R-%T%00010301" />
                         <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000103_R-%T%00010301">
                           <when test="1">
@@ -977,6 +1010,7 @@
                     <!-- Kalibrierung Voc -->
                     <choose ParamRefId="M-00FA_A-0001-01-0000_P-%T%000216_R-%T%00021601">
                       <when test=">0">
+                        <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Kalibrierung" UIHint="Headline" />
                         <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000104_R-%T%00010401" />
                         <choose ParamRefId="M-00FA_A-0001-01-0000_UP-%T%000104_R-%T%00010401">
                           <when test="1">
@@ -990,6 +1024,7 @@
                     <!-- Kalibrierung Voc zurücksetzen für BME680 und SGP30 -->
                     <choose ParamRefId="M-00FA_A-0001-01-0000_P-%T%000217_R-%T%00021701">
                       <when test=">0">
+                        <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-nnn" Text="Zurücksetzen" UIHint="Headline" />
                         <ParameterRefRef RefId="M-00FA_A-0001-01-0000_UP-%T%000105_R-%T%00010501" />
                         <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-100" Text="Es ist vollkommen egal, welchen Wert dieser Parameter hat. Die Kalibrierungsdaten werden zurückgesetzt, wenn sich der Wert dieses Parameters ändert und die Applikation hochgeladen wurde. Danach bleiben die Daten erhalten, bis sich der Wert wieder ändert." UIHint="Information" />
                         <ParameterSeparator Id="M-00FA_A-0001-01-0000_PS-99" Text="" UIHint="HorizontalRuler" />

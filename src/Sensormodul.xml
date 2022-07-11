@@ -1,10 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<KNX xmlns:op="http://github.com/OpenKNX/OpenKNXproducer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://knx.org/xml/project/14 ../../../knx.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" CreatedBy="KNX MT" ToolVersion="5.1.255.16695" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://knx.org/xml/project/20">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="../../Organization/knxprod-support/knx_project_20/knx-editor.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<KNX xmlns:op="http://github.com/OpenKNX/OpenKNXproducer" xmlns="http://knx.org/xml/project/20" CreatedBy="KNX MT" ToolVersion="5.1.255.16695">
   <ManufacturerData>
     <Manufacturer RefId="M-00FA">
       <Catalog>
         <CatalogSection Id="M-00FA_CS-OpenKNX" Name="OpenKNX" Number="OpenKNX" DefaultLanguage="de">
-          <CatalogItem Id="M-00FA_H-%SerialNumberEncoded%-%HardwareVersionEncoded%_HP-0001-01-0000_CI-%OrderNumberEncoded%-1" Name="OpenKNX: Sensormodul-Dev" Number="1" ProductRefId="M-00FA_H-%SerialNumberEncoded%-%HardwareVersionEncoded%_P-%OrderNumberEncoded%" Hardware2ProgramRefId="M-00FA_H-%SerialNumberEncoded%-%HardwareVersionEncoded%_HP-0001-01-0000" DefaultLanguage="de" />
+          <CatalogItem Id="%CatalogItemId%" Name="OpenKNX: Sensormodul-Dev" Number="1" ProductRefId="%ProductId%" Hardware2ProgramRefId="%Hardware2ProgramId%" DefaultLanguage="de" />
         </CatalogSection>
       </Catalog>
       <ApplicationPrograms>
@@ -12,10 +13,10 @@
         <!-- If you just want to have a BUGFIX-Update of the ETS-Appliation (without firmware), increase ApplicationVersion AND ApplicationRevision simultaneously -->
         <!-- To sync ETS-Application and firmware again, increase ApplicationVersion AND set ApplicationRevision to 0 -->
         <op:version OpenKnxId="0xA0" ApplicationNumber="17" ApplicationVersion="4" ReplacesVersions="0" ApplicationRevision="0" />
-        <ApplicationProgram Id="M-00FA_A-0001-01-0000" ProgramType="ApplicationProgram" MaskVersion="MV-07B0" Name="WP-Sensor-Onewire-Logic-Dev" LoadProcedureStyle="MergedProcedure" PeiType="0" DefaultLanguage="de" DynamicTableManagement="false" Linkable="true" MinEtsVersion="4.0" ApplicationNumber="0" ApplicationVersion="0" ReplacesVersions="0">
+        <ApplicationProgram Id="%AID%" ProgramType="ApplicationProgram" MaskVersion="MV-07B0" Name="WP-Sensor-Wire-Logic-Dev" LoadProcedureStyle="MergedProcedure" PeiType="0" DefaultLanguage="de" DynamicTableManagement="false" Linkable="true" MinEtsVersion="4.0" ApplicationNumber="0" ApplicationVersion="0" ReplacesVersions="0">
           <Static>
             <Code>
-              <RelativeSegment Id="M-00FA_A-0001-01-0000_RS-04-00000" Name="Parameters" Offset="0" Size="%MemorySize%" LoadStateMachine="4" />
+              <RelativeSegment Id="%AID%_RS-04-00000" Name="Parameters" Offset="0" Size="%MemorySize%" LoadStateMachine="4" />
             </Code>
             <op:define prefix="SENS" header="Sensormodul.h" NumChannels="2" KoOffset="20" ModuleType="3" />
             <op:define prefix="WIRE" header="Sensormodul.h" NumChannels="30" KoOffset="90" ModuleType="2" />
@@ -59,13 +60,10 @@
             </ComObjectRefs>
             <AddressTable MaxEntries="2047" />
             <AssociationTable MaxEntries="2047" />
-            <Messages>
-              <Message Id="M-00FA_A-0001-01-0000_M-1" Name="VersionMismatch" Text="Diese Applikaiton benötigt die Firmware-Version %VersionMessage%, siehe Geräteinfo." />
-            </Messages>
             <LoadProcedures>
               <LoadProcedure MergeId="1">
                 <LdCtrlCompareProp InlineData="%VersionCheck%" ObjIdx="0" PropId="78">
-                  <OnError Cause="CompareMismatch" MessageRef="M-00FA_A-0001-01-0000_M-1" />
+                  <OnError Cause="CompareMismatch" MessageRef="%AID%_M-1" />
                 </LdCtrlCompareProp>
               </LoadProcedure>
               <LoadProcedure MergeId="2">
@@ -76,18 +74,21 @@
                 <LdCtrlWriteRelMem ObjIdx="4" Offset="0" Size="%MemorySize%" Verify="true" AppliesTo="full,par" />
               </LoadProcedure>
               <LoadProcedure MergeId="7">
-                  <LdCtrlLoadImageProp ObjIdx="1" PropId="27" />
-                  <LdCtrlLoadImageProp ObjIdx="2" PropId="27" />
-                  <LdCtrlLoadImageProp ObjIdx="3" PropId="27" />
-                  <LdCtrlLoadImageProp ObjIdx="4" PropId="27" />
+                <LdCtrlLoadImageProp ObjIdx="1" PropId="27" />
+                <LdCtrlLoadImageProp ObjIdx="2" PropId="27" />
+                <LdCtrlLoadImageProp ObjIdx="3" PropId="27" />
+                <LdCtrlLoadImageProp ObjIdx="4" PropId="27" />
               </LoadProcedure>
             </LoadProcedures>
+            <Messages>
+              <Message Id="%AID%_M-1" Name="VersionMismatch" Text="Diese Applikaiton benötigt die Firmware-Version %VersionMessage%, siehe Geräteinfo." />
+            </Messages>
             <Options />
           </Static>
           <Dynamic>
             <ChannelIndependentBlock>
               <!-- ChannelIndependentBlock is a composition of different parts of different modules -->
-              <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-nnn" Name="General" Text="Allgemeine Parameter">
+              <ParameterBlock Id="%AID%_PB-nnn" Name="General" Text="Allgemeine Parameter">
                 <op:include href="../../OAM-LogicModule/src/Logikmodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='General']/*" prefix="LOG" />
                 <op:include href="Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware']/*" prefix="SENS" />
                 <op:include href="../../OAM-LogicModule/src/Logikmodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Diagnose']/*" prefix="LOG" />
@@ -95,11 +96,11 @@
             </ChannelIndependentBlock>
             <!-- Sensormodul generic settings -->
             <op:include href="Sensormodul.share.xml" xpath="//Dynamic/*" prefix="SENS" />
-            <choose ParamRefId="M-00FA_A-0001-01-0000_UP-3000168_R-300016801">
+            <choose ParamRefId="%AID%_UP-3000168_R-300016801">
               <when test="1">
-                <Channel Id="M-00FA_A-0001-01-0000_CH-3" Name="Devices" Number="3" Text="1-Wire">
+                <Channel Id="%AID%_CH-3" Name="Devices" Number="3" Text="1-Wire">
                   <!-- OneWire channel independent settings -->
-                  <ParameterBlock Id="M-00FA_A-0001-01-0000_PB-1" Name="BM" Text="Busmaster-Einstellungen">
+                  <ParameterBlock Id="%AID%_PB-1" Name="BM" Text="Busmaster-Einstellungen">
                     <op:include href="../../OAM-OneWireModule/src/WireGateway.share.xml" xpath="//Dynamic/Channel/ParameterBlock[@Name='BM']/*" prefix="WIRE" />
                     <op:include href="../../OAM-OneWireModule/src/WireGateway.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Expert']" prefix="WIRE" />
                   </ParameterBlock>
@@ -109,26 +110,26 @@
                 </Channel>
               </when>
             </choose>
-            <Channel Name="Logikkanaele" Text="Logikkanäle" Number="4" Id="M-00FA_A-0001-01-0000_CH-4">
+            <Channel Name="Logikkanaele" Text="Logikkanäle" Number="4" Id="%AID%_CH-4">
               <!-- compose logicmodule channel from some static blocks... -->
               <op:include href="../../OAM-LogicModule/src/Logikmodul.share.xml" xpath="//Dynamic/Channel/*" prefix="LOG" />
               <!-- followed by all logic channels -->
-              <op:include href="../../OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//Dynamic/*" type="template" prefix="LOG" />
+              <op:include href="../../OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//Dynamic/ChannelIndependentBlock/*" type="template" prefix="LOG" />
             </Channel>
           </Dynamic>
         </ApplicationProgram>
       </ApplicationPrograms>
       <Hardware>
-        <Hardware Id="M-00FA_H-%SerialNumberEncoded%-%HardwareVersionEncoded%" Name="WP-Sensormodul-1W" SerialNumber="WPKNX103" VersionNumber="1" BusCurrent="10" HasIndividualAddress="true" HasApplicationProgram="true">
+        <Hardware Id="%HardwareId%" Name="OpenKNX-Sensor" SerialNumber="0xA011" VersionNumber="1" BusCurrent="10" HasIndividualAddress="true" HasApplicationProgram="true">
           <Products>
-            <Product Id="M-00FA_H-%SerialNumberEncoded%-%HardwareVersionEncoded%_P-%OrderNumberEncoded%" Text="Sensormodul-1W-Dev" OrderNumber="SELFSENSORDEV" IsRailMounted="false" DefaultLanguage="de">
+            <Product Id="%ProductId%" Text="OpenKNX: Sensormodul (dev)" OrderNumber="OpenKnxSensorDev" IsRailMounted="false" DefaultLanguage="de">
               <RegistrationInfo RegistrationStatus="Registered" />
             </Product>
           </Products>
           <Hardware2Programs>
-            <Hardware2Program Id="M-00FA_H-%SerialNumberEncoded%-%HardwareVersionEncoded%_HP-0001-01-0000" MediumTypes="MT-0">
-              <ApplicationProgramRef RefId="M-00FA_A-0001-01-0000" />
-              <RegistrationInfo RegistrationStatus="Registered" RegistrationNumber="0001/110" />
+            <Hardware2Program Id="%Hardware2ProgramId%" MediumTypes="MT-0">
+              <ApplicationProgramRef RefId="%AID%" />
+              <RegistrationInfo RegistrationStatus="Registered" RegistrationNumber="0001/11" />
             </Hardware2Program>
           </Hardware2Programs>
         </Hardware>

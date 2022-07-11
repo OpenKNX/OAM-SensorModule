@@ -12,7 +12,7 @@
         <!-- If you just want to have a BUGFIX-Update of the ETS-Appliation (without firmware), increase ApplicationVersion AND ApplicationRevision simultaneously -->
         <!-- To sync ETS-Application and firmware again, increase ApplicationVersion AND set ApplicationRevision to 0 -->
         <op:version OpenKnxId="0xA0" ApplicationNumber="16" ApplicationVersion="1" ReplacesVersions="0" ApplicationRevision="0" />
-        <ApplicationProgram Id="M-00FA_A-0001-01-0000" ProgramType="ApplicationProgram" MaskVersion="MV-07B0" Name="WP-Sensor-Onewire-Logic" LoadProcedureStyle="MergedProcedure" PeiType="0" DefaultLanguage="de" DynamicTableManagement="false" Linkable="true" MinEtsVersion="4.0" ApplicationNumber="0" ApplicationVersion="0" ReplacesVersions="0">
+        <ApplicationProgram Id="M-00FA_A-0001-01-0000" ProgramType="ApplicationProgram" MaskVersion="MV-07B0" Name="WP-Sensor-Wire-Logic" LoadProcedureStyle="MergedProcedure" PeiType="0" DefaultLanguage="de" DynamicTableManagement="false" Linkable="true" MinEtsVersion="4.0" ApplicationNumber="0" ApplicationVersion="0" ReplacesVersions="0">
           <Static>
             <Code>
               <RelativeSegment Id="M-00FA_A-0001-01-0000_RS-04-00000" Name="Parameters" Offset="0" Size="%MemorySize%" LoadStateMachine="4" />
@@ -76,10 +76,10 @@
                 <LdCtrlWriteRelMem ObjIdx="4" Offset="0" Size="%MemorySize%" Verify="true" AppliesTo="full,par" />
               </LoadProcedure>
               <LoadProcedure MergeId="7">
-                  <LdCtrlLoadImageProp ObjIdx="1" PropId="27" />
-                  <LdCtrlLoadImageProp ObjIdx="2" PropId="27" />
-                  <LdCtrlLoadImageProp ObjIdx="3" PropId="27" />
-                  <LdCtrlLoadImageProp ObjIdx="4" PropId="27" />
+                <LdCtrlLoadImageProp ObjIdx="1" PropId="27" />
+                <LdCtrlLoadImageProp ObjIdx="2" PropId="27" />
+                <LdCtrlLoadImageProp ObjIdx="3" PropId="27" />
+                <LdCtrlLoadImageProp ObjIdx="4" PropId="27" />
               </LoadProcedure>
             </LoadProcedures>
             <Options />
@@ -119,9 +119,9 @@
         </ApplicationProgram>
       </ApplicationPrograms>
       <Hardware>
-        <Hardware Id="M-00FA_H-%SerialNumberEncoded%-%HardwareVersionEncoded%" Name="WP-Sensormodul-1W" SerialNumber="WPKNX103" VersionNumber="1" BusCurrent="10" HasIndividualAddress="true" HasApplicationProgram="true">
+        <Hardware Id="M-00FA_H-%SerialNumberEncoded%-%HardwareVersionEncoded%" Name="OpenKNX-Sensor" SerialNumber="0xA010" VersionNumber="1" BusCurrent="10" HasIndividualAddress="true" HasApplicationProgram="true">
           <Products>
-            <Product Id="M-00FA_H-%SerialNumberEncoded%-%HardwareVersionEncoded%_P-%OrderNumberEncoded%" Text="Sensormodul-1W" OrderNumber="OPENKNXSENSOR" IsRailMounted="false" DefaultLanguage="de">
+            <Product Id="M-00FA_H-%SerialNumberEncoded%-%HardwareVersionEncoded%_P-%OrderNumberEncoded%" Text="OpenKNX: Sensormodul" OrderNumber="OpenKnxSensor" IsRailMounted="false" DefaultLanguage="de">
               <RegistrationInfo RegistrationStatus="Registered" />
             </Product>
           </Products>

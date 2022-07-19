@@ -138,7 +138,7 @@
             <Parameters>
               <!-- Parameter for this device, channel independent -->
               <Union SizeInBit="8">
-                <Memory CodeSegment="%AID%_RS-04-00000" Offset="75" BitOffset="0" />
+                <Memory CodeSegment="%AID%_RS-04-00000" Offset="0" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%T%000100" Name="Error"      ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="0" Text="Fehlerobjekt für Standardmesswerte anzeigen" Value="0" />
                 <Parameter Id="%AID%_UP-%T%000101" Name="Dewpoint"   ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="1" Text="Taupunkt berechnen" Value="0" />
                 <Parameter Id="%AID%_UP-%T%000102" Name="Comfort"    ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="2" Text="Behaglichkeitszone ausgeben" Value="0" />
@@ -147,7 +147,7 @@
                 <Parameter Id="%AID%_UP-%T%000105" Name="DeleteData" ParameterType="%AID%_PT-DeleteData" Offset="0" BitOffset="5" Text="Kalibrierungsdaten löschen" Value="0" />
               </Union>
               <Union SizeInBit="88">
-                <Memory CodeSegment="%AID%_RS-04-00000" Offset="76" BitOffset="0" />
+                <Memory CodeSegment="%AID%_RS-04-00000" Offset="1" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%T%000110" Name="TempOffset"       ParameterType="%AID%_PT-OffsetTemp"   Offset="0" BitOffset="0"  Text="Temperatur anpassen (interner Messwert)"                               SuffixText="x 0.1 °C" Value="0" />
                 <!-- Delay pattern -->
                 <Parameter Id="%AID%_UP-%T%000111" Name="TempCycleBase"    ParameterType="%AID%_PT-DelayBase"    Offset="1" BitOffset="0"  Text="Zeitbasis" Value="0" />
@@ -162,7 +162,7 @@
                 <Parameter Id="%AID%_UP-%T%000119" Name="TempExt2Percent"  ParameterType="%AID%_PT-Percent"      Offset="10" BitOffset="0" Text="    Anteil externer Messwert 2" SuffixText="Anteil(e)" Value="0" />
               </Union>
               <Union SizeInBit="88">
-                <Memory CodeSegment="%AID%_RS-04-00000" Offset="87" BitOffset="0" />
+                <Memory CodeSegment="%AID%_RS-04-00000" Offset="12" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%T%000120" Name="HumOffset"        ParameterType="%AID%_PT-OffsetHum"    Offset="0" BitOffset="0"  Text="Luftfeuchte anpassen (interner Messwert)"                               SuffixText="%"        Value="0" />
                 <!-- Delay pattern -->
                 <Parameter Id="%AID%_UP-%T%000121" Name="HumCycleBase"     ParameterType="%AID%_PT-DelayBase"    Offset="1" BitOffset="0"  Text="Zeitbasis" Value="0" />
@@ -177,7 +177,7 @@
                 <Parameter Id="%AID%_UP-%T%000129" Name="HumExt2Percent"   ParameterType="%AID%_PT-Percent"      Offset="10" BitOffset="0" Text="    Anteil externer Messwert 2" SuffixText="Anteil(e)" Value="0" />
               </Union>
               <Union SizeInBit="88">
-                <Memory CodeSegment="%AID%_RS-04-00000" Offset="98" BitOffset="0" />
+                <Memory CodeSegment="%AID%_RS-04-00000" Offset="23" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%T%000130" Name="PreOffset"        ParameterType="%AID%_PT-OffsetPre"    Offset="0" BitOffset="0"  Text="Luftdruck anpassen (interner Messwert)"                               SuffixText="mbar"     Value="0" />
                 <!-- Delay pattern -->
                 <Parameter Id="%AID%_UP-%T%000131" Name="PreCycleBase"     ParameterType="%AID%_PT-DelayBase"    Offset="1" BitOffset="0"  Text="Zeitbasis" Value="0" />
@@ -193,7 +193,7 @@
               </Union>
 
               <Union SizeInBit="88">
-                <Memory CodeSegment="%AID%_RS-04-00000" Offset="109" BitOffset="0" />
+                <Memory CodeSegment="%AID%_RS-04-00000" Offset="34" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%T%000140" Name="VocOffset"        ParameterType="%AID%_PT-OffsetVoc"    Offset="0"  BitOffset="0" Text="Voc anpassen (interner Messwert)" Value="0" />
                 <!-- Delay pattern -->
                 <Parameter Id="%AID%_UP-%T%000141" Name="VocCycleBase"     ParameterType="%AID%_PT-DelayBase"    Offset="1" BitOffset="0"  Text="Zeitbasis" Value="0" />
@@ -209,7 +209,7 @@
               </Union>
 
               <Union SizeInBit="88">
-                <Memory CodeSegment="%AID%_RS-04-00000" Offset="120" BitOffset="0" />
+                <Memory CodeSegment="%AID%_RS-04-00000" Offset="45" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%T%000150" Name="Co2Offset"        ParameterType="%AID%_PT-OffsetCo2"    Offset="0" BitOffset="0"  Text="CO2 anpassen (interner Messwert)"                               SuffixText="ppm"      Value="0" />
                 <!-- Delay pattern -->
                 <Parameter Id="%AID%_UP-%T%000151" Name="Co2CycleBase"     ParameterType="%AID%_PT-DelayBase"    Offset="1" BitOffset="0"  Text="Zeitbasis" Value="0" />
@@ -224,14 +224,14 @@
                 <Parameter Id="%AID%_UP-%T%000159" Name="Co2Ext2Percent"   ParameterType="%AID%_PT-Percent"      Offset="10" BitOffset="0" Text="    Anteil externer Messwert 2" SuffixText="Anteil(e)" Value="0" />
               </Union>
               <Union SizeInBit="8">
-                <Memory CodeSegment="%AID%_RS-04-00000" Offset="131" BitOffset="0" />
+                <Memory CodeSegment="%AID%_RS-04-00000" Offset="56" BitOffset="0" />
                 <!-- <Parameter Id="%AID%_UP-%T%000160" Name="SensorDevice" ParameterType="%AID%_PT-SensorDevices" Offset="0" BitOffset="1" Text="Sensorkombination" Value="12" /> -->
                 <Parameter Id="%AID%_UP-%T%000168" Name="Sensor1Wire"     ParameterType="%AID%_PT-CheckBox"      Offset="0" BitOffset="7" Text="1 Wire aktivieren?" Value="0" />
               </Union>
 
               <!-- parameters 161-169 (except 168) were used in app v2.x and should not be used anymore -->
               <Union SizeInBit="56">
-                <Memory CodeSegment="%AID%_RS-04-00000" Offset="132" BitOffset="0" />
+                <Memory CodeSegment="%AID%_RS-04-00000" Offset="57" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%T%000170" Name="DewOffset"       ParameterType="%AID%_PT-OffsetTemp"   Offset="0" BitOffset="0" Text="Taupunkt anpassen"                                                   SuffixText="x 0.1 °C" Value="0" />
                 <!-- Delay pattern -->
                 <Parameter Id="%AID%_UP-%T%000171" Name="DewCycleBase"    ParameterType="%AID%_PT-DelayBase"    Offset="1" BitOffset="0" Text="Zeitbasis" Value="0" />
@@ -241,7 +241,7 @@
                 <Parameter Id="%AID%_UP-%T%000174" Name="DewSmooth"       ParameterType="%AID%_PT-Smooth"       Offset="6" BitOffset="0" Text="Taupunkt glätten: P ="                                               SuffixText=""         Value="1" />
               </Union>
               <Union SizeInBit="88">
-                <Memory CodeSegment="%AID%_RS-04-00000" Offset="139" BitOffset="0" />
+                <Memory CodeSegment="%AID%_RS-04-00000" Offset="64" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%T%000180" Name="LuxOffset"        ParameterType="%AID%_PT-OffsetLux"    Offset="0"  BitOffset="0" Text="Helligkeit anpassen&#10;(Bereich in der Nähe von 0 Lux)"                   SuffixText="Lux"      Value="0" />
                 <!-- Delay pattern -->
                 <Parameter Id="%AID%_UP-%T%000181" Name="LuxCycleBase"     ParameterType="%AID%_PT-DelayBase"    Offset="1"  BitOffset="0" Text="Zeitbasis" Value="0" />
@@ -257,7 +257,7 @@
               </Union>
 
               <Union SizeInBit="88">
-                <Memory CodeSegment="%AID%_RS-04-00000" Offset="150" BitOffset="0" />
+                <Memory CodeSegment="%AID%_RS-04-00000" Offset="75" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%T%000190" Name="TofOffset"        ParameterType="%AID%_PT-OffsetTof"    Offset="0" BitOffset="0"  Text="Entfernung anpassen (interner Messwert)"                               SuffixText="mm"       Value="0" />
                 <!-- Delay pattern -->
                 <Parameter Id="%AID%_UP-%T%000191" Name="TofCycleBase"     ParameterType="%AID%_PT-DelayBase"    Offset="1" BitOffset="0"  Text="Zeitbasis" Value="0" />
@@ -273,7 +273,7 @@
               </Union>
 
               <Union SizeInBit="32">
-                <Memory CodeSegment="%AID%_RS-04-00000" Offset="161" BitOffset="0" />
+                <Memory CodeSegment="%AID%_RS-04-00000" Offset="86" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%T%000200" Name="TempSensor"       ParameterType="%AID%_PT-TempSensors"  Offset="0" BitOffset="0"  Text="Temperatursensor"      Value="0" />
                 <Parameter Id="%AID%_UP-%T%000201" Name="HumSensor"        ParameterType="%AID%_PT-HumSensors"   Offset="0" BitOffset="4"  Text="Luftfeuchtesensor"     Value="0" />
                 <Parameter Id="%AID%_UP-%T%000202" Name="PreSensor"        ParameterType="%AID%_PT-PreSensors"   Offset="1" BitOffset="0"  Text="Luftdrucksensor"       Value="0" />

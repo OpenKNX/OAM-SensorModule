@@ -153,61 +153,61 @@
 #define LOG_KoLedLock 8
 #define LOG_KoBuzzerLock 9
 
-#define WIRE_WireError                 45      // 1 Bit, Bit 7
+#define WIRE_WireError                 26      // 1 Bit, Bit 7
 #define     WIRE_WireErrorMask 0x80
 #define     WIRE_WireErrorShift 7
-#define WIRE_BusMasterCount            45      // 2 Bits, Bit 6-5
+#define WIRE_BusMasterCount            26      // 2 Bits, Bit 6-5
 #define     WIRE_BusMasterCountMask 0x60
 #define     WIRE_BusMasterCountShift 5
-#define WIRE_IdSearch                  45      // 1 Bit, Bit 4
+#define WIRE_IdSearch                  26      // 1 Bit, Bit 4
 #define     WIRE_IdSearchMask 0x10
 #define     WIRE_IdSearchShift 4
-#define WIRE_IButton1                  45      // 1 Bit, Bit 3
+#define WIRE_IButton1                  26      // 1 Bit, Bit 3
 #define     WIRE_IButton1Mask 0x08
 #define     WIRE_IButton1Shift 3
-#define WIRE_IButton2                  45      // 1 Bit, Bit 2
+#define WIRE_IButton2                  26      // 1 Bit, Bit 2
 #define     WIRE_IButton2Mask 0x04
 #define     WIRE_IButton2Shift 2
-#define WIRE_IButton3                  45      // 1 Bit, Bit 1
+#define WIRE_IButton3                  26      // 1 Bit, Bit 1
 #define     WIRE_IButton3Mask 0x02
 #define     WIRE_IButton3Shift 1
-#define WIRE_Group1                    46      // 1 Bit, Bit 7
+#define WIRE_Group1                    27      // 1 Bit, Bit 7
 #define     WIRE_Group1Mask 0x80
 #define     WIRE_Group1Shift 7
-#define WIRE_Group2                    46      // 1 Bit, Bit 6
+#define WIRE_Group2                    27      // 1 Bit, Bit 6
 #define     WIRE_Group2Mask 0x40
 #define     WIRE_Group2Shift 6
-#define WIRE_Group3                    46      // 1 Bit, Bit 5
+#define WIRE_Group3                    27      // 1 Bit, Bit 5
 #define     WIRE_Group3Mask 0x20
 #define     WIRE_Group3Shift 5
-#define WIRE_Group4                    46      // 1 Bit, Bit 4
+#define WIRE_Group4                    27      // 1 Bit, Bit 4
 #define     WIRE_Group4Mask 0x10
 #define     WIRE_Group4Shift 4
-#define WIRE_Group5                    46      // 1 Bit, Bit 3
+#define WIRE_Group5                    27      // 1 Bit, Bit 3
 #define     WIRE_Group5Mask 0x08
 #define     WIRE_Group5Shift 3
-#define WIRE_Group6                    46      // 1 Bit, Bit 2
+#define WIRE_Group6                    27      // 1 Bit, Bit 2
 #define     WIRE_Group6Mask 0x04
 #define     WIRE_Group6Shift 2
-#define WIRE_Group7                    46      // 1 Bit, Bit 1
+#define WIRE_Group7                    27      // 1 Bit, Bit 1
 #define     WIRE_Group7Mask 0x02
 #define     WIRE_Group7Shift 1
-#define WIRE_Group8                    46      // 1 Bit, Bit 0
+#define WIRE_Group8                    27      // 1 Bit, Bit 0
 #define     WIRE_Group8Mask 0x01
 #define     WIRE_Group8Shift 0
-#define WIRE_Busmaster1RSTL            47      // 4 Bits, Bit 7-4
+#define WIRE_Busmaster1RSTL            28      // 4 Bits, Bit 7-4
 #define     WIRE_Busmaster1RSTLMask 0xF0
 #define     WIRE_Busmaster1RSTLShift 4
-#define WIRE_Busmaster1MSP             47      // 4 Bits, Bit 3-0
+#define WIRE_Busmaster1MSP             28      // 4 Bits, Bit 3-0
 #define     WIRE_Busmaster1MSPMask 0x0F
 #define     WIRE_Busmaster1MSPShift 0
-#define WIRE_Busmaster1W0L             48      // 4 Bits, Bit 7-4
+#define WIRE_Busmaster1W0L             29      // 4 Bits, Bit 7-4
 #define     WIRE_Busmaster1W0LMask 0xF0
 #define     WIRE_Busmaster1W0LShift 4
-#define WIRE_Busmaster1REC0            48      // 4 Bits, Bit 3-0
+#define WIRE_Busmaster1REC0            29      // 4 Bits, Bit 3-0
 #define     WIRE_Busmaster1REC0Mask 0x0F
 #define     WIRE_Busmaster1REC0Shift 0
-#define WIRE_Busmaster1WPU             49      // 4 Bits, Bit 7-4
+#define WIRE_Busmaster1WPU             30      // 4 Bits, Bit 7-4
 #define     WIRE_Busmaster1WPUMask 0xF0
 #define     WIRE_Busmaster1WPUShift 4
 
@@ -224,173 +224,173 @@
 #define WIRE_KoGroup7 30
 #define WIRE_KoGroup8 31
 
-#define SENS_Error                     75      // 1 Bit, Bit 7
+#define SENS_Error                     31      // 1 Bit, Bit 7
 #define     SENS_ErrorMask 0x80
 #define     SENS_ErrorShift 7
-#define SENS_Dewpoint                  75      // 1 Bit, Bit 6
+#define SENS_Dewpoint                  31      // 1 Bit, Bit 6
 #define     SENS_DewpointMask 0x40
 #define     SENS_DewpointShift 6
-#define SENS_Comfort                   75      // 1 Bit, Bit 5
+#define SENS_Comfort                   31      // 1 Bit, Bit 5
 #define     SENS_ComfortMask 0x20
 #define     SENS_ComfortShift 5
-#define SENS_Airquality                75      // 1 Bit, Bit 4
+#define SENS_Airquality                31      // 1 Bit, Bit 4
 #define     SENS_AirqualityMask 0x10
 #define     SENS_AirqualityShift 4
-#define SENS_Accuracy                  75      // 1 Bit, Bit 3
+#define SENS_Accuracy                  31      // 1 Bit, Bit 3
 #define     SENS_AccuracyMask 0x08
 #define     SENS_AccuracyShift 3
-#define SENS_DeleteData                75      // 1 Bit, Bit 2
+#define SENS_DeleteData                31      // 1 Bit, Bit 2
 #define     SENS_DeleteDataMask 0x04
 #define     SENS_DeleteDataShift 2
-#define SENS_TempOffset                76      // int8_t
-#define SENS_TempCycleBase             77      // 2 Bits, Bit 7-6
+#define SENS_TempOffset                32      // int8_t
+#define SENS_TempCycleBase             33      // 2 Bits, Bit 7-6
 #define     SENS_TempCycleBaseMask 0xC0
 #define     SENS_TempCycleBaseShift 6
-#define SENS_TempCycleTime             77      // uint14_t
-#define SENS_TempDeltaAbs              79      // uint16_t
-#define SENS_TempDeltaPercent          81      // uint8_t
-#define SENS_TempSmooth                82      // uint8_t
-#define SENS_TempExtCount              83      // 2 Bits, Bit 1-0
+#define SENS_TempCycleTime             33      // uint14_t
+#define SENS_TempDeltaAbs              35      // uint16_t
+#define SENS_TempDeltaPercent          37      // uint8_t
+#define SENS_TempSmooth                38      // uint8_t
+#define SENS_TempExtCount              39      // 2 Bits, Bit 1-0
 #define     SENS_TempExtCountMask 0x03
 #define     SENS_TempExtCountShift 0
-#define SENS_TempExtRead               83      // 1 Bit, Bit 2
+#define SENS_TempExtRead               39      // 1 Bit, Bit 2
 #define     SENS_TempExtReadMask 0x04
 #define     SENS_TempExtReadShift 2
-#define SENS_TempIntPercent            84      // uint8_t
-#define SENS_TempExt1Percent           85      // uint8_t
-#define SENS_TempExt2Percent           86      // uint8_t
-#define SENS_HumOffset                 87      // int8_t
-#define SENS_HumCycleBase              88      // 2 Bits, Bit 7-6
+#define SENS_TempIntPercent            40      // uint8_t
+#define SENS_TempExt1Percent           41      // uint8_t
+#define SENS_TempExt2Percent           42      // uint8_t
+#define SENS_HumOffset                 43      // int8_t
+#define SENS_HumCycleBase              44      // 2 Bits, Bit 7-6
 #define     SENS_HumCycleBaseMask 0xC0
 #define     SENS_HumCycleBaseShift 6
-#define SENS_HumCycleTime              88      // uint14_t
-#define SENS_HumDeltaAbs               90      // uint16_t
-#define SENS_HumDeltaPercent           92      // uint8_t
-#define SENS_HumSmooth                 93      // uint8_t
-#define SENS_HumExtCount               94      // 2 Bits, Bit 1-0
+#define SENS_HumCycleTime              44      // uint14_t
+#define SENS_HumDeltaAbs               46      // uint16_t
+#define SENS_HumDeltaPercent           48      // uint8_t
+#define SENS_HumSmooth                 49      // uint8_t
+#define SENS_HumExtCount               50      // 2 Bits, Bit 1-0
 #define     SENS_HumExtCountMask 0x03
 #define     SENS_HumExtCountShift 0
-#define SENS_HumExtRead                94      // 1 Bit, Bit 2
+#define SENS_HumExtRead                50      // 1 Bit, Bit 2
 #define     SENS_HumExtReadMask 0x04
 #define     SENS_HumExtReadShift 2
-#define SENS_HumIntPercent             95      // uint8_t
-#define SENS_HumExt1Percent            96      // uint8_t
-#define SENS_HumExt2Percent            97      // uint8_t
-#define SENS_PreOffset                 98      // int8_t
-#define SENS_PreCycleBase              99      // 2 Bits, Bit 7-6
+#define SENS_HumIntPercent             51      // uint8_t
+#define SENS_HumExt1Percent            52      // uint8_t
+#define SENS_HumExt2Percent            53      // uint8_t
+#define SENS_PreOffset                 54      // int8_t
+#define SENS_PreCycleBase              55      // 2 Bits, Bit 7-6
 #define     SENS_PreCycleBaseMask 0xC0
 #define     SENS_PreCycleBaseShift 6
-#define SENS_PreCycleTime              99      // uint14_t
-#define SENS_PreDeltaAbs               101      // uint16_t
-#define SENS_PreDeltaPercent           103      // uint8_t
-#define SENS_PreSmooth                 104      // uint8_t
-#define SENS_PreExtCount               105      // 2 Bits, Bit 1-0
+#define SENS_PreCycleTime              55      // uint14_t
+#define SENS_PreDeltaAbs               57      // uint16_t
+#define SENS_PreDeltaPercent           59      // uint8_t
+#define SENS_PreSmooth                 60      // uint8_t
+#define SENS_PreExtCount               61      // 2 Bits, Bit 1-0
 #define     SENS_PreExtCountMask 0x03
 #define     SENS_PreExtCountShift 0
-#define SENS_PreExtRead                105      // 1 Bit, Bit 2
+#define SENS_PreExtRead                61      // 1 Bit, Bit 2
 #define     SENS_PreExtReadMask 0x04
 #define     SENS_PreExtReadShift 2
-#define SENS_PreIntPercent             106      // uint8_t
-#define SENS_PreExt1Percent            107      // uint8_t
-#define SENS_PreExt2Percent            108      // uint8_t
-#define SENS_VocOffset                 109      // int8_t
-#define SENS_VocCycleBase              110      // 2 Bits, Bit 7-6
+#define SENS_PreIntPercent             62      // uint8_t
+#define SENS_PreExt1Percent            63      // uint8_t
+#define SENS_PreExt2Percent            64      // uint8_t
+#define SENS_VocOffset                 65      // int8_t
+#define SENS_VocCycleBase              66      // 2 Bits, Bit 7-6
 #define     SENS_VocCycleBaseMask 0xC0
 #define     SENS_VocCycleBaseShift 6
-#define SENS_VocCycleTime              110      // uint14_t
-#define SENS_VocDeltaAbs               112      // uint16_t
-#define SENS_VocDeltPercent            114      // uint8_t
-#define SENS_VocSmooth                 115      // uint8_t
-#define SENS_VocExtCount               116      // 2 Bits, Bit 1-0
+#define SENS_VocCycleTime              66      // uint14_t
+#define SENS_VocDeltaAbs               68      // uint16_t
+#define SENS_VocDeltPercent            70      // uint8_t
+#define SENS_VocSmooth                 71      // uint8_t
+#define SENS_VocExtCount               72      // 2 Bits, Bit 1-0
 #define     SENS_VocExtCountMask 0x03
 #define     SENS_VocExtCountShift 0
-#define SENS_VocExtRead                116      // 1 Bit, Bit 2
+#define SENS_VocExtRead                72      // 1 Bit, Bit 2
 #define     SENS_VocExtReadMask 0x04
 #define     SENS_VocExtReadShift 2
-#define SENS_VocIntPercent             117      // uint8_t
-#define SENS_VocExt1Percent            118      // uint8_t
-#define SENS_VocExt2Percent            119      // uint8_t
-#define SENS_Co2Offset                 120      // int8_t
-#define SENS_Co2CycleBase              121      // 2 Bits, Bit 7-6
+#define SENS_VocIntPercent             73      // uint8_t
+#define SENS_VocExt1Percent            74      // uint8_t
+#define SENS_VocExt2Percent            75      // uint8_t
+#define SENS_Co2Offset                 76      // int8_t
+#define SENS_Co2CycleBase              77      // 2 Bits, Bit 7-6
 #define     SENS_Co2CycleBaseMask 0xC0
 #define     SENS_Co2CycleBaseShift 6
-#define SENS_Co2CycleTime              121      // uint14_t
-#define SENS_Co2DeltaAbs               123      // uint16_t
-#define SENS_Co2DeltaPercent           125      // uint8_t
-#define SENS_Co2Smooth                 126      // uint8_t
-#define SENS_Co2ExtCount               127      // 2 Bits, Bit 1-0
+#define SENS_Co2CycleTime              77      // uint14_t
+#define SENS_Co2DeltaAbs               79      // uint16_t
+#define SENS_Co2DeltaPercent           81      // uint8_t
+#define SENS_Co2Smooth                 82      // uint8_t
+#define SENS_Co2ExtCount               83      // 2 Bits, Bit 1-0
 #define     SENS_Co2ExtCountMask 0x03
 #define     SENS_Co2ExtCountShift 0
-#define SENS_Co2ExtRead                127      // 1 Bit, Bit 2
+#define SENS_Co2ExtRead                83      // 1 Bit, Bit 2
 #define     SENS_Co2ExtReadMask 0x04
 #define     SENS_Co2ExtReadShift 2
-#define SENS_Co2IntPercent             128      // uint8_t
-#define SENS_Co2Ext1Percent            129      // uint8_t
-#define SENS_Co2Ext2Percent            130      // uint8_t
-#define SENS_Sensor1Wire               131      // 1 Bit, Bit 0
+#define SENS_Co2IntPercent             84      // uint8_t
+#define SENS_Co2Ext1Percent            85      // uint8_t
+#define SENS_Co2Ext2Percent            86      // uint8_t
+#define SENS_Sensor1Wire               87      // 1 Bit, Bit 0
 #define     SENS_Sensor1WireMask 0x01
 #define     SENS_Sensor1WireShift 0
-#define SENS_DewOffset                 132      // int8_t
-#define SENS_DewCycleBase              133      // 2 Bits, Bit 7-6
+#define SENS_DewOffset                 88      // int8_t
+#define SENS_DewCycleBase              89      // 2 Bits, Bit 7-6
 #define     SENS_DewCycleBaseMask 0xC0
 #define     SENS_DewCycleBaseShift 6
-#define SENS_DewCycleTime              133      // uint14_t
-#define SENS_DewDeltaAbs               135      // uint16_t
-#define SENS_DewDeltaPercent           137      // uint8_t
-#define SENS_DewSmooth                 138      // uint8_t
-#define SENS_LuxOffset                 139      // int8_t
-#define SENS_LuxCycleBase              140      // 2 Bits, Bit 7-6
+#define SENS_DewCycleTime              89      // uint14_t
+#define SENS_DewDeltaAbs               91      // uint16_t
+#define SENS_DewDeltaPercent           93      // uint8_t
+#define SENS_DewSmooth                 94      // uint8_t
+#define SENS_LuxOffset                 95      // int8_t
+#define SENS_LuxCycleBase              96      // 2 Bits, Bit 7-6
 #define     SENS_LuxCycleBaseMask 0xC0
 #define     SENS_LuxCycleBaseShift 6
-#define SENS_LuxCycleTime              140      // uint14_t
-#define SENS_LuxDeltaAbs               142      // uint16_t
-#define SENS_LuxDeltPercent            144      // uint8_t
-#define SENS_LuxSmooth                 145      // uint8_t
-#define SENS_LuxExtCount               146      // 2 Bits, Bit 1-0
+#define SENS_LuxCycleTime              96      // uint14_t
+#define SENS_LuxDeltaAbs               98      // uint16_t
+#define SENS_LuxDeltPercent            100      // uint8_t
+#define SENS_LuxSmooth                 101      // uint8_t
+#define SENS_LuxExtCount               102      // 2 Bits, Bit 1-0
 #define     SENS_LuxExtCountMask 0x03
 #define     SENS_LuxExtCountShift 0
-#define SENS_LuxExtRead                146      // 1 Bit, Bit 2
+#define SENS_LuxExtRead                102      // 1 Bit, Bit 2
 #define     SENS_LuxExtReadMask 0x04
 #define     SENS_LuxExtReadShift 2
-#define SENS_LuxIntPercent             147      // uint8_t
-#define SENS_LuxExt1Percent            148      // uint8_t
-#define SENS_LuxExt2Percent            149      // uint8_t
-#define SENS_TofOffset                 150      // int8_t
-#define SENS_TofCycleBase              151      // 2 Bits, Bit 7-6
+#define SENS_LuxIntPercent             103      // uint8_t
+#define SENS_LuxExt1Percent            104      // uint8_t
+#define SENS_LuxExt2Percent            105      // uint8_t
+#define SENS_TofOffset                 106      // int8_t
+#define SENS_TofCycleBase              107      // 2 Bits, Bit 7-6
 #define     SENS_TofCycleBaseMask 0xC0
 #define     SENS_TofCycleBaseShift 6
-#define SENS_TofCycleTime              151      // uint14_t
-#define SENS_TofDeltaAbs               153      // uint16_t
-#define SENS_TofDeltaPercent           155      // uint8_t
-#define SENS_TofSmooth                 156      // uint8_t
-#define SENS_TofExtCount               157      // 2 Bits, Bit 1-0
+#define SENS_TofCycleTime              107      // uint14_t
+#define SENS_TofDeltaAbs               109      // uint16_t
+#define SENS_TofDeltaPercent           111      // uint8_t
+#define SENS_TofSmooth                 112      // uint8_t
+#define SENS_TofExtCount               113      // 2 Bits, Bit 1-0
 #define     SENS_TofExtCountMask 0x03
 #define     SENS_TofExtCountShift 0
-#define SENS_TofExtRead                157      // 1 Bit, Bit 2
+#define SENS_TofExtRead                113      // 1 Bit, Bit 2
 #define     SENS_TofExtReadMask 0x04
 #define     SENS_TofExtReadShift 2
-#define SENS_TofIntPercent             158      // uint8_t
-#define SENS_TofExt1Percent            159      // uint8_t
-#define SENS_TofExt2Percent            160      // uint8_t
-#define SENS_TempSensor                161      // 4 Bits, Bit 7-4
+#define SENS_TofIntPercent             114      // uint8_t
+#define SENS_TofExt1Percent            115      // uint8_t
+#define SENS_TofExt2Percent            116      // uint8_t
+#define SENS_TempSensor                117      // 4 Bits, Bit 7-4
 #define     SENS_TempSensorMask 0xF0
 #define     SENS_TempSensorShift 4
-#define SENS_HumSensor                 161      // 4 Bits, Bit 3-0
+#define SENS_HumSensor                 117      // 4 Bits, Bit 3-0
 #define     SENS_HumSensorMask 0x0F
 #define     SENS_HumSensorShift 0
-#define SENS_PreSensor                 162      // 4 Bits, Bit 7-4
+#define SENS_PreSensor                 118      // 4 Bits, Bit 7-4
 #define     SENS_PreSensorMask 0xF0
 #define     SENS_PreSensorShift 4
-#define SENS_VocSensor                 162      // 4 Bits, Bit 3-0
+#define SENS_VocSensor                 118      // 4 Bits, Bit 3-0
 #define     SENS_VocSensorMask 0x0F
 #define     SENS_VocSensorShift 0
-#define SENS_Co2Sensor                 163      // 4 Bits, Bit 7-4
+#define SENS_Co2Sensor                 119      // 4 Bits, Bit 7-4
 #define     SENS_Co2SensorMask 0xF0
 #define     SENS_Co2SensorShift 4
-#define SENS_LuxSensor                 163      // 4 Bits, Bit 3-0
+#define SENS_LuxSensor                 119      // 4 Bits, Bit 3-0
 #define     SENS_LuxSensorMask 0x0F
 #define     SENS_LuxSensorShift 0
-#define SENS_TofSensor                 164      // 4 Bits, Bit 7-4
+#define SENS_TofSensor                 120      // 4 Bits, Bit 7-4
 #define     SENS_TofSensorMask 0xF0
 #define     SENS_TofSensorShift 4
 
@@ -426,7 +426,7 @@
 #define LOG_ChannelCount 80
 
 // Parameter per channel
-#define LOG_ParamBlockOffset 165
+#define LOG_ParamBlockOffset 121
 #define LOG_ParamBlockSize 86
 #define LOG_fChannelDelayBase          0      // 2 Bits, Bit 7-6
 #define     LOG_fChannelDelayBaseMask 0xC0
@@ -1093,7 +1093,7 @@
 #define WIRE_ChannelCount 30
 
 // Parameter per channel
-#define WIRE_ParamBlockOffset 7045
+#define WIRE_ParamBlockOffset 7001
 #define WIRE_ParamBlockSize 18
 #define WIRE_sDeviceId                  0      // char*, 7 Byte
 #define WIRE_sFamilyCode                0      // 8 Bits, Bit 7-0

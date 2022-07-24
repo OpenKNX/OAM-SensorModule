@@ -107,6 +107,7 @@
             "args": [
                 "create",
                 "--Debug",
+                "--AbsoluteSingleParameters",
                 "Sensormodul"
             ],
             "problemMatcher": [],

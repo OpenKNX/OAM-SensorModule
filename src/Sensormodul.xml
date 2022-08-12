@@ -12,15 +12,15 @@
         <!-- Each increase of AppliationVersion FORCES the Enduser to update according firmware, too -->
         <!-- If you just want to have a BUGFIX-Update of the ETS-Appliation (without firmware), increase ApplicationVersion AND ApplicationRevision simultaneously -->
         <!-- To sync ETS-Application and firmware again, increase ApplicationVersion AND set ApplicationRevision to 0 -->
-        <op:version OpenKnxId="0xA0" ApplicationNumber="17" ApplicationVersion="4" ReplacesVersions="0" ApplicationRevision="0" />
+        <op:version OpenKnxId="0xA0" ApplicationNumber="17" ApplicationVersion="5" ReplacesVersions="0" ApplicationRevision="0" />
         <ApplicationProgram Id="%AID%" ProgramType="ApplicationProgram" MaskVersion="MV-07B0" Name="WP-Sensor-Wire-Logic-Dev" LoadProcedureStyle="MergedProcedure" PeiType="0" DefaultLanguage="de" DynamicTableManagement="false" Linkable="true" MinEtsVersion="4.0" ApplicationNumber="0" ApplicationVersion="0" ReplacesVersions="0">
           <Static>
             <Code>
               <RelativeSegment Id="%AID%_RS-04-00000" Name="Parameters" Offset="0" Size="%MemorySize%" LoadStateMachine="4" />
             </Code>
             <op:define prefix="SENS" header="Sensormodul.h" NumChannels="2" KoOffset="20" ModuleType="3" />
-            <op:define prefix="WIRE" header="Sensormodul.h" NumChannels="30" KoOffset="90" ModuleType="2" />
-            <op:define prefix="LOG" header="Sensormodul.h" NumChannels="80" KoOffset="125" ModuleType="1" />
+            <op:define prefix="WIRE" header="Sensormodul.h" NumChannels="3" KoOffset="90" ModuleType="2" />
+            <op:define prefix="LOG" header="Sensormodul.h" NumChannels="8" KoOffset="125" ModuleType="1" />
             <ParameterTypes>
               <!-- generic parameter types for any device -->
               <op:include href="../../OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="LOG" />
@@ -106,7 +106,7 @@
                   </ParameterBlock>
                   <op:include href="../../OAM-OneWireModule/src/WireGateway.share.xml" xpath="//Dynamic/Channel/*[position()>1]" prefix="LOG" />
                   <!-- OneWire channel settings -->
-                  <op:include href="../../OAM-OneWireModule/src/WireGateway.templ.xml" xpath="//Dynamic/*" type="template" prefix="WIRE" />
+                  <op:include href="../../OAM-OneWireModule/src/WireGateway.templ.xml" xpath="//Dynamic/ChannelIndependentBlock/*" type="template" prefix="WIRE" />
                 </Channel>
               </when>
             </choose>

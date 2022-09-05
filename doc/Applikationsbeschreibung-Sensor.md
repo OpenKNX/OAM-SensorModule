@@ -1,3 +1,8 @@
+<!-- 
+cSpell:words knxprod Masifi SAMD21 einheitenlos Luftfeuchtesensor engl Pieptönen
+cSpell:words Glättungsfunktion Glättungsformel Behaglichkeitszone Behaglichkeitszonen Kalibrierungswerte Kalibrierungsfortschritt Kalibrierungsdaten KalibrierungLoeschen Bitleiste Behaglichkeitswert Kalibrierungsgrad
+ -->
+
 # **Applikationsbeschreibung Sensor**
 
 Die Applikation für das SensorModule erlaubt die Parametrisierung des Sensormoduls mittels der ETS.
@@ -53,7 +58,7 @@ Die Software kann recht einfach auf andere Hardware portiert werden, die auf ein
 
 ### **Funktionsumfang**
 
-Die Applikation und die Firmware stellen sehr viele Funktionen in verschiedenen Bereichen zur Verfügung. Dabei ist zu betonen, dass diese verschiedenen Funktionalitäten nicht unbedingt in beliebiger Kombination auch funktionieren können. Gerade hardwareabhängige Funktionen sind nicht in beliebiger Kombinatorik gedacht und auch nicht immer möglich.
+Die Applikation und die Firmware stellen sehr viele Funktionen in verschiedenen Bereichen zur Verfügung. Dabei ist zu betonen, dass diese verschiedenen Funktionalitäten nicht unbedingt in beliebiger Kombination auch funktionieren können. Gerade von der Hardware abhängige Funktionen sind nicht in beliebiger Kombinatorik gedacht und auch nicht immer möglich.
 
 Das soll nicht von der Nutzung abhalten, es soll nur klar machen, dass die Intention der Software eine dezentrale ist: Es soll an verschiedensten Stellen im Haus die Möglichkeit gegeben werden, ein paar Kleinigkeiten zu machen (z.B. Temperatur+Luftfeuchte messen, Fensterkontakt abfragen, Sperren durch einen Piep zu bestätigen).
 
@@ -81,7 +86,7 @@ Hardwareunabhängige Funktionen, in diesem Fall das Logikmodul, sind allerdings 
 
 ## **Allgemeine Parameter**
 
-![Allgemeine Parameter](pics/AllgemeineParameter.png)
+<kbd>![Allgemeine Parameter](pics/AllgemeineParameter.png)</kbd>
 Hier werden Einstellungen getroffen, die die generelle Arbeitsweise des Sensormoduls bestimmen.
 
 ### **Zeit bis das Gerät nach einem Neustart aktiv wird**
@@ -110,7 +115,7 @@ Die Firmware im Sensormodul unterstützt eine Vielzahl an Hardwarevarianten. Um 
 
 **Die Angaben in diesem Teil müssen der vorhandenen Hardware entsprechen**, da sie das Verhalten der Applikation und auch der Firmware bestimmen. **Das Applikationsprogramm hat keine Möglichkeit, die Korrektheit der Angaben zu überprüfen.**
 
-Falsche Angaben können zu falschern Konfigurationen der Applikation und somit zum **Fehlverhalten des Sensormoduls** führen.
+Falsche Angaben können zu falschen Konfigurationen der Applikation und somit zum **Fehlverhalten des Sensormoduls** führen.
 
 Das Sensormodul kann 7 verschiedene Standardmesswerte liefern, die von verschiedenen Hardware-Sensoren ermittelt werden können:
 
@@ -147,7 +152,7 @@ In den folgenden Auswahlfeldern kann man für jeden Standardmesswert bestimmen, 
 Die Kombination vom BME280 und BME680 ist nicht möglich, da diese Sensoren die gleiche physikalische Adresse haben und somit nicht beide gleichzeitig angeschlossen werden können. Es ist aber keine Einschränkung, da der BME680 auch alle Messwerte liefern kann, die der BME280 liefert.
 
 Sollten beide Sensoren BME280 und BME680 ausgewählt worden sein, erscheint folgende Fehlermeldung:
-![Fehler beide BME-Sensoren](pics/FehlerBeideBME.png)
+<kbd>![Fehler beide BME-Sensoren](pics/FehlerBeideBME.png)</kbd>
 
 > **Achtung**: Die Möglichkeit, Sensoren für Standardmesswerte auszuwählen ermöglicht viele Sensor-Messwert-Kombinationen, die nicht alle vor einem Release getestet werden können. In der folgenden Tabelle werden Sensor-Messwert-Kombinationen angegeben, die bereits erfolgreich geprüft wurden und funktionieren. Ferner können weitere funktionierende Sensor-Messwert-Kombinationen im KNX-User-Forum ausgetauscht werden.
 
@@ -176,7 +181,7 @@ Die in den Tabellen angegebenen Kombinationen sagen nichts darüber aus, ob die 
 
 >Die Verwendung von SCD30 als Sensor, vor allem in Kombination mit weiteren Sensoren, wird nur mit eingeschaltetem Watchdog empfohlen, da der Betrieb vom SCD30 manchmal zu unerwünschten "Hängern" des Sensormoduls führt. Statt des SCD30 sollte der SDC41 genutzt werden, da er günstiger ist und zuverlässiger funktioniert.
 
-![Installierte Hardware](pics/InstallierteHardware.png)
+<kbd>![Installierte Hardware](pics/InstallierteHardware.png)</kbd>
 
 #### **Temperatursensor**
 
@@ -192,7 +197,7 @@ Dieses Auswahlfeld erlaubt die Auswahl des Sensors, der die Luftfeuchte liefern 
 
 Wird "Kein Sensor" ausgewählt, wird die Luftfeuchte nicht ermittelt.
 
-Nur wenn ein Sensor für die Luftfeuchteermittlung ausgewählt wurde, können auch im Abschnitt "Standardsensoren->Luftfeuchte" entsprechende Einstellungen zum senden der Luftfeuchte gemacht werden.
+Nur wenn ein Sensor für die Ermittlung der Luftfeuchte ausgewählt wurde, können auch im Abschnitt "Standardsensoren->Luftfeuchte" entsprechende Einstellungen zum senden der Luftfeuchte gemacht werden.
 
 #### **Luftdrucksensor**
 
@@ -241,7 +246,7 @@ Nur wenn ein Sensor für die Entfernungsermittlung ausgewählt wurde, können au
 Dieses Eingabefeld kann bei jedem Sensor zusätzlich ausgewählt werden, falls an das Sensormodul auch 1-Wire-Sensoren angeschlossen sind. Eine weitere Seite zur Detaileinstellungen für 1-Wire-Sensoren wird dann verfügbar.
 
 1-Wire-Sensoren erfordern eine fortlaufende Abfrage ihrer Werte und können speziell bei Input-Output-Bausteinen (IO) oder iButtons sehr zeitkritisch sein. Deswegen wird für diese zeitkritischen Abfragen in einem besonders schnellen Modus geschaltet. Bestimmte Sensoren, wie z.B. der IAQCore, der SCD30 und der SCD41, können dieses schnellen Modus nicht unterstützen und behindern die Kommunikation mit dem 1-Wire-Sensor. In solchen Fällen erscheint folgende Meldung:
-![Info One-Wire](pics/OneWire.png)
+<kbd>![Info One-Wire](pics/OneWire.png)</kbd>
 Die Abfragen von 1-Wire-IO und iButtons passieren dann in normaler Geschwindigkeit, was dazu führen kann, dass die Reaktionszeiten auf Eingaben größer 1 Sekunde werden oder gar dass Eingaben verpasst werden. Dies ist kein Fehler des Sensormoduls oder der Firmware, sondern eine Hardwarebeschränkung der verwendeten Bauteile, hier der beteiligten Sensoren.
 
 Anmerkung: Die Einstellungen und die Abfrage von 1-Wire-Sensoren können in der Applikationsbeschreibung WireGateway nachgelesen werden.
@@ -255,7 +260,7 @@ Das Sensormodul unterstützt auch die Ausgabe von Pieptönen mittels eines Buzze
 Das Sensormodul unterstützt auch die Ausgabe eines Lichtsignals mittels einer RGB-LED. Mit einem Haken in diesem Feld wird angegeben, ob eine RGB-LED installiert ist.
 
 Wird eine RGB-LED und ein CO<sub>2</sub>-Sensor ausgewählt, erscheint folgende Information:
-![Info RGB-LED](pics/InfoRgbLed.png)
+<kbd>![Info RGB-LED](pics/InfoRgbLed.png)</kbd>
 
 Diese Information besagt, dass der Betrieb einer RBG-LED und eines CO<sub>2</sub>-Sensors gleichzeitig nicht empfohlen wird, sofern das Sensormodul vom KNX-Bus gespeist werden soll. Da der vom KNX-Bus gelieferte Strom nicht für den Betrieb beider ausreicht, kann es zu Funktionsstörungen kommen, bis hin zu Resets des Sensormoduls und zum Funktionsausfall. Falls das Sensormodul über eine zusätzliche Stromversorgung verfügt (z.B. USB), kann diese Einstellung so belassen werden. Die Applikation wird bei dieser Einstellung nicht weiter eingeschränkt.
 
@@ -263,7 +268,7 @@ Diese Information besagt, dass der Betrieb einer RBG-LED und eines CO<sub>2</sub
 
 Das Fehlerobjekt (KO 11) meldet bitweise Sensorfehler.
 
-* Bit 0: Fehler in der Logik (zyklus, der nicht aufgelöst werden kann)
+* Bit 0: Fehler in der Logik (Zyklus, der nicht aufgelöst werden kann)
 * Bit 1: Fehler bei der Messung der Temperatur
 * Bit 2: Fehler bei der Messung der Luftfeuchte
 * Bit 3: Fehler bei der Messung des Luftdrucks
@@ -297,7 +302,7 @@ Derzeit wird der Watchdog bei der Verwendung vom SCD30 (CO<sub>2</sub>-Sensor) e
 
 Zu den Standardsensoren zählen die Sensoren, die im Kapitel "Hardwareeinstellungen" in der Tabelle aufgelistet sind. Diese Sensoren werden von der Applikation bestens unterstützt. Alle Messwerte von Standardsensoren (Temperatur, Luftfeuchte, Luftdruck, Voc, CO<sub>2</sub>, Helligkeit und Entfernung) erlauben die gleichen Einstellungen, die im Folgenden detailliert für die Temperatur beschrieben werden. Für die weiteren Messwerte werden dann nur noch die Einheiten genannt, in den die Eingaben zu erfolgen sind.
 
-![Standardsensoren](pics/Standardsensoren.png)
+<kbd>![Standardsensoren](pics/Standardsensoren.png)</kbd>
 
 ## Temperatur
 
@@ -428,12 +433,12 @@ Das Sensormodul kann neben gemessenen Werten auch noch einige berechnete Werte l
 
 ### **Taupunkt berechnen**
 
-![Taupunkt](pics/Taupunkt.png)
+<kbd>![Taupunkt](pics/Taupunkt.png)</kbd>
 Wenn man hier "Ja" auswählt, kann man für den Taupunkt Einstellungen wie unter Standardsensoren beschrieben vornehmen. Alle Angaben für den Taupunkt werden in 0.1°C vorgenommen.
 
 ### **Behaglichkeitszone ausgeben**
 
-![Behaglichkeit](pics/Behaglichkeit.png)
+<kbd>![Behaglichkeit](pics/Behaglichkeit.png)</kbd>
 Wenn man hier "Ja" auswählt, wird anhand der Temperatur und Luftfeuchte eine Behaglichkeitszone berechnet und über KO 22 ausgegeben. Die Behaglichkeitszone kann jederzeit gelesen werden, wird aber nur bei Änderungen gesendet.
 
 Falls zyklisches Senden gewünscht wird, kann man dies über die im Sensormodul enthaltenen Logikkanäle realisieren. Beispiele sind in der Applikationsbeschreibung Logik enthalten.
@@ -446,7 +451,7 @@ Folgende Behaglichkeitszonen werden berechnet:
 
 ### **Luftqualitätsampel ausgeben**
 
-![Luftqualitätsampel](pics/Luftqualitätsampel.png)
+<kbd>![Luftqualitätsampel](pics/Luftqualitätsampel.png)</kbd>
 Dieser Punkt ist nur sichtbar, wenn ein angeschlossener Sensor Messwerte zur Luftqualität liefert, also nur beim BME680, SCD30 oder SCD41.
 
 Wenn man hier "Ja" auswählt, wird anhand des gemessenen Voc-Werts (beim BME680) oder des gemessenen CO<sub>2</sub>-Werts eine Luftqualitätsampel berechnet und über KO 23 ausgegeben. Die Luftqualitätsampel kann jederzeit gelesen werden, wird aber nur bei Änderungen gesendet.
@@ -464,7 +469,7 @@ Es gibt 6 Luftqualitätsgrade, entsprechend deutschen Schulnoten:
 
 ### **Kalibrierungsfortschritt ausgeben**
 
-![Kalibrierung](pics/Kalibrierung.png)
+<kbd>![Kalibrierung](pics/Kalibrierung.png)</kbd>
 Wird nur sichtbar, wenn als Sensor BME680 ausgewählt ist.
 
 Manche Sensoren benötigen eine Kalibrierung, bevor sie zuverlässige Werte ausgeben können. Dies ist besonders für die Erfassung von Voc-Werten notwendig. Das Sensormodul hat für den BME680 eine Selbstkalibrierung implementiert, die ununterbrochen parallel zur Messwerterfassung läuft und die bisher ermittelten Kalibrierungswerte in den nichtflüchtigen Speicher des Prozessors speichert. Somit wird verhindert, dass nach einem Neustart des Gerätes eine erneute Kalibrierung notwendig wird.
@@ -479,7 +484,7 @@ Der Kalibrierungsfortschritt kann mit dieser Einstellung zur Information über K
 
 ### **Kalibrierungsdaten löschen**
 
-![Bild Kalibrierungsdaten löschen](pics/KalibrierungLoeschen.png)
+<kbd>![Bild Kalibrierungsdaten löschen](pics/KalibrierungLoeschen.png)</kbd>
 
 Die Applikation erlaubt auch ein explizites Löschen der Kalibrierungsdaten. Allerdings wäre es sinnlos, hierfür einen Ja-Nein-Parameter einzuführen, da dieser, einmal auf Ja gestellt, nach jedem Neustart des Gerätes die Kalibrierungsdaten löschen würde. Insofern funktioniert dieser Parameter anders als normalerweise ETS-Parameter funktionieren.
 

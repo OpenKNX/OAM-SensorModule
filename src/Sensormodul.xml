@@ -19,8 +19,8 @@
               <RelativeSegment Id="%AID%_RS-04-00000" Name="Parameters" Offset="0" Size="%MemorySize%" LoadStateMachine="4" />
             </Code>
             <op:define prefix="SENS" header="Sensormodul.h" NumChannels="2" KoOffset="20" ModuleType="3" />
-            <op:define prefix="WIRE" header="Sensormodul.h" NumChannels="3" KoOffset="90" ModuleType="2" />
-            <op:define prefix="LOG" header="Sensormodul.h" NumChannels="8" KoOffset="125" ModuleType="1" />
+            <op:define prefix="WIRE" header="Sensormodul.h" NumChannels="30" KoOffset="90" ModuleType="2" />
+            <op:define prefix="LOG" header="Sensormodul.h" NumChannels="80" KoOffset="125" ModuleType="1" />
             <ParameterTypes>
               <!-- generic parameter types for any device -->
               <op:include href="../../OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="LOG" />

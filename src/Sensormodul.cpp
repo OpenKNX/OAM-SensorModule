@@ -315,7 +315,7 @@ void ProcessSensor(sSensorInfo* cData, getSensorValue fGetSensorValue, MeasureTy
             lValue = lValue / iValueFactor;
             lValue += (lOffset / iOffsetFactor);
             // if there are external values to take into account, we do it here
-            uint8_t lNumExternalValues = knx.paramByte(iParamIndex + 9) & 3;
+            uint8_t lNumExternalValues = knx.paramByte(iParamIndex + 7) & 3;
             float lDivisor = 0.0f;
             float lDivident = 0.0f;
             float lFactor = 0.0f;
@@ -326,14 +326,14 @@ void ProcessSensor(sSensorInfo* cData, getSensorValue fGetSensorValue, MeasureTy
             switch (lNumExternalValues)
             {
                 case 2:
-                    lFactor = knx.paramByte(iParamIndex + 12) * gIsExternalValueValid[lExtKoIndex + 1]; // factor for external value 2
+                    lFactor = knx.paramByte(iParamIndex + 10) * gIsExternalValueValid[lExtKoIndex + 1]; // factor for external value 2
                     lDivident = (float)knx.getGroupObject(lExtKoIndex + SENS_KoExt2Temp).value(getDPT(iDpt)) * lFactor;
                     lDivisor = lFactor;
                 case 1:
-                    lFactor = knx.paramByte(iParamIndex + 11) * gIsExternalValueValid[lExtKoIndex]; // factor for external value 1
+                    lFactor = knx.paramByte(iParamIndex + 9) * gIsExternalValueValid[lExtKoIndex]; // factor for external value 1
                     lDivident += (float)knx.getGroupObject(lExtKoIndex + SENS_KoExt1Temp).value(getDPT(iDpt)) * lFactor;
                     lDivisor += lFactor;
-                    lFactor = knx.paramByte(iParamIndex + 10); // factor for internal value
+                    lFactor = knx.paramByte(iParamIndex + 8); // factor for internal value
                     lDivident += lValue * lFactor;
                     lDivisor += lFactor;
                     if (lDivisor > 0.0f) lValue = lDivident / lDivisor;
@@ -347,15 +347,15 @@ void ProcessSensor(sSensorInfo* cData, getSensorValue fGetSensorValue, MeasureTy
                 // Formel: Value = ValueAlt + (ValueNeu - ValueAlt) / p
                 float lValueAlt = (float)knx.getGroupObject(iKoNumber).value(getDPT(iDpt));
                 if (!(lForce && lValueAlt == 0.0f)) {
-                    lValue = lValueAlt + (lValue - lValueAlt) / knx.paramByte(iParamIndex + 8);
+                    lValue = lValueAlt + (lValue - lValueAlt) / knx.paramByte(iParamIndex + 6);
                 }
                 // evaluate sending conditions (relative delta / absolute delta)
                 if (cData->lastSentValue != 0.0f) {
                     float lDelta = 100.0f - lValue / cData->lastSentValue * 100.0f;
-                    uint8_t lPercent = knx.paramByte(iParamIndex + 7);
+                    uint8_t lPercent = knx.paramByte(iParamIndex + 5);
                     if (lPercent > 0 && (uint8_t)round(abs(lDelta)) >= lPercent)
                         lSend = true;
-                    float lAbsolute = knx.paramWord(iParamIndex + 5) / iOffsetFactor;
+                    float lAbsolute = knx.paramWord(iParamIndex + 3) / iOffsetFactor;
                     if (lAbsolute > 0.0f && roundf(abs(lValue - cData->lastSentValue)) >= lAbsolute)
                         lSend = true;
                 }

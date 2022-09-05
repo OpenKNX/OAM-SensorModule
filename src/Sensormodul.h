@@ -423,7 +423,7 @@
 #define SENS_KoLux 87
 #define SENS_KoTof 88
 
-#define LOG_ChannelCount 8
+#define LOG_ChannelCount 80
 
 // Parameter per channel
 #define LOG_ParamBlockOffset 121
@@ -1090,10 +1090,10 @@
 #define LOG_KoKOfE2 1
 #define LOG_KoKOfO 2
 
-#define WIRE_ChannelCount 3
+#define WIRE_ChannelCount 30
 
 // Parameter per channel
-#define WIRE_ParamBlockOffset 809
+#define WIRE_ParamBlockOffset 7001
 #define WIRE_ParamBlockSize 18
 #define WIRE_sDeviceId                  0      // char*, 7 Byte
 #define WIRE_sFamilyCode                0      // 8 Bits, Bit 7-0
@@ -1243,6 +1243,6 @@
 #define WIRE_KoKOs 0
 
 #define MAIN_OpenKnxId 0xA0
-#define MAIN_ApplicationNumber 17
-#define MAIN_ApplicationVersion 4
-#define MAIN_OrderNumber "OpenKnxSensorDev"
+#define MAIN_ApplicationNumber 16
+#define MAIN_ApplicationVersion 3
+#define MAIN_OrderNumber "OpenKnxSensor"

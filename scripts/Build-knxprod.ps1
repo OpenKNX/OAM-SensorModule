@@ -28,6 +28,6 @@ if (!$toolsExist) {
 }
 
 if ($toolsExist) {
-    ~/bin/OpenKNXproducer.exe knxprod --Output=./SensorModule.knxprod data/SensorModule.xml
+    ~/bin/OpenKNXproducer.exe knxprod --NoXsd --Output=./SensorModule.knxprod data/SensorModule.xml
     timeout /T 20 
 }

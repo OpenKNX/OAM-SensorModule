@@ -8,7 +8,7 @@
           <Static></Static>
           <Dynamic>
             <ChannelIndependentBlock>
-              <ParameterBlock Id="%AID%_PB-2" Name="Hardware" Text="Sensor: Sensorauswahl">
+              <ParameterBlock Id="%AID%_PB-2" Name="Hardware1" Text="Sensor: Sensorauswahl">
                 <ParameterSeparator Id="%AID%_PS-nnn" Text="" UIHint="HorizontalRuler" />
                 <ParameterSeparator Id="%AID%_PS-nnn" Text="Installierte Hardware" UIHint="Headline" />
                 <ParameterSeparator Id="%AID%_PS-nnn" Text="Im folgenden wird die verwendete bzw. installierte Hardware angegeben." />
@@ -188,6 +188,8 @@
                     </choose>
                   </when>
                 </choose>
+              </ParameterBlock>
+              <ParameterBlock Id="%AID%_PB-3" Name="Hardware2" Text="Sensor: 1-Wire">
                 <ParameterRefRef RefId="%AID%_UP-%T%000168_R-%T%00016801" />
                 <choose ParamRefId="%AID%_UP-%T%000168_R-%T%00016801">
                   <when test="1">
@@ -199,6 +201,8 @@
                     </choose>
                   </when>
                 </choose>
+              </ParameterBlock>
+              <ParameterBlock Id="%AID%_PB-4" Name="Hardware3" Text="Sensor: Zusatzhardware">
                 <!-- Buzzer installed? -->
                 <ParameterRefRef RefId="%AID%_UP-1000035_R-100003502" />
                 <!-- RGB-LED installed? -->

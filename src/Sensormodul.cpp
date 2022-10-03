@@ -4,9 +4,11 @@
 #include "HardwareDevices.h"
 #include "Schedule.h"
 
+#ifdef WIREMODULE
 #include "WireDevice.h"
 #include "OneWireDS2482.h"
-#include "IncludeManager.h"
+#endif
+// #include "IncludeManager.h"
 
 #include "SensorModule.h"
 #include "Logic.h"
@@ -19,7 +21,9 @@ uint16_t gCountSaveInterrupt;
 
 SensorModule gSensor;
 Logic gLogic;
+#ifdef WIREMODULE
 OneWireDS2482 *gBusMaster;
+#endif
 
 bool callOneWire() 
 {
@@ -92,7 +96,9 @@ void ProcessInputKo(GroupObject &iKo) {
         ProcessDiagnoseCommand(iKo);
     } else {
         gSensor.processInputKo(iKo);
+#ifdef WIREMODULE
         WireDevice::processKOCallback(iKo);
+#endif
         // else dispatch to logic module
         gLogic.processInputKo(iKo);
     }
@@ -135,10 +141,12 @@ void ProcessInterruptCallback(void *iInstance)
 // Schedule-callback for 1-Wire
 void OneWireCallback(void *iInstance)
 {
+#ifdef WIREMODULE
     if (callOneWire()) {
         gBusMaster->loop();
         WireDevice::loop();
     }
+#endif
 }
 
 // Schedule-callback for 1-Wire
@@ -230,6 +238,7 @@ void appSetup(bool iSaveSupported)
         Schedule::addCallback(LogicCallback, nullptr);
         gSensor.setup();
         gLogic.setup(false);
+#ifdef WIREMODULE
         if (callOneWire())
         {
             Schedule::addCallback(OneWireCallback, nullptr);
@@ -258,6 +267,7 @@ void appSetup(bool iSaveSupported)
                 }
             }
         }
+#endif
     }
 }
 #endif

@@ -2,8 +2,8 @@
 #include "Helper.h"
 #include "Schedule.h"
 
-#include "IncludeManager.h"
-// #include "HardwareDevices.h"
+// #include "IncludeManager.h"
+#include "HardwareDevices.h"
 
 #include "SensorModule.h"
 #include "Logic.h"

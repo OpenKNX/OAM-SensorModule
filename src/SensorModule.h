@@ -1,5 +1,7 @@
 // cSpell:words millis Millis Divident Dewpoint Airquality airquality
 #include "Sensor.h"
+#include "knxprod.h"
+#include "hardware.h"
 #include "HardwareDevices.h"
 
 #define BIT_1WIRE 1

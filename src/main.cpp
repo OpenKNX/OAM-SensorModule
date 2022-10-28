@@ -1,6 +1,6 @@
 #include <knx.h>
 #include <Wire.h>
-#include "HardwareDevices.h"
+#include "hardware.h"
 #include "Logic.h"
 #include "OpenKNX.h"
 

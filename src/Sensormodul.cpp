@@ -1,7 +1,6 @@
 // cSpell:words millis Millis Dewpoint EEPROM RSTL
 #ifdef SENSORMODULE
 #include "Helper.h"
-#include "HardwareDevices.h"
 #include "Schedule.h"
 
 #ifdef WIREMODULE

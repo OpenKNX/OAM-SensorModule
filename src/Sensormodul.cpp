@@ -2,12 +2,12 @@
 #ifdef SENSORMODULE
 #include "Helper.h"
 #include "Schedule.h"
+#include "oknx.h"
 
 #ifdef WIREMODULE
 #include "WireDevice.h"
 #include "OneWireDS2482.h"
 #endif
-// #include "IncludeManager.h"
 
 #include "SensorModule.h"
 #include "Logic.h"
@@ -103,40 +103,6 @@ void ProcessInputKo(GroupObject &iKo) {
     }
 }
 
-// this method has to be registered in Schedule::addCallback for periodic execution
-void ProcessInterrupt() {
-    if (gSaveInterruptTimestamp) {
-        printDebug("Sensormodul: SAVE-Interrupt processing started after %lu ms\n", millis() - gSaveInterruptTimestamp);
-        gSaveInterruptTimestamp = millis();
-        // for the moment, we send only an Info on error object in case of an save interrupt
-        uint16_t lError = gSensor.getError();
-        gSensor.setError(lError | 128);
-        gSensor.sendError();
-        // switch off all energy intensive hardware to gain time for EEPROM write
-        savePower();
-        // call according logic interrupt handler
-        gLogic.processInterrupt(true);
-        Sensor::saveState();
-        printDebug("Sensormodul: SAVE-Interrupt processing duration was %lu ms\n", millis() - gSaveInterruptTimestamp);
-        // in case, SaveInterrupt was a false positive
-        // we restore power and I2C-Bus
-        // Wire.end();
-        // wait another 200 ms
-        delay(2000);
-        restorePower();
-        delay(1000);
-        // Wire.begin();
-        // Sensor::restartSensors();
-        gSaveInterruptTimestamp = 0;
-    }
-}
-
-// Schedule-callback for ProcessInterrupt
-void ProcessInterruptCallback(void *iInstance)
-{
-    ProcessInterrupt();
-}
-
 // Schedule-callback for 1-Wire
 void OneWireCallback(void *iInstance)
 {
@@ -163,38 +129,11 @@ void appLoop()
     if (startupDelay())
         return;
 
-    ProcessInterrupt();
-
     // at this point startup-delay is done
     // we process heartbeat
     ProcessHeartbeat();
     ProcessReadRequests();
     gSensor.loop();
-}
-
-// handle interrupt from save pin
-void onSafePinInterruptHandler() {
-    gCountSaveInterrupt += 1;
-    gSaveInterruptTimestamp = millis();
-}
-
-void beforeRestartHandler() {
-    printDebug("before Restart called\n");
-    gSensor.onBeforeRestartHandler();
-    gLogic.onBeforeRestartHandler();
-    // we try get a clean state on I2C bus
-    Wire.end();
-}
-
-void beforeTablesUnloadHandler() {
-    static uint32_t sLastCalled = 0;
-    printDebug("beforeTablesUnload called\n");
-    if (sLastCalled == 0 || delayCheck(sLastCalled, 10000))
-    {
-        gSensor.onBeforeTablesUnloadHandler();
-        gLogic.onBeforeTablesUnloadHandler();
-        sLastCalled = millis();
-    }
 }
 
 void appSetup(bool iSaveSupported)
@@ -226,14 +165,7 @@ void appSetup(bool iSaveSupported)
         // GroupObject &lKoRequestValues = knx.getGroupObject(SENS_KoRequestValues);
         if (GroupObject::classCallback() == 0)
             GroupObject::classCallback(ProcessInputKo);
-        if (knx.beforeRestartCallback() == 0) knx.beforeRestartCallback(beforeRestartHandler);
-        if (TableObject::beforeTablesUnloadCallback() == 0) TableObject::beforeTablesUnloadCallback(beforeTablesUnloadHandler);
-#ifdef SAVE_INTERRUPT_PIN
-        if (iSaveSupported)
-            attachInterrupt(digitalPinToInterrupt(SAVE_INTERRUPT_PIN), onSafePinInterruptHandler, FALLING);
-#endif
         // we add here loop handlers of submodules, which have to be processed frequently
-        Schedule::addCallback(ProcessInterruptCallback, nullptr);
         Schedule::addCallback(LogicCallback, nullptr);
         gSensor.setup();
         gLogic.setup(false);
@@ -267,6 +199,7 @@ void appSetup(bool iSaveSupported)
             }
         }
 #endif
-    }
+        openknx.flashUserData()->readFlash();
+   }
 }
 #endif

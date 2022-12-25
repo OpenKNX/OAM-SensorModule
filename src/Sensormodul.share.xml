@@ -75,8 +75,9 @@
               </ParameterType>
               <ParameterType Id="%AID%_PT-LuxSensors" Name="LuxSensors">
                 <TypeRestriction Base="Value" SizeInBit="4">
-                  <Enumeration Text="Kein Sensor" Value="0" Id="%AID%_PT-LuxSensors_EN-0" />
-                  <Enumeration Text="OPT3001"     Value="6" Id="%AID%_PT-LuxSensors_EN-1" />
+                  <Enumeration Text="Kein Sensor"  Value="0" Id="%AID%_PT-LuxSensors_EN-0" />
+                  <Enumeration Text="OPT3001"      Value="6" Id="%AID%_PT-LuxSensors_EN-6" />
+                  <Enumeration Text="VEML7700"    Value="11" Id="%AID%_PT-LuxSensors_EN-11" />
                 </TypeRestriction>
               </ParameterType>
               <ParameterType Id="%AID%_PT-TofSensors" Name="TofSensors">

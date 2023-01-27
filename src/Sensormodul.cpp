@@ -178,7 +178,11 @@ void appSetup(bool iSaveSupported)
             // Logic::addLoopCallback(WireBus::loopCallback, &gBusMaster);
             // gBusMaster->setup(0, lSearchNewDevices, true);
             gBusMaster = new OneWireDS2482(WireDevice::processNewIdCallback, WireDevice::knxLoopCallback);
-            gBusMaster->setup(0, 0, lSearchNewDevices);
+#ifdef ARDUINO_ARCH_RP2040
+            gBusMaster->setup(0, 0, lSearchNewDevices, Wire1);
+#else
+            gBusMaster->setup(0, 0, lSearchNewDevices, Wire);
+#endif
             gBusMaster->setupTiming(
                 (knx.paramByte(WIRE_Busmaster1RSTL) & WIRE_Busmaster1RSTLMask) >> WIRE_Busmaster1RSTLShift,
                 (knx.paramByte(WIRE_Busmaster1MSP) & WIRE_Busmaster1MSPMask) >> WIRE_Busmaster1MSPShift,

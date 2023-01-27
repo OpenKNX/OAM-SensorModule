@@ -573,7 +573,7 @@ void SensorModule::loop()
     // at Startup, we want to send all values immediately
     processSensors(gForceSensorRead);
     gForceSensorRead = false;
-    Schedule::loop();
+    // Schedule::loop();
 
     Sensor::sensorLoop();
     Schedule::loop();

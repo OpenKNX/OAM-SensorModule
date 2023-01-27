@@ -1,3 +1,4 @@
+// #ifdef SENSORAPP
 #include <knx.h>
 #include <Wire.h>
 #include "hardware.h"
@@ -19,8 +20,18 @@ void setup()
 #ifdef ARDUINO_ARCH_RP2040
     Serial1.setRX(KNX_UART_RX_PIN);
     Serial1.setTX(KNX_UART_TX_PIN);
+#ifdef KNX_I2C_SDA_PIN
     Wire.setSDA(KNX_I2C_SDA_PIN);
     Wire.setSCL(KNX_I2C_SCL_PIN);
+#endif
+#ifdef KNX_I2C1_SDA_PIN
+    Wire1.setSDA(KNX_I2C1_SDA_PIN);
+    Wire1.setSCL(KNX_I2C1_SCL_PIN);
+#endif
+#ifdef ONEWIRE_5V_ENABLE
+    pinMode(ONEWIRE_5V_ENABLE, OUTPUT);
+    digitalWrite(ONEWIRE_5V_ENABLE, HIGH);
+#endif
 #endif
 
     ArduinoPlatform::SerialDebug = &SERIAL_DEBUG;
@@ -65,3 +76,4 @@ void loop()
     if (knx.configured())
         appLoop();
 }
+// #endif

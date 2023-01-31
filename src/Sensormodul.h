@@ -1,7 +1,13 @@
 #pragma once
 
-#define paramDelay(time) (uint32_t)((time & 0xC000) == 0xC000 ? (time & 0x3FFF) * 100 : (time & 0xC000) == 0x0000 ? (time & 0x3FFF) * 1000 : (time & 0xC000) = 0x4000 ? (time & 0x3FFF) * 60000 : (time & 0xC000) == 0x8000 ? ((time & 0x3FFF) > 1000 ? 3600000 : (time & 0x3FFF) * 3600000 ) : 0 )
 
+#define paramDelay(time) (uint32_t)( \
+            (time & 0xC000) == 0xC000 ? (time & 0x3FFF) * 100 : \
+            (time & 0xC000) == 0x0000 ? (time & 0x3FFF) * 1000 : \
+            (time & 0xC000) == 0x4000 ? (time & 0x3FFF) * 60000 : \
+            (time & 0xC000) == 0x8000 ? ((time & 0x3FFF) > 1000 ? 3600000 : \
+                                         (time & 0x3FFF) * 3600000 ) : 0 )
+                                             
 // Parameter with single occurrence
 
 
@@ -2811,6 +2817,6 @@
 #define KoWIRE_KOs                       (knx.getGroupObject(WIRE_KoCalcNumber(WIRE_KoKOs)))
 
 #define MAIN_OpenKnxId 0xA0
-#define MAIN_ApplicationNumber 17
-#define MAIN_ApplicationVersion 6
-#define MAIN_OrderNumber "OpenKnxSensorDev"
+#define MAIN_ApplicationNumber 16
+#define MAIN_ApplicationVersion 11
+#define MAIN_OrderNumber "OpenKnxSensorWire"

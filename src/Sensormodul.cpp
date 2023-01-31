@@ -114,7 +114,7 @@ void OneWireCallback(void *iInstance)
 #endif
 }
 
-// Schedule-callback for 1-Wire
+// Schedule-callback for Logic
 void LogicCallback(void *iInstance)
 {
     gLogic.loop();

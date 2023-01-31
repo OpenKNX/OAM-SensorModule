@@ -94,11 +94,11 @@
             "group": "test"
         },
         {
-            "label": "Build-Release",
+            "label": "Build-OneWire (release)",
             "type": "shell",
             "command": "scripts/Build-Release.ps1",
             "args": [
-                "Release"
+                "OneWire"
             ],
             "problemMatcher": [],
             "group": "test"

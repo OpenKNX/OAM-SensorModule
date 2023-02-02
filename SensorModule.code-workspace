@@ -4,7 +4,13 @@
 			"path": "."
 		},
 		{
+			"path": "../OFM-SensorModule"
+		},
+		{
 			"path": "../OAM-OneWireModule"
+		},
+		{
+			"path": "../OAM-PresenceModule"
 		},
 		{
 			"path": "../OAM-LogicModule"

@@ -1,5 +1,5 @@
 // cSpell:words millis Millis Dewpoint EEPROM RSTL
-#ifdef SENSORMODULE
+
 #include "Helper.h"
 #include "Schedule.h"
 #include "oknx.h"
@@ -8,7 +8,9 @@
 #include "WireDevice.h"
 #include "OneWireDS2482.h"
 #endif
-
+#ifdef PRESENCEMODULE
+#include "Presence.h"
+#endif
 #include "SensorModule.h"
 #include "Logic.h"
 
@@ -19,10 +21,13 @@ uint32_t gSaveInterruptTimestamp;
 uint16_t gCountSaveInterrupt;
 
 SensorModule gSensor;
-Logic gLogic;
+#ifdef PRESENCEMODULE
+Presence gPresence;
+#endif
 #ifdef WIREMODULE
 OneWireDS2482 *gBusMaster;
 #endif
+Logic gLogic;
 
 bool callOneWire() 
 {
@@ -53,6 +58,9 @@ void ProcessHeartbeat()
 
 void ProcessReadRequests() {
     gLogic.processReadRequests();
+#ifdef PRESENCEMODULE
+    gPresence.processReadRequests();
+#endif
     gSensor.processReadRequests(gStartupDelay, gReadRequestDelay);
 }
 
@@ -68,6 +76,12 @@ bool processDiagnoseCommand()
     bool lOutput = false;
     // let's check other modules for this command
     lOutput = gSensor.processDiagnoseCommand(lBuffer);
+#ifdef PRESENCEMODULE
+    if (!lOutput) lOutput = gPresence.processDiagnoseCommand(lBuffer);
+#endif
+#ifdef WIREMODULE
+    // if (!lOutput) lOutput = gBusMaster->processDiagnoseCommand(lBuffer);
+#endif
     if (!lOutput) lOutput = gLogic.processDiagnoseCommand();
     return lOutput;
 }
@@ -95,12 +109,24 @@ void ProcessInputKo(GroupObject &iKo) {
         ProcessDiagnoseCommand(iKo);
     } else {
         gSensor.processInputKo(iKo);
+#ifdef PRESENCEMODULE
+        gPresence.processInputKo(iKo);
+#endif
 #ifdef WIREMODULE
         WireDevice::processKOCallback(iKo);
 #endif
         // else dispatch to logic module
         gLogic.processInputKo(iKo);
     }
+}
+
+
+// Schedule-callback for presence
+void PresenceCallback(void *iInstance)
+{
+#ifdef PRESENCEMODULE
+    gPresence.loop();
+#endif
 }
 
 // Schedule-callback for 1-Wire
@@ -166,9 +192,15 @@ void appSetup(bool iSaveSupported)
         if (GroupObject::classCallback() == 0)
             GroupObject::classCallback(ProcessInputKo);
         // we add here loop handlers of submodules, which have to be processed frequently
+        // Schedule::addCallback(ProcessInterruptCallback, nullptr);
         Schedule::addCallback(LogicCallback, nullptr);
         gSensor.setup();
-        gLogic.setup(false);
+        gLogic.setup(iSaveSupported);
+
+#ifdef PRESENCEMODULE
+        Schedule::addCallback(PresenceCallback, nullptr);
+        gPresence.setup();
+#endif
 #ifdef WIREMODULE
         if (callOneWire())
         {
@@ -206,4 +238,3 @@ void appSetup(bool iSaveSupported)
         openknx.flashUserData()->readFlash();
    }
 }
-#endif

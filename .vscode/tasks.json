@@ -1,5 +1,5 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558"Sensormodul
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
@@ -94,6 +94,15 @@
             "group": "test"
         },
         {
+            "label": "Build-Release-Package",
+            "type": "shell",
+            "command": "scripts/Build-Release-Package.ps1",
+            "args": [
+            ],
+            "problemMatcher": [],
+            "group": "test"
+        },
+        {
             "label": "Build-OneWire (release)",
             "type": "shell",
             "command": "scripts/Build-Release.ps1",
@@ -104,9 +113,29 @@
             "group": "test"
         },
         {
-            "label": "Build-Beta",
+            "label": "Build-Vpm (release)",
             "type": "shell",
-            "command": "scripts/Build-Release.ps1 ",
+            "command": "scripts/Build-Release.ps1",
+            "args": [
+                "Vpm"
+            ],
+            "problemMatcher": [],
+            "group": "test"
+        },
+        {
+            "label": "Build-Big (release)",
+            "type": "shell",
+            "command": "scripts/Build-Release.ps1",
+            "args": [
+                "Big"
+            ],
+            "problemMatcher": [],
+            "group": "test"
+        },
+        {
+            "label": "Build-Dev",
+            "type": "shell",
+            "command": "scripts/Build-Release.ps1",
             "args": [],
             "problemMatcher": [],
             "group": "test"

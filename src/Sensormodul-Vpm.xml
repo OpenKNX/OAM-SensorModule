@@ -5,68 +5,58 @@
     <Manufacturer RefId="M-00FA">
       <Catalog>
         <CatalogSection Id="M-00FA_CS-OpenKNX" Name="OpenKNX" Number="OpenKNX" DefaultLanguage="de">
-          <CatalogItem Id="%CatalogItemId%" Name="OpenKNX: Sensormodul-Big-Dev" Number="1" ProductRefId="%ProductId%" Hardware2ProgramRefId="%Hardware2ProgramId%" DefaultLanguage="de" />
+          <CatalogItem Id="%CatalogItemId%" Name="OpenKNX: Sensormodul-Vpm" Number="1" ProductRefId="%ProductId%" Hardware2ProgramRefId="%Hardware2ProgramId%" DefaultLanguage="de" />
         </CatalogSection>
       </Catalog>
       <ApplicationPrograms>
         <!-- Each increase of AppliationVersion FORCES the Enduser to update according firmware, too -->
         <!-- If you just want to have a BUGFIX-Update of the ETS-Appliation (without firmware), increase ApplicationVersion AND ApplicationRevision simultaneously -->
         <!-- To sync ETS-Application and firmware again, increase ApplicationVersion AND set ApplicationRevision to 0 -->
-        <op:version OpenKnxId="0xA0" ApplicationNumber="17" ApplicationVersion="6" ReplacesVersions="5" ApplicationRevision="0" />
-        <ApplicationProgram Id="%AID%" ProgramType="ApplicationProgram" MaskVersion="MV-07B0" Name="WP-Sensor-Wire-PM-Logic-Dev" LoadProcedureStyle="MergedProcedure" PeiType="0" DefaultLanguage="de" DynamicTableManagement="false" Linkable="true" MinEtsVersion="4.0" ApplicationNumber="0" ApplicationVersion="0" ReplacesVersions="0">
+        <op:version OpenKnxId="0xA0" ApplicationNumber="64" ApplicationVersion="11" ReplacesVersions="1 2 3 4 5 6 7 8 9 10" ApplicationRevision="0" />
+        <ApplicationProgram Id="%AID%" ProgramType="ApplicationProgram" MaskVersion="MV-07B0" Name="WP-Sensor-PM-Logic" LoadProcedureStyle="MergedProcedure" PeiType="0" DefaultLanguage="de" DynamicTableManagement="false" Linkable="true" MinEtsVersion="4.0" ApplicationNumber="0" ApplicationVersion="0" ReplacesVersions="0">
           <Static>
             <Code>
               <RelativeSegment Id="%AID%_RS-04-00000" Name="Parameters" Offset="0" Size="%MemorySize%" LoadStateMachine="4" />
             </Code>
-            <op:define prefix="SENS" header="Sensormodul.h" NumChannels="2"  KoOffset="20"  ModuleType="4" />
-            <op:define prefix="WIRE" header="Sensormodul.h" NumChannels="30" KoOffset="90"  ModuleType="2" KoSingleOffset="10" />
-            <op:define prefix="PM"   header="Sensormodul.h" NumChannels="40" KoOffset="120" ModuleType="3" />
-            <op:define prefix="LOG"  header="Sensormodul.h" NumChannels="99" KoOffset="920" ModuleType="1" />
+            <op:define prefix="SENS" header="Sensormodul.h" NumChannels="2"  KoOffset="20"  ModuleType="3" />
+            <op:define prefix="PM"   header="Sensormodul.h" NumChannels="5"  KoOffset="90" ModuleType="2" />
+            <op:define prefix="LOG"  header="Sensormodul.h" NumChannels="70" KoOffset="200" ModuleType="1" />
             <ParameterTypes>
               <!-- generic parameter types for any device -->
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="PM" />
-              <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//ParameterTypes/ParameterType" prefix="WIRE" />
               <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="SENS" />
             </ParameterTypes>
             <Parameters>
               <!-- Standard parameter in any of our devices -->
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="PM" />
-              <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="WIRE" />
               <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="SENS" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.templ.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="template" prefix="PM" />
-              <op:include href="../lib/OAM-OneWireModule/src/WireGateway.templ.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="template" prefix="WIRE" />
             </Parameters>
             <ParameterRefs>
               <!-- General -->
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="PM" />
-              <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="WIRE" />
               <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="SENS"/>
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.parts.xml" xpath="//ParameterRefs/ParameterRef" prefix="LOG" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//ParameterRefs/ParameterRef" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.templ.xml" xpath="//ParameterRefs/ParameterRef" type="template" prefix="PM" />
-              <op:include href="../lib/OAM-OneWireModule/src/WireGateway.templ.xml" xpath="//ParameterRefs/ParameterRef" type="template" prefix="WIRE" />
             </ParameterRefs>
             <ComObjectTable>
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="PM" />
-              <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//ComObjectTable/ComObject" prefix="WIRE" />
               <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="SENS" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//ComObjectTable/ComObject" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.templ.xml" xpath="//ComObjectTable/ComObject" type="template" prefix="PM" />
-              <op:include href="../lib/OAM-OneWireModule/src/WireGateway.templ.xml" xpath="//ComObjectTable/ComObject" type="template" prefix="WIRE" />
             </ComObjectTable>
             <ComObjectRefs>
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="PM" />
-              <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="WIRE" />
               <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="SENS" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//ComObjectRefs/ComObjectRef" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.templ.xml" xpath="//ComObjectRefs/ComObjectRef" type="template" prefix="PM" />
-              <op:include href="../lib/OAM-OneWireModule/src/WireGateway.templ.xml" xpath="//ComObjectRefs/ComObjectRef" type="template" prefix="WIRE" />
             </ComObjectRefs>
             <AddressTable MaxEntries="2047" />
             <AssociationTable MaxEntries="2047" />
@@ -101,34 +91,19 @@
               <ParameterBlock Id="%AID%_PB-nnn" Name="General" Text="Allgemeine Parameter">
                 <op:include href="../lib/OAM-LogicModule/src/Logikmodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='General']/*" prefix="LOG" />
                 <op:include href="../lib/OFM-SensorModule/src/Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware1']/*" prefix="SENS" />
-                <op:include href="../lib/OFM-SensorModule/src/Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware2']/*" prefix="SENS" />
                 <op:include href="../lib/OFM-SensorModule/src/Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware3']/*" prefix="SENS" />
                 <op:include href="../lib/OAM-LogicModule/src/Logikmodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Diagnose']/*" prefix="LOG" />
               </ParameterBlock>
             </ChannelIndependentBlock>
             <!-- Sensormodul generic settings -->
             <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//Dynamic/*" prefix="SENS" />
-            <choose ParamRefId="%AID%_UP-4000168_R-400016801">
-              <when test="1">
-                <Channel Id="%AID%_CH-3" Name="Devices" Number="3" Text="1-Wire">
-                  <!-- OneWire channel independent settings -->
-                  <ParameterBlock Id="%AID%_PB-1" Name="BM" Text="Busmaster-Einstellungen">
-                    <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//Dynamic/Channel/ParameterBlock[@Name='BM']/*" prefix="WIRE" />
-                    <op:include href="../lib/OAM-OneWireModule/src/WireGateway.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Expert']" prefix="WIRE" />
-                  </ParameterBlock>
-                  <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//Dynamic/Channel/*[position()>1]" prefix="LOG" />
-                  <!-- OneWire channel settings -->
-                  <op:include href="../lib/OAM-OneWireModule/src/WireGateway.templ.xml" xpath="//Dynamic/ChannelIndependentBlock/*" type="template" prefix="WIRE" />
-                </Channel>
-              </when>
-            </choose>
-            <Channel Id="%AID%_CH-4" Name="PMChannels" Number="4" Text="PM-Kanäle">
+            <Channel Id="%AID%_CH-3" Name="PMChannels" Number="3" Text="PM-Kanäle">
               <!-- PM channel independent settings -->
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.share.xml" xpath="//Dynamic/Channel/*" prefix="PM" />
               <!-- PM channel settings -->
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.templ.xml" xpath="//Dynamic/ChannelIndependentBlock/*" type="template" prefix="PM" />
             </Channel>
-            <Channel Name="Logikkanaele" Text="Logikkanäle" Number="5" Id="%AID%_CH-5">
+            <Channel Name="Logikkanaele" Text="Logikkanäle" Number="4" Id="%AID%_CH-4">
               <!-- compose logicmodule channel from some static blocks... -->
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//Dynamic/Channel/*" prefix="LOG" />
               <!-- followed by all logic channels -->
@@ -138,9 +113,9 @@
         </ApplicationProgram>
       </ApplicationPrograms>
       <Hardware>
-        <Hardware Id="%HardwareId%" Name="OpenKNX-Sensor" SerialNumber="0xA011" VersionNumber="1" BusCurrent="10" HasIndividualAddress="true" HasApplicationProgram="true">
+        <Hardware Id="%HardwareId%" Name="OpenKNX-Sensor" SerialNumber="0xA040" VersionNumber="1" BusCurrent="10" HasIndividualAddress="true" HasApplicationProgram="true">
           <Products>
-            <Product Id="%ProductId%" Text="OpenKNX: Sensormodul-Big (dev)" OrderNumber="OpenKnxSensorBigDev" IsRailMounted="false" DefaultLanguage="de">
+            <Product Id="%ProductId%" Text="OpenKNX: Sensormodul-Vpm" OrderNumber="OpenKnxSensorVpm" IsRailMounted="false" DefaultLanguage="de">
               <RegistrationInfo RegistrationStatus="Registered" />
             </Product>
           </Products>

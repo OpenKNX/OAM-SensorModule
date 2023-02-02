@@ -1,31 +1,29 @@
-knx-sensor
+OAM-SensorModule
 ===
 
-Impelemtation of an knx sensor module combined with an 80 channel knx logic module based on the [knx stack](https://github.com/thelsing/knx) from thelsing. The used knx stack allows a parametrization via ETS in general, this project requires ETS 5.6 or higher.
+Implementation of an knx sensor application, which combines some [OpenKNX-Projects](https://github.com/OpenKNX) to provide an ETS programmable device. It allows a parametrization via ETS in general, this project requires ETS 5.7 or higher.
 
-Itis implemented for the SAMD21 version of the knx stack. Currently it uses my fork of the [knx stack](https://github.com/mumpf/knx), this will change in future.
+It is implemented for the SAMD21 and RP2040 version of the [knx stack](https://github.com/thelsing/knx). 
 
-It is a PlatformIO project and needs a working ETS 5.6 (or higher) installed on the same PC.
+It is a PlatformIO project and needs a working ETS 5.7 (or higher) installed on the same PC.
 
-Initial installation and build instructions can be found in the [project itself](https://github.com/mumpf/knx-sensor/blob/release/doc/knx-dev-setup.md).
+This uses the following OpenKNX-projects:
 
-Update instruction (for an updated firmware or application build) can be also found in the [project documentation](https://github.com/mumpf/knx-sensor/blob/release/doc/knx-update-setup.md)
+* [OAM-OneWireModule](https://github.com/OpenKNX/OAM-OneWireModule)
+* [OAM-PresenceModule](https://github.com/OpenKNX/OAM-PresenceModule)
+* [OAM-LogicModule](https://github.com/OpenKNX/OAM-LogicModule)
+* [OFM-SensorModule](https://github.com/OpenKNX/OGM-SensorModule)
+* [OGM-SensorDevices](https://github.com/OpenKNX/OGM-SensorDevices)
+* [OGM-Common](https://github.com/OpenKNX/OGM-Common)
+* [knx](https://github.com/thelsing/knx)
 
-This project depends on following projects:
-
-* [knx-wire](https://github.com/mumpf/knx-wire)
-* [knx-logic](https://github.com/mumpf/knx-logic)
-* [knx-common](https://github.com/mumpf/knx-common)
-* [knx](https://github.com/mumpf/knx)
-
-Hardware to use the software with is described in [knx-user-forum/KONNEKTING](https://knx-user-forum.de/forum/projektforen/konnekting/1114105-konnekting-raum-sensormodul-temp-hum-voc-co2-onewire-buzzer?p=1460098#post1460098).
-
-With small changes it should be possible to use it on any SAMD21 board.
+For more information look into our [OpenKNX-wiki](https://github.com/OpenKNX/OpenKNX/wiki).
 
 There are application descriptions available:
 
-* [Applicasion Sensor](https://github.com/mumpf/knx-sensor/blob/release/doc/Applikationsbeschreibung-Sensor.pdf) describes features of the sensor part of application and firmware (in German).
-* [Application WireGateway](https://github.com/mumpf/knx-wire/blob/release/doc/Applikationsbeschreibung-Wire.pdf) describes features of the one wire part of application and firmware (in German).
-* [Application Logic](https://github.com/mumpf/knx-logic/blob/release/doc/Applikationsbeschreibung-Logik.pdf) describes features of the logic part of application and firmware (in German).
+* [Application Sensor](https://github.com/OpenKNX/OAM-SensorModule/blob/main/doc/Applikationsbeschreibung-Sensor.md) describes features of the sensor part of application and firmware (in German).
+* [Application Presence](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationsbeschreibung-Presence.md) describes features of the Presence functionality of application and firmware (in German).
+* [Application WireGateway](https://github.com/OpenKNX/OAM-OneWireModule/blob/main/doc/Applikationsbeschreibung-Wire.md) describes features of the one wire part of application and firmware (in German).
+* [Application Logic](https://github.com/OpenKNX/OAM-LogicModule/blob/main/doc/Applikationsbeschreibung-Logik.md) describes features of the logic part of application and firmware (in German).
 
 Thanks to all, who made this project successful.

@@ -25,13 +25,13 @@
               <!-- generic parameter types for any device -->
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="LOG" />
               <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//ParameterTypes/ParameterType" prefix="WIRE" />
-              <op:include href="Sensormodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="SENS" />
+              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="SENS" />
             </ParameterTypes>
             <Parameters>
               <!-- Standard parameter in any of our devices -->
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="LOG" />
               <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="WIRE" />
-              <op:include href="Sensormodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="SENS" />
+              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="SENS" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-OneWireModule/src/WireGateway.templ.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="template" prefix="WIRE" />
             </Parameters>
@@ -39,7 +39,7 @@
               <!-- General -->
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="LOG" />
               <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="WIRE" />
-              <op:include href="Sensormodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="SENS"/>
+              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="SENS"/>
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.parts.xml" xpath="//ParameterRefs/ParameterRef" prefix="LOG" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//ParameterRefs/ParameterRef" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-OneWireModule/src/WireGateway.templ.xml" xpath="//ParameterRefs/ParameterRef" type="template" prefix="WIRE" />
@@ -47,14 +47,14 @@
             <ComObjectTable>
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="LOG" />
               <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//ComObjectTable/ComObject" prefix="WIRE" />
-              <op:include href="Sensormodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="SENS" />
+              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="SENS" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//ComObjectTable/ComObject" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-OneWireModule/src/WireGateway.templ.xml" xpath="//ComObjectTable/ComObject" type="template" prefix="WIRE" />
             </ComObjectTable>
             <ComObjectRefs>
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="LOG" />
               <op:include href="../lib/OAM-OneWireModule/src/WireGateway.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="WIRE" />
-              <op:include href="Sensormodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="SENS" />
+              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="SENS" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//ComObjectRefs/ComObjectRef" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-OneWireModule/src/WireGateway.templ.xml" xpath="//ComObjectRefs/ComObjectRef" type="template" prefix="WIRE" />
             </ComObjectRefs>
@@ -90,14 +90,14 @@
               <!-- ChannelIndependentBlock is a composition of different parts of different modules -->
               <ParameterBlock Id="%AID%_PB-nnn" Name="General" Text="Allgemeine Parameter">
                 <op:include href="../lib/OAM-LogicModule/src/Logikmodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='General']/*" prefix="LOG" />
-                <op:include href="Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware1']/*" prefix="SENS" />
-                <op:include href="Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware2']/*" prefix="SENS" />
-                <op:include href="Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware3']/*" prefix="SENS" />
+                <op:include href="../lib/OFM-SensorModule/src/Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware1']/*" prefix="SENS" />
+                <op:include href="../lib/OFM-SensorModule/src/Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware2']/*" prefix="SENS" />
+                <op:include href="../lib/OFM-SensorModule/src/Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware3']/*" prefix="SENS" />
                 <op:include href="../lib/OAM-LogicModule/src/Logikmodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Diagnose']/*" prefix="LOG" />
               </ParameterBlock>
             </ChannelIndependentBlock>
             <!-- Sensormodul generic settings -->
-            <op:include href="Sensormodul.share.xml" xpath="//Dynamic/*" prefix="SENS" />
+            <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//Dynamic/*" prefix="SENS" />
             <choose ParamRefId="%AID%_UP-3000168_R-300016801">
               <when test="1">
                 <Channel Id="%AID%_CH-3" Name="Devices" Number="3" Text="1-Wire">

@@ -436,189 +436,324 @@
 // Reset HF-Sensor
 #define KoPM_HfReset                   (knx.getGroupObject(PM_KoHfReset))
 
-#define SENS_Error                     35      // 1 Bit, Bit 7
+#define WIRE_WireError                 35      // 1 Bit, Bit 7
+#define     WIRE_WireErrorMask 0x80
+#define     WIRE_WireErrorShift 7
+#define WIRE_BusMasterCount            35      // 2 Bits, Bit 6-5
+#define     WIRE_BusMasterCountMask 0x60
+#define     WIRE_BusMasterCountShift 5
+#define WIRE_IdSearch                  35      // 1 Bit, Bit 4
+#define     WIRE_IdSearchMask 0x10
+#define     WIRE_IdSearchShift 4
+#define WIRE_IButton1                  35      // 1 Bit, Bit 3
+#define     WIRE_IButton1Mask 0x08
+#define     WIRE_IButton1Shift 3
+#define WIRE_IButton2                  35      // 1 Bit, Bit 2
+#define     WIRE_IButton2Mask 0x04
+#define     WIRE_IButton2Shift 2
+#define WIRE_IButton3                  35      // 1 Bit, Bit 1
+#define     WIRE_IButton3Mask 0x02
+#define     WIRE_IButton3Shift 1
+#define WIRE_Group1                    36      // 1 Bit, Bit 7
+#define     WIRE_Group1Mask 0x80
+#define     WIRE_Group1Shift 7
+#define WIRE_Group2                    36      // 1 Bit, Bit 6
+#define     WIRE_Group2Mask 0x40
+#define     WIRE_Group2Shift 6
+#define WIRE_Group3                    36      // 1 Bit, Bit 5
+#define     WIRE_Group3Mask 0x20
+#define     WIRE_Group3Shift 5
+#define WIRE_Group4                    36      // 1 Bit, Bit 4
+#define     WIRE_Group4Mask 0x10
+#define     WIRE_Group4Shift 4
+#define WIRE_Group5                    36      // 1 Bit, Bit 3
+#define     WIRE_Group5Mask 0x08
+#define     WIRE_Group5Shift 3
+#define WIRE_Group6                    36      // 1 Bit, Bit 2
+#define     WIRE_Group6Mask 0x04
+#define     WIRE_Group6Shift 2
+#define WIRE_Group7                    36      // 1 Bit, Bit 1
+#define     WIRE_Group7Mask 0x02
+#define     WIRE_Group7Shift 1
+#define WIRE_Group8                    36      // 1 Bit, Bit 0
+#define     WIRE_Group8Mask 0x01
+#define     WIRE_Group8Shift 0
+#define WIRE_Busmaster1RSTL            37      // 4 Bits, Bit 7-4
+#define     WIRE_Busmaster1RSTLMask 0xF0
+#define     WIRE_Busmaster1RSTLShift 4
+#define WIRE_Busmaster1MSP             37      // 4 Bits, Bit 3-0
+#define     WIRE_Busmaster1MSPMask 0x0F
+#define     WIRE_Busmaster1MSPShift 0
+#define WIRE_Busmaster1W0L             38      // 4 Bits, Bit 7-4
+#define     WIRE_Busmaster1W0LMask 0xF0
+#define     WIRE_Busmaster1W0LShift 4
+#define WIRE_Busmaster1REC0            38      // 4 Bits, Bit 3-0
+#define     WIRE_Busmaster1REC0Mask 0x0F
+#define     WIRE_Busmaster1REC0Shift 0
+#define WIRE_Busmaster1WPU             39      // 4 Bits, Bit 7-4
+#define     WIRE_Busmaster1WPUMask 0xF0
+#define     WIRE_Busmaster1WPUShift 4
+
+// Fehlerobjekt(e) anzeigen
+#define ParamWIRE_WireError                 ((bool)(knx.paramByte(WIRE_WireError) & WIRE_WireErrorMask))
+// Installierte Busmaster
+#define ParamWIRE_BusMasterCount            ((knx.paramByte(WIRE_BusMasterCount) & WIRE_BusMasterCountMask) >> WIRE_BusMasterCountShift)
+// Device-Suche
+#define ParamWIRE_IdSearch                  ((bool)(knx.paramByte(WIRE_IdSearch) & WIRE_IdSearchMask))
+// iButton auf Busmaster 1 auswerten?
+#define ParamWIRE_IButton1                  ((bool)(knx.paramByte(WIRE_IButton1) & WIRE_IButton1Mask))
+// iButton auf Busmaster 2 auswerten?
+#define ParamWIRE_IButton2                  ((bool)(knx.paramByte(WIRE_IButton2) & WIRE_IButton2Mask))
+// iButton auf Busmaster 3 auswerten?
+#define ParamWIRE_IButton3                  ((bool)(knx.paramByte(WIRE_IButton3) & WIRE_IButton3Mask))
+//                   Typ
+#define ParamWIRE_Group1                    ((bool)(knx.paramByte(WIRE_Group1) & WIRE_Group1Mask))
+//                   Typ
+#define ParamWIRE_Group2                    ((bool)(knx.paramByte(WIRE_Group2) & WIRE_Group2Mask))
+//                   Typ
+#define ParamWIRE_Group3                    ((bool)(knx.paramByte(WIRE_Group3) & WIRE_Group3Mask))
+//                   Typ
+#define ParamWIRE_Group4                    ((bool)(knx.paramByte(WIRE_Group4) & WIRE_Group4Mask))
+//                   Typ
+#define ParamWIRE_Group5                    ((bool)(knx.paramByte(WIRE_Group5) & WIRE_Group5Mask))
+//                   Typ
+#define ParamWIRE_Group6                    ((bool)(knx.paramByte(WIRE_Group6) & WIRE_Group6Mask))
+//                   Typ
+#define ParamWIRE_Group7                    ((bool)(knx.paramByte(WIRE_Group7) & WIRE_Group7Mask))
+//                   Typ
+#define ParamWIRE_Group8                    ((bool)(knx.paramByte(WIRE_Group8) & WIRE_Group8Mask))
+// tRSTL (in Mikrosekunden)
+#define ParamWIRE_Busmaster1RSTL            ((knx.paramByte(WIRE_Busmaster1RSTL) & WIRE_Busmaster1RSTLMask) >> WIRE_Busmaster1RSTLShift)
+// tMSP (in Mikrosekunden)
+#define ParamWIRE_Busmaster1MSP             (knx.paramByte(WIRE_Busmaster1MSP) & WIRE_Busmaster1MSPMask)
+// tW0L (in Mikrosekunden)
+#define ParamWIRE_Busmaster1W0L             ((knx.paramByte(WIRE_Busmaster1W0L) & WIRE_Busmaster1W0LMask) >> WIRE_Busmaster1W0LShift)
+// tREC0 (in Mikrosekunden)
+#define ParamWIRE_Busmaster1REC0            (knx.paramByte(WIRE_Busmaster1REC0) & WIRE_Busmaster1REC0Mask)
+// RWPU (in Ohm)
+#define ParamWIRE_Busmaster1WPU             ((knx.paramByte(WIRE_Busmaster1WPU) & WIRE_Busmaster1WPUMask) >> WIRE_Busmaster1WPUShift)
+
+#define WIRE_KoNewId 30
+#define WIRE_KoErrorBusmaster1 31
+#define WIRE_KoErrorBusmaster2 32
+#define WIRE_KoErrorBusmaster3 33
+#define WIRE_KoGroup1 34
+#define WIRE_KoGroup2 35
+#define WIRE_KoGroup3 36
+#define WIRE_KoGroup4 37
+#define WIRE_KoGroup5 38
+#define WIRE_KoGroup6 39
+#define WIRE_KoGroup7 40
+#define WIRE_KoGroup8 41
+
+// IDs unbekannter Geräte
+#define KoWIRE_NewId                     (knx.getGroupObject(WIRE_KoNewId))
+// Gerätefehler Busmaster 1
+#define KoWIRE_ErrorBusmaster1           (knx.getGroupObject(WIRE_KoErrorBusmaster1))
+// Gerätefehler Busmaster 2
+#define KoWIRE_ErrorBusmaster2           (knx.getGroupObject(WIRE_KoErrorBusmaster2))
+// Gerätefehler Busmaster 3
+#define KoWIRE_ErrorBusmaster3           (knx.getGroupObject(WIRE_KoErrorBusmaster3))
+// Gruppe 1
+#define KoWIRE_Group1                    (knx.getGroupObject(WIRE_KoGroup1))
+// Gruppe 2
+#define KoWIRE_Group2                    (knx.getGroupObject(WIRE_KoGroup2))
+// Gruppe 3
+#define KoWIRE_Group3                    (knx.getGroupObject(WIRE_KoGroup3))
+// Gruppe 4
+#define KoWIRE_Group4                    (knx.getGroupObject(WIRE_KoGroup4))
+// Gruppe 5
+#define KoWIRE_Group5                    (knx.getGroupObject(WIRE_KoGroup5))
+// Gruppe 6
+#define KoWIRE_Group6                    (knx.getGroupObject(WIRE_KoGroup6))
+// Gruppe 7
+#define KoWIRE_Group7                    (knx.getGroupObject(WIRE_KoGroup7))
+// Gruppe 8
+#define KoWIRE_Group8                    (knx.getGroupObject(WIRE_KoGroup8))
+
+#define SENS_Error                     40      // 1 Bit, Bit 7
 #define     SENS_ErrorMask 0x80
 #define     SENS_ErrorShift 7
-#define SENS_Dewpoint                  35      // 1 Bit, Bit 6
+#define SENS_Dewpoint                  40      // 1 Bit, Bit 6
 #define     SENS_DewpointMask 0x40
 #define     SENS_DewpointShift 6
-#define SENS_Comfort                   35      // 1 Bit, Bit 5
+#define SENS_Comfort                   40      // 1 Bit, Bit 5
 #define     SENS_ComfortMask 0x20
 #define     SENS_ComfortShift 5
-#define SENS_Airquality                35      // 1 Bit, Bit 4
+#define SENS_Airquality                40      // 1 Bit, Bit 4
 #define     SENS_AirqualityMask 0x10
 #define     SENS_AirqualityShift 4
-#define SENS_Accuracy                  35      // 1 Bit, Bit 3
+#define SENS_Accuracy                  40      // 1 Bit, Bit 3
 #define     SENS_AccuracyMask 0x08
 #define     SENS_AccuracyShift 3
-#define SENS_DeleteData                35      // 1 Bit, Bit 2
+#define SENS_DeleteData                40      // 1 Bit, Bit 2
 #define     SENS_DeleteDataMask 0x04
 #define     SENS_DeleteDataShift 2
-#define SENS_TempOffset                36      // int8_t
-#define SENS_TempCycleBase             37      // 2 Bits, Bit 7-6
+#define SENS_TempOffset                41      // int8_t
+#define SENS_TempCycleBase             42      // 2 Bits, Bit 7-6
 #define     SENS_TempCycleBaseMask 0xC0
 #define     SENS_TempCycleBaseShift 6
-#define SENS_TempCycleTime             37      // 14 Bits, Bit 13-0
+#define SENS_TempCycleTime             42      // 14 Bits, Bit 13-0
 #define     SENS_TempCycleTimeMask 0x3FFF
 #define     SENS_TempCycleTimeShift 0
-#define SENS_TempDeltaAbs              39      // uint16_t
-#define SENS_TempDeltaPercent          41      // uint8_t
-#define SENS_TempSmooth                42      // uint8_t
-#define SENS_TempExtCount              43      // 2 Bits, Bit 1-0
+#define SENS_TempDeltaAbs              44      // uint16_t
+#define SENS_TempDeltaPercent          46      // uint8_t
+#define SENS_TempSmooth                47      // uint8_t
+#define SENS_TempExtCount              48      // 2 Bits, Bit 1-0
 #define     SENS_TempExtCountMask 0x03
 #define     SENS_TempExtCountShift 0
-#define SENS_TempExtRead               43      // 1 Bit, Bit 2
+#define SENS_TempExtRead               48      // 1 Bit, Bit 2
 #define     SENS_TempExtReadMask 0x04
 #define     SENS_TempExtReadShift 2
-#define SENS_TempIntPercent            44      // uint8_t
-#define SENS_TempExt1Percent           45      // uint8_t
-#define SENS_TempExt2Percent           46      // uint8_t
-#define SENS_HumOffset                 47      // int8_t
-#define SENS_HumCycleBase              48      // 2 Bits, Bit 7-6
+#define SENS_TempIntPercent            49      // uint8_t
+#define SENS_TempExt1Percent           50      // uint8_t
+#define SENS_TempExt2Percent           51      // uint8_t
+#define SENS_HumOffset                 52      // int8_t
+#define SENS_HumCycleBase              53      // 2 Bits, Bit 7-6
 #define     SENS_HumCycleBaseMask 0xC0
 #define     SENS_HumCycleBaseShift 6
-#define SENS_HumCycleTime              48      // 14 Bits, Bit 13-0
+#define SENS_HumCycleTime              53      // 14 Bits, Bit 13-0
 #define     SENS_HumCycleTimeMask 0x3FFF
 #define     SENS_HumCycleTimeShift 0
-#define SENS_HumDeltaAbs               50      // uint16_t
-#define SENS_HumDeltaPercent           52      // uint8_t
-#define SENS_HumSmooth                 53      // uint8_t
-#define SENS_HumExtCount               54      // 2 Bits, Bit 1-0
+#define SENS_HumDeltaAbs               55      // uint16_t
+#define SENS_HumDeltaPercent           57      // uint8_t
+#define SENS_HumSmooth                 58      // uint8_t
+#define SENS_HumExtCount               59      // 2 Bits, Bit 1-0
 #define     SENS_HumExtCountMask 0x03
 #define     SENS_HumExtCountShift 0
-#define SENS_HumExtRead                54      // 1 Bit, Bit 2
+#define SENS_HumExtRead                59      // 1 Bit, Bit 2
 #define     SENS_HumExtReadMask 0x04
 #define     SENS_HumExtReadShift 2
-#define SENS_HumIntPercent             55      // uint8_t
-#define SENS_HumExt1Percent            56      // uint8_t
-#define SENS_HumExt2Percent            57      // uint8_t
-#define SENS_PreOffset                 58      // int8_t
-#define SENS_PreCycleBase              59      // 2 Bits, Bit 7-6
+#define SENS_HumIntPercent             60      // uint8_t
+#define SENS_HumExt1Percent            61      // uint8_t
+#define SENS_HumExt2Percent            62      // uint8_t
+#define SENS_PreOffset                 63      // int8_t
+#define SENS_PreCycleBase              64      // 2 Bits, Bit 7-6
 #define     SENS_PreCycleBaseMask 0xC0
 #define     SENS_PreCycleBaseShift 6
-#define SENS_PreCycleTime              59      // 14 Bits, Bit 13-0
+#define SENS_PreCycleTime              64      // 14 Bits, Bit 13-0
 #define     SENS_PreCycleTimeMask 0x3FFF
 #define     SENS_PreCycleTimeShift 0
-#define SENS_PreDeltaAbs               61      // uint16_t
-#define SENS_PreDeltaPercent           63      // uint8_t
-#define SENS_PreSmooth                 64      // uint8_t
-#define SENS_PreExtCount               65      // 2 Bits, Bit 1-0
+#define SENS_PreDeltaAbs               66      // uint16_t
+#define SENS_PreDeltaPercent           68      // uint8_t
+#define SENS_PreSmooth                 69      // uint8_t
+#define SENS_PreExtCount               70      // 2 Bits, Bit 1-0
 #define     SENS_PreExtCountMask 0x03
 #define     SENS_PreExtCountShift 0
-#define SENS_PreExtRead                65      // 1 Bit, Bit 2
+#define SENS_PreExtRead                70      // 1 Bit, Bit 2
 #define     SENS_PreExtReadMask 0x04
 #define     SENS_PreExtReadShift 2
-#define SENS_PreIntPercent             66      // uint8_t
-#define SENS_PreExt1Percent            67      // uint8_t
-#define SENS_PreExt2Percent            68      // uint8_t
-#define SENS_VocOffset                 69      // int8_t
-#define SENS_VocCycleBase              70      // 2 Bits, Bit 7-6
+#define SENS_PreIntPercent             71      // uint8_t
+#define SENS_PreExt1Percent            72      // uint8_t
+#define SENS_PreExt2Percent            73      // uint8_t
+#define SENS_VocOffset                 74      // int8_t
+#define SENS_VocCycleBase              75      // 2 Bits, Bit 7-6
 #define     SENS_VocCycleBaseMask 0xC0
 #define     SENS_VocCycleBaseShift 6
-#define SENS_VocCycleTime              70      // 14 Bits, Bit 13-0
+#define SENS_VocCycleTime              75      // 14 Bits, Bit 13-0
 #define     SENS_VocCycleTimeMask 0x3FFF
 #define     SENS_VocCycleTimeShift 0
-#define SENS_VocDeltaAbs               72      // uint16_t
-#define SENS_VocDeltPercent            74      // uint8_t
-#define SENS_VocSmooth                 75      // uint8_t
-#define SENS_VocExtCount               76      // 2 Bits, Bit 1-0
+#define SENS_VocDeltaAbs               77      // uint16_t
+#define SENS_VocDeltPercent            79      // uint8_t
+#define SENS_VocSmooth                 80      // uint8_t
+#define SENS_VocExtCount               81      // 2 Bits, Bit 1-0
 #define     SENS_VocExtCountMask 0x03
 #define     SENS_VocExtCountShift 0
-#define SENS_VocExtRead                76      // 1 Bit, Bit 2
+#define SENS_VocExtRead                81      // 1 Bit, Bit 2
 #define     SENS_VocExtReadMask 0x04
 #define     SENS_VocExtReadShift 2
-#define SENS_VocIntPercent             77      // uint8_t
-#define SENS_VocExt1Percent            78      // uint8_t
-#define SENS_VocExt2Percent            79      // uint8_t
-#define SENS_Co2Offset                 80      // int8_t
-#define SENS_Co2CycleBase              81      // 2 Bits, Bit 7-6
+#define SENS_VocIntPercent             82      // uint8_t
+#define SENS_VocExt1Percent            83      // uint8_t
+#define SENS_VocExt2Percent            84      // uint8_t
+#define SENS_Co2Offset                 85      // int8_t
+#define SENS_Co2CycleBase              86      // 2 Bits, Bit 7-6
 #define     SENS_Co2CycleBaseMask 0xC0
 #define     SENS_Co2CycleBaseShift 6
-#define SENS_Co2CycleTime              81      // 14 Bits, Bit 13-0
+#define SENS_Co2CycleTime              86      // 14 Bits, Bit 13-0
 #define     SENS_Co2CycleTimeMask 0x3FFF
 #define     SENS_Co2CycleTimeShift 0
-#define SENS_Co2DeltaAbs               83      // uint16_t
-#define SENS_Co2DeltaPercent           85      // uint8_t
-#define SENS_Co2Smooth                 86      // uint8_t
-#define SENS_Co2ExtCount               87      // 2 Bits, Bit 1-0
+#define SENS_Co2DeltaAbs               88      // uint16_t
+#define SENS_Co2DeltaPercent           90      // uint8_t
+#define SENS_Co2Smooth                 91      // uint8_t
+#define SENS_Co2ExtCount               92      // 2 Bits, Bit 1-0
 #define     SENS_Co2ExtCountMask 0x03
 #define     SENS_Co2ExtCountShift 0
-#define SENS_Co2ExtRead                87      // 1 Bit, Bit 2
+#define SENS_Co2ExtRead                92      // 1 Bit, Bit 2
 #define     SENS_Co2ExtReadMask 0x04
 #define     SENS_Co2ExtReadShift 2
-#define SENS_Co2IntPercent             88      // uint8_t
-#define SENS_Co2Ext1Percent            89      // uint8_t
-#define SENS_Co2Ext2Percent            90      // uint8_t
-#define SENS_Sensor1Wire               91      // 1 Bit, Bit 0
+#define SENS_Co2IntPercent             93      // uint8_t
+#define SENS_Co2Ext1Percent            94      // uint8_t
+#define SENS_Co2Ext2Percent            95      // uint8_t
+#define SENS_Sensor1Wire               96      // 1 Bit, Bit 0
 #define     SENS_Sensor1WireMask 0x01
 #define     SENS_Sensor1WireShift 0
-#define SENS_DewOffset                 92      // int8_t
-#define SENS_DewCycleBase              93      // 2 Bits, Bit 7-6
+#define SENS_DewOffset                 97      // int8_t
+#define SENS_DewCycleBase              98      // 2 Bits, Bit 7-6
 #define     SENS_DewCycleBaseMask 0xC0
 #define     SENS_DewCycleBaseShift 6
-#define SENS_DewCycleTime              93      // 14 Bits, Bit 13-0
+#define SENS_DewCycleTime              98      // 14 Bits, Bit 13-0
 #define     SENS_DewCycleTimeMask 0x3FFF
 #define     SENS_DewCycleTimeShift 0
-#define SENS_DewDeltaAbs               95      // uint16_t
-#define SENS_DewDeltaPercent           97      // uint8_t
-#define SENS_DewSmooth                 98      // uint8_t
-#define SENS_LuxOffset                 99      // int8_t
-#define SENS_LuxCycleBase              100      // 2 Bits, Bit 7-6
+#define SENS_DewDeltaAbs               100      // uint16_t
+#define SENS_DewDeltaPercent           102      // uint8_t
+#define SENS_DewSmooth                 103      // uint8_t
+#define SENS_LuxOffset                 104      // int8_t
+#define SENS_LuxCycleBase              105      // 2 Bits, Bit 7-6
 #define     SENS_LuxCycleBaseMask 0xC0
 #define     SENS_LuxCycleBaseShift 6
-#define SENS_LuxCycleTime              100      // 14 Bits, Bit 13-0
+#define SENS_LuxCycleTime              105      // 14 Bits, Bit 13-0
 #define     SENS_LuxCycleTimeMask 0x3FFF
 #define     SENS_LuxCycleTimeShift 0
-#define SENS_LuxDeltaAbs               102      // uint16_t
-#define SENS_LuxDeltPercent            104      // uint8_t
-#define SENS_LuxSmooth                 105      // uint8_t
-#define SENS_LuxExtCount               106      // 2 Bits, Bit 1-0
+#define SENS_LuxDeltaAbs               107      // uint16_t
+#define SENS_LuxDeltPercent            109      // uint8_t
+#define SENS_LuxSmooth                 110      // uint8_t
+#define SENS_LuxExtCount               111      // 2 Bits, Bit 1-0
 #define     SENS_LuxExtCountMask 0x03
 #define     SENS_LuxExtCountShift 0
-#define SENS_LuxExtRead                106      // 1 Bit, Bit 2
+#define SENS_LuxExtRead                111      // 1 Bit, Bit 2
 #define     SENS_LuxExtReadMask 0x04
 #define     SENS_LuxExtReadShift 2
-#define SENS_LuxIntPercent             107      // uint8_t
-#define SENS_LuxExt1Percent            108      // uint8_t
-#define SENS_LuxExt2Percent            109      // uint8_t
-#define SENS_TofOffset                 110      // int8_t
-#define SENS_TofCycleBase              111      // 2 Bits, Bit 7-6
+#define SENS_LuxIntPercent             112      // uint8_t
+#define SENS_LuxExt1Percent            113      // uint8_t
+#define SENS_LuxExt2Percent            114      // uint8_t
+#define SENS_TofOffset                 115      // int8_t
+#define SENS_TofCycleBase              116      // 2 Bits, Bit 7-6
 #define     SENS_TofCycleBaseMask 0xC0
 #define     SENS_TofCycleBaseShift 6
-#define SENS_TofCycleTime              111      // 14 Bits, Bit 13-0
+#define SENS_TofCycleTime              116      // 14 Bits, Bit 13-0
 #define     SENS_TofCycleTimeMask 0x3FFF
 #define     SENS_TofCycleTimeShift 0
-#define SENS_TofDeltaAbs               113      // uint16_t
-#define SENS_TofDeltaPercent           115      // uint8_t
-#define SENS_TofSmooth                 116      // uint8_t
-#define SENS_TofExtCount               117      // 2 Bits, Bit 1-0
+#define SENS_TofDeltaAbs               118      // uint16_t
+#define SENS_TofDeltaPercent           120      // uint8_t
+#define SENS_TofSmooth                 121      // uint8_t
+#define SENS_TofExtCount               122      // 2 Bits, Bit 1-0
 #define     SENS_TofExtCountMask 0x03
 #define     SENS_TofExtCountShift 0
-#define SENS_TofExtRead                117      // 1 Bit, Bit 2
+#define SENS_TofExtRead                122      // 1 Bit, Bit 2
 #define     SENS_TofExtReadMask 0x04
 #define     SENS_TofExtReadShift 2
-#define SENS_TofIntPercent             118      // uint8_t
-#define SENS_TofExt1Percent            119      // uint8_t
-#define SENS_TofExt2Percent            120      // uint8_t
-#define SENS_TempSensor                121      // 4 Bits, Bit 7-4
+#define SENS_TofIntPercent             123      // uint8_t
+#define SENS_TofExt1Percent            124      // uint8_t
+#define SENS_TofExt2Percent            125      // uint8_t
+#define SENS_TempSensor                126      // 4 Bits, Bit 7-4
 #define     SENS_TempSensorMask 0xF0
 #define     SENS_TempSensorShift 4
-#define SENS_HumSensor                 121      // 4 Bits, Bit 3-0
+#define SENS_HumSensor                 126      // 4 Bits, Bit 3-0
 #define     SENS_HumSensorMask 0x0F
 #define     SENS_HumSensorShift 0
-#define SENS_PreSensor                 122      // 4 Bits, Bit 7-4
+#define SENS_PreSensor                 127      // 4 Bits, Bit 7-4
 #define     SENS_PreSensorMask 0xF0
 #define     SENS_PreSensorShift 4
-#define SENS_VocSensor                 122      // 4 Bits, Bit 3-0
+#define SENS_VocSensor                 127      // 4 Bits, Bit 3-0
 #define     SENS_VocSensorMask 0x0F
 #define     SENS_VocSensorShift 0
-#define SENS_Co2Sensor                 123      // 4 Bits, Bit 7-4
+#define SENS_Co2Sensor                 128      // 4 Bits, Bit 7-4
 #define     SENS_Co2SensorMask 0xF0
 #define     SENS_Co2SensorShift 4
-#define SENS_LuxSensor                 123      // 4 Bits, Bit 3-0
+#define SENS_LuxSensor                 128      // 4 Bits, Bit 3-0
 #define     SENS_LuxSensorMask 0x0F
 #define     SENS_LuxSensorShift 0
-#define SENS_TofSensor                 124      // 4 Bits, Bit 7-4
+#define SENS_TofSensor                 129      // 4 Bits, Bit 7-4
 #define     SENS_TofSensorMask 0xF0
 #define     SENS_TofSensorShift 4
 
@@ -919,10 +1054,10 @@
 // Entfernung
 #define KoSENS_Tof                       (knx.getGroupObject(SENS_KoTof))
 
-#define LOG_ChannelCount 70
+#define LOG_ChannelCount 99
 
 // Parameter per channel
-#define LOG_ParamBlockOffset 125
+#define LOG_ParamBlockOffset 130
 #define LOG_ParamBlockSize 86
 #define LOG_ParamCalcIndex(index) (index + LOG_ParamBlockOffset + _channelIndex * LOG_ParamBlockSize)
 
@@ -2481,10 +2616,10 @@
 #define ParamLOG_fE2OtherKO                (knx.paramWord(LOG_ParamCalcIndex(LOG_fE2OtherKO)) & LOG_fE2OtherKOMask)
 
 // deprecated
-#define LOG_KoOffset 200
+#define LOG_KoOffset 920
 
 // Communication objects per channel (multiple occurrence)
-#define LOG_KoBlockOffset 200
+#define LOG_KoBlockOffset 920
 #define LOG_KoBlockSize 3
 
 #define LOG_KoCalcNumber(index) (index + LOG_KoBlockOffset + _channelIndex * LOG_KoBlockSize)
@@ -2501,10 +2636,10 @@
 // Ausgang
 #define KoLOG_KOfO                      (knx.getGroupObject(LOG_KoCalcNumber(LOG_KoKOfO)))
 
-#define PM_ChannelCount 5
+#define PM_ChannelCount 40
 
 // Parameter per channel
-#define PM_ParamBlockOffset 6145
+#define PM_ParamBlockOffset 8644
 #define PM_ParamBlockSize 138
 #define PM_ParamCalcIndex(index) (index + PM_ParamBlockOffset + _channelIndex * PM_ParamBlockSize)
 
@@ -3537,10 +3672,10 @@
 #define ParamPM_pDOutput2OffDim           (knx.paramByte(PM_ParamCalcIndex(PM_pDOutput2OffDim)))
 
 // deprecated
-#define PM_KoOffset 90
+#define PM_KoOffset 120
 
 // Communication objects per channel (multiple occurrence)
-#define PM_KoBlockOffset 90
+#define PM_KoBlockOffset 120
 #define PM_KoBlockSize 20
 
 #define PM_KoCalcNumber(index) (index + PM_KoBlockOffset + _channelIndex * PM_KoBlockSize)
@@ -3608,7 +3743,286 @@
 // Externen PM zurücksetzen
 #define KoPM_KOpResetExternalPM        (knx.getGroupObject(PM_KoCalcNumber(PM_KoKOpResetExternalPM)))
 
+#define WIRE_ChannelCount 30
+
+// Parameter per channel
+#define WIRE_ParamBlockOffset 14164
+#define WIRE_ParamBlockSize 18
+#define WIRE_ParamCalcIndex(index) (index + WIRE_ParamBlockOffset + _channelIndex * WIRE_ParamBlockSize)
+
+#define WIRE_sDeviceId                  0      // char*, 7 Byte
+#define WIRE_sFamilyCode                0      // 8 Bits, Bit 7-0
+#define WIRE_sId0                       1      // 4 Bits, Bit 7-4
+#define     WIRE_sId0Mask 0xF0
+#define     WIRE_sId0Shift 4
+#define WIRE_sId1                       1      // 4 Bits, Bit 3-0
+#define     WIRE_sId1Mask 0x0F
+#define     WIRE_sId1Shift 0
+#define WIRE_sId2                       2      // 4 Bits, Bit 7-4
+#define     WIRE_sId2Mask 0xF0
+#define     WIRE_sId2Shift 4
+#define WIRE_sId3                       2      // 4 Bits, Bit 3-0
+#define     WIRE_sId3Mask 0x0F
+#define     WIRE_sId3Shift 0
+#define WIRE_sId4                       3      // 4 Bits, Bit 7-4
+#define     WIRE_sId4Mask 0xF0
+#define     WIRE_sId4Shift 4
+#define WIRE_sId5                       3      // 4 Bits, Bit 3-0
+#define     WIRE_sId5Mask 0x0F
+#define     WIRE_sId5Shift 0
+#define WIRE_sId6                       4      // 4 Bits, Bit 7-4
+#define     WIRE_sId6Mask 0xF0
+#define     WIRE_sId6Shift 4
+#define WIRE_sId7                       4      // 4 Bits, Bit 3-0
+#define     WIRE_sId7Mask 0x0F
+#define     WIRE_sId7Shift 0
+#define WIRE_sId8                       5      // 4 Bits, Bit 7-4
+#define     WIRE_sId8Mask 0xF0
+#define     WIRE_sId8Shift 4
+#define WIRE_sId9                       5      // 4 Bits, Bit 3-0
+#define     WIRE_sId9Mask 0x0F
+#define     WIRE_sId9Shift 0
+#define WIRE_sIdA                       6      // 4 Bits, Bit 7-4
+#define     WIRE_sIdAMask 0xF0
+#define     WIRE_sIdAShift 4
+#define WIRE_sIdB                       6      // 4 Bits, Bit 3-0
+#define     WIRE_sIdBMask 0x0F
+#define     WIRE_sIdBShift 0
+#define WIRE_sModelFunction             7      // 8 Bits, Bit 7-0
+#define WIRE_sModelFunctionDS18B20      7      // 8 Bits, Bit 7-0
+#define WIRE_sModelFunctionDS2408       7      // 8 Bits, Bit 7-0
+#define WIRE_sModelFunctionDS2413       7      // 8 Bits, Bit 7-0
+#define WIRE_sModelFunctionDS2438       7      // 8 Bits, Bit 7-0
+#define WIRE_sBusMasterSelect1          8      // 2 Bits, Bit 7-6
+#define     WIRE_sBusMasterSelect1Mask 0xC0
+#define     WIRE_sBusMasterSelect1Shift 6
+#define WIRE_sBusMasterSelect2          8      // 2 Bits, Bit 7-6
+#define     WIRE_sBusMasterSelect2Mask 0xC0
+#define     WIRE_sBusMasterSelect2Shift 6
+#define WIRE_sBusMasterSelect3          8      // 2 Bits, Bit 7-6
+#define     WIRE_sBusMasterSelect3Mask 0xC0
+#define     WIRE_sBusMasterSelect3Shift 6
+#define WIRE_sSensorOffset              9      // int8_t
+#define WIRE_sSensorDelayBase          10      // 2 Bits, Bit 7-6
+#define     WIRE_sSensorDelayBaseMask 0xC0
+#define     WIRE_sSensorDelayBaseShift 6
+#define WIRE_sSensorDelayTime          10      // 14 Bits, Bit 13-0
+#define     WIRE_sSensorDelayTimeMask 0x3FFF
+#define     WIRE_sSensorDelayTimeShift 0
+#define WIRE_sSensorDeltaAbs           14      // uint16_t
+#define WIRE_sSensorDeltaPercent       16      // uint8_t
+#define WIRE_sSensorSmooth             17      // uint8_t
+#define WIRE_siButtonSendStatus         9      // 1 Bit, Bit 7
+#define     WIRE_siButtonSendStatusMask 0x80
+#define     WIRE_siButtonSendStatusShift 7
+#define WIRE_sGroup1                   10      // 1 Bit, Bit 7
+#define     WIRE_sGroup1Mask 0x80
+#define     WIRE_sGroup1Shift 7
+#define WIRE_sGroup2                   10      // 1 Bit, Bit 6
+#define     WIRE_sGroup2Mask 0x40
+#define     WIRE_sGroup2Shift 6
+#define WIRE_sGroup3                   10      // 1 Bit, Bit 5
+#define     WIRE_sGroup3Mask 0x20
+#define     WIRE_sGroup3Shift 5
+#define WIRE_sGroup4                   10      // 1 Bit, Bit 4
+#define     WIRE_sGroup4Mask 0x10
+#define     WIRE_sGroup4Shift 4
+#define WIRE_sGroup5                   10      // 1 Bit, Bit 3
+#define     WIRE_sGroup5Mask 0x08
+#define     WIRE_sGroup5Shift 3
+#define WIRE_sGroup6                   10      // 1 Bit, Bit 2
+#define     WIRE_sGroup6Mask 0x04
+#define     WIRE_sGroup6Shift 2
+#define WIRE_sGroup7                   10      // 1 Bit, Bit 1
+#define     WIRE_sGroup7Mask 0x02
+#define     WIRE_sGroup7Shift 1
+#define WIRE_sGroup8                   10      // 1 Bit, Bit 0
+#define     WIRE_sGroup8Mask 0x01
+#define     WIRE_sGroup8Shift 0
+#define WIRE_sIOSendStatus              9      // 1 Bit, Bit 7
+#define     WIRE_sIOSendStatusMask 0x80
+#define     WIRE_sIOSendStatusShift 7
+#define WIRE_sIOReadRequest             9      // 1 Bit, Bit 6
+#define     WIRE_sIOReadRequestMask 0x40
+#define     WIRE_sIOReadRequestShift 6
+#define WIRE_sIoBitmask0               10      // 1 Bit, Bit 0
+#define     WIRE_sIoBitmask0Mask 0x01
+#define     WIRE_sIoBitmask0Shift 0
+#define WIRE_sIoBitmask1               10      // 1 Bit, Bit 1
+#define     WIRE_sIoBitmask1Mask 0x02
+#define     WIRE_sIoBitmask1Shift 1
+#define WIRE_sIoBitmask2               10      // 1 Bit, Bit 2
+#define     WIRE_sIoBitmask2Mask 0x04
+#define     WIRE_sIoBitmask2Shift 2
+#define WIRE_sIoBitmask3               10      // 1 Bit, Bit 3
+#define     WIRE_sIoBitmask3Mask 0x08
+#define     WIRE_sIoBitmask3Shift 3
+#define WIRE_sIoBitmask4               10      // 1 Bit, Bit 4
+#define     WIRE_sIoBitmask4Mask 0x10
+#define     WIRE_sIoBitmask4Shift 4
+#define WIRE_sIoBitmask5               10      // 1 Bit, Bit 5
+#define     WIRE_sIoBitmask5Mask 0x20
+#define     WIRE_sIoBitmask5Shift 5
+#define WIRE_sIoBitmask6               10      // 1 Bit, Bit 6
+#define     WIRE_sIoBitmask6Mask 0x40
+#define     WIRE_sIoBitmask6Shift 6
+#define WIRE_sIoBitmask7               10      // 1 Bit, Bit 7
+#define     WIRE_sIoBitmask7Mask 0x80
+#define     WIRE_sIoBitmask7Shift 7
+#define WIRE_sIoInvertBitmask0         11      // 1 Bit, Bit 0
+#define     WIRE_sIoInvertBitmask0Mask 0x01
+#define     WIRE_sIoInvertBitmask0Shift 0
+#define WIRE_sIoInvertBitmask1         11      // 1 Bit, Bit 1
+#define     WIRE_sIoInvertBitmask1Mask 0x02
+#define     WIRE_sIoInvertBitmask1Shift 1
+#define WIRE_sIoInvertBitmask2         11      // 1 Bit, Bit 2
+#define     WIRE_sIoInvertBitmask2Mask 0x04
+#define     WIRE_sIoInvertBitmask2Shift 2
+#define WIRE_sIoInvertBitmask3         11      // 1 Bit, Bit 3
+#define     WIRE_sIoInvertBitmask3Mask 0x08
+#define     WIRE_sIoInvertBitmask3Shift 3
+#define WIRE_sIoInvertBitmask4         11      // 1 Bit, Bit 4
+#define     WIRE_sIoInvertBitmask4Mask 0x10
+#define     WIRE_sIoInvertBitmask4Shift 4
+#define WIRE_sIoInvertBitmask5         11      // 1 Bit, Bit 5
+#define     WIRE_sIoInvertBitmask5Mask 0x20
+#define     WIRE_sIoInvertBitmask5Shift 5
+#define WIRE_sIoInvertBitmask6         11      // 1 Bit, Bit 6
+#define     WIRE_sIoInvertBitmask6Mask 0x40
+#define     WIRE_sIoInvertBitmask6Shift 6
+#define WIRE_sIoInvertBitmask7         11      // 1 Bit, Bit 7
+#define     WIRE_sIoInvertBitmask7Mask 0x80
+#define     WIRE_sIoInvertBitmask7Shift 7
+
+// Geräte-Id
+#define ParamWIRE_sDeviceId                 (knx.paramData(WIRE_ParamCalcIndex(WIRE_sDeviceId)))
+// Familienkode
+#define ParamWIRE_sFamilyCode               (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sFamilyCode)))
+// 
+#define ParamWIRE_sId0                      ((knx.paramByte(WIRE_ParamCalcIndex(WIRE_sId0)) & WIRE_sId0Mask) >> WIRE_sId0Shift)
+// 
+#define ParamWIRE_sId1                      (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sId1)) & WIRE_sId1Mask)
+// 
+#define ParamWIRE_sId2                      ((knx.paramByte(WIRE_ParamCalcIndex(WIRE_sId2)) & WIRE_sId2Mask) >> WIRE_sId2Shift)
+// 
+#define ParamWIRE_sId3                      (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sId3)) & WIRE_sId3Mask)
+// 
+#define ParamWIRE_sId4                      ((knx.paramByte(WIRE_ParamCalcIndex(WIRE_sId4)) & WIRE_sId4Mask) >> WIRE_sId4Shift)
+// 
+#define ParamWIRE_sId5                      (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sId5)) & WIRE_sId5Mask)
+// 
+#define ParamWIRE_sId6                      ((knx.paramByte(WIRE_ParamCalcIndex(WIRE_sId6)) & WIRE_sId6Mask) >> WIRE_sId6Shift)
+// 
+#define ParamWIRE_sId7                      (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sId7)) & WIRE_sId7Mask)
+// 
+#define ParamWIRE_sId8                      ((knx.paramByte(WIRE_ParamCalcIndex(WIRE_sId8)) & WIRE_sId8Mask) >> WIRE_sId8Shift)
+// 
+#define ParamWIRE_sId9                      (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sId9)) & WIRE_sId9Mask)
+// 
+#define ParamWIRE_sIdA                      ((knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIdA)) & WIRE_sIdAMask) >> WIRE_sIdAShift)
+// 
+#define ParamWIRE_sIdB                      (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIdB)) & WIRE_sIdBMask)
+// Modellfunktion
+#define ParamWIRE_sModelFunction            (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sModelFunction)))
+// Sensorgenauigkeit
+#define ParamWIRE_sModelFunctionDS18B20     (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sModelFunctionDS18B20)))
+// Modellfunktion
+#define ParamWIRE_sModelFunctionDS2408      (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sModelFunctionDS2408)))
+// Modellfunktion
+#define ParamWIRE_sModelFunctionDS2413      (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sModelFunctionDS2413)))
+// Modellfunktion
+#define ParamWIRE_sModelFunctionDS2438      (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sModelFunctionDS2438)))
+// Angeschlossen an
+#define ParamWIRE_sBusMasterSelect1         ((knx.paramByte(WIRE_ParamCalcIndex(WIRE_sBusMasterSelect1)) & WIRE_sBusMasterSelect1Mask) >> WIRE_sBusMasterSelect1Shift)
+// Angeschlossen an
+#define ParamWIRE_sBusMasterSelect2         ((knx.paramByte(WIRE_ParamCalcIndex(WIRE_sBusMasterSelect2)) & WIRE_sBusMasterSelect2Mask) >> WIRE_sBusMasterSelect2Shift)
+// Angeschlossen an
+#define ParamWIRE_sBusMasterSelect3         ((knx.paramByte(WIRE_ParamCalcIndex(WIRE_sBusMasterSelect3)) & WIRE_sBusMasterSelect3Mask) >> WIRE_sBusMasterSelect3Shift)
+// Sensorwert anpassen
+#define ParamWIRE_sSensorOffset             ((int8_t)knx.paramByte(WIRE_ParamCalcIndex(WIRE_sSensorOffset)))
+// Zeitbasis
+#define ParamWIRE_sSensorDelayBase          ((knx.paramByte(WIRE_ParamCalcIndex(WIRE_sSensorDelayBase)) & WIRE_sSensorDelayBaseMask) >> WIRE_sSensorDelayBaseShift)
+// Zeit
+#define ParamWIRE_sSensorDelayTime          (knx.paramWord(WIRE_ParamCalcIndex(WIRE_sSensorDelayTime)) & WIRE_sSensorDelayTimeMask)
+// Zeit (in Millisekunden)
+#define ParamWIRE_sSensorDelayTimeMS        (paramDelay(knx.paramWord(WIRE_ParamCalcIndex(WIRE_sSensorDelayTime))))
+// Bei absoluter Abweichung senden(0=nicht senden)
+#define ParamWIRE_sSensorDeltaAbs           (knx.paramWord(WIRE_ParamCalcIndex(WIRE_sSensorDeltaAbs)))
+// Bei Abweichung vom vorherigen Wert senden(0=nicht senden)
+#define ParamWIRE_sSensorDeltaPercent       (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sSensorDeltaPercent)))
+// Sensorwert glätten: P =
+#define ParamWIRE_sSensorSmooth             (knx.paramByte(WIRE_ParamCalcIndex(WIRE_sSensorSmooth)))
+// Nach Neustart Zustand auf den Bus senden (auch für alle beteiligten Gruppen)?
+#define ParamWIRE_siButtonSendStatus        ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_siButtonSendStatus)) & WIRE_siButtonSendStatusMask))
+// Gruppe 1
+#define ParamWIRE_sGroup1                   ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sGroup1)) & WIRE_sGroup1Mask))
+// Gruppe 2
+#define ParamWIRE_sGroup2                   ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sGroup2)) & WIRE_sGroup2Mask))
+// Gruppe 3
+#define ParamWIRE_sGroup3                   ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sGroup3)) & WIRE_sGroup3Mask))
+// Gruppe 4
+#define ParamWIRE_sGroup4                   ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sGroup4)) & WIRE_sGroup4Mask))
+// Gruppe 5
+#define ParamWIRE_sGroup5                   ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sGroup5)) & WIRE_sGroup5Mask))
+// Gruppe 6
+#define ParamWIRE_sGroup6                   ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sGroup6)) & WIRE_sGroup6Mask))
+// Gruppe 7
+#define ParamWIRE_sGroup7                   ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sGroup7)) & WIRE_sGroup7Mask))
+// Gruppe 8
+#define ParamWIRE_sGroup8                   ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sGroup8)) & WIRE_sGroup8Mask))
+// Eingänge: Nach Neustart Zustand auf den Bus senden?
+#define ParamWIRE_sIOSendStatus             ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIOSendStatus)) & WIRE_sIOSendStatusMask))
+// Ausgänge: Nach Neustart Wert vom Bus lesen und Ausgang passend setzen?
+#define ParamWIRE_sIOReadRequest            ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIOReadRequest)) & WIRE_sIOReadRequestMask))
+// 
+#define ParamWIRE_sIoBitmask0               ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoBitmask0)) & WIRE_sIoBitmask0Mask))
+// 
+#define ParamWIRE_sIoBitmask1               ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoBitmask1)) & WIRE_sIoBitmask1Mask))
+// 
+#define ParamWIRE_sIoBitmask2               ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoBitmask2)) & WIRE_sIoBitmask2Mask))
+// 
+#define ParamWIRE_sIoBitmask3               ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoBitmask3)) & WIRE_sIoBitmask3Mask))
+// 
+#define ParamWIRE_sIoBitmask4               ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoBitmask4)) & WIRE_sIoBitmask4Mask))
+// 
+#define ParamWIRE_sIoBitmask5               ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoBitmask5)) & WIRE_sIoBitmask5Mask))
+// 
+#define ParamWIRE_sIoBitmask6               ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoBitmask6)) & WIRE_sIoBitmask6Mask))
+// 
+#define ParamWIRE_sIoBitmask7               ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoBitmask7)) & WIRE_sIoBitmask7Mask))
+// 
+#define ParamWIRE_sIoInvertBitmask0         ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoInvertBitmask0)) & WIRE_sIoInvertBitmask0Mask))
+// 
+#define ParamWIRE_sIoInvertBitmask1         ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoInvertBitmask1)) & WIRE_sIoInvertBitmask1Mask))
+// 
+#define ParamWIRE_sIoInvertBitmask2         ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoInvertBitmask2)) & WIRE_sIoInvertBitmask2Mask))
+// 
+#define ParamWIRE_sIoInvertBitmask3         ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoInvertBitmask3)) & WIRE_sIoInvertBitmask3Mask))
+// 
+#define ParamWIRE_sIoInvertBitmask4         ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoInvertBitmask4)) & WIRE_sIoInvertBitmask4Mask))
+// 
+#define ParamWIRE_sIoInvertBitmask5         ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoInvertBitmask5)) & WIRE_sIoInvertBitmask5Mask))
+// 
+#define ParamWIRE_sIoInvertBitmask6         ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoInvertBitmask6)) & WIRE_sIoInvertBitmask6Mask))
+// 
+#define ParamWIRE_sIoInvertBitmask7         ((bool)(knx.paramByte(WIRE_ParamCalcIndex(WIRE_sIoInvertBitmask7)) & WIRE_sIoInvertBitmask7Mask))
+
+// deprecated
+#define WIRE_KoOffset 90
+
+// Communication objects per channel (multiple occurrence)
+#define WIRE_KoBlockOffset 90
+#define WIRE_KoBlockSize 1
+
+#define WIRE_KoCalcNumber(index) (index + WIRE_KoBlockOffset + _channelIndex * WIRE_KoBlockSize)
+#define WIRE_KoCalcIndex(number) (((number - WIRE_KoBlockOffset) >= 0) ? (number - WIRE_KoOffset) % WIRE_KoBlockSize : -1)
+
+#define WIRE_KoKOs 0
+
+// Dynamic
+#define KoWIRE_KOs                       (knx.getGroupObject(WIRE_KoCalcNumber(WIRE_KoKOs)))
+
 #define MAIN_OpenKnxId 0xA0
-#define MAIN_ApplicationNumber 64
+#define MAIN_ApplicationNumber 18
 #define MAIN_ApplicationVersion 11
-#define MAIN_OrderNumber "OpenKnxSensorVpm"
+#define MAIN_OrderNumber "OpenKnxSensorBig"

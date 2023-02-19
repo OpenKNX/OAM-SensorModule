@@ -14,19 +14,35 @@ Sie ist in die Bereiche
 * Allgemeine Parameter
 * Standardsensoren
 * 1-Wire
+* Präsenzmelder
 * Logikdokumentation
 * Logikkanäle
 
 gegliedert.
 
 Der Punkt 1-Wire ist in der Applikationsbeschreibung [OneWireGateway](https://github.com/OpenKNX/OAM-OneWireModule/blob/main/doc/Applikationsbeschreibung-Wire.md) beschrieben.
+Der Punkt Präsenzmelder ist in der Applikationsbeschreibung [Präsenz](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationsbeschreibung-Praesenz.md) beschrieben.
 Die letzten beiden Punkte sind in der Applikationsbeschreibung [LogikModule](https://github.com/OpenKNX/OAM-LogicModule/blob/main/doc/Applikationsbeschreibung-Logik.md) beschrieben.
 
 ## **Änderungshistorie**
 
 Im folgenden werden Änderungen an dem Dokument erfasst, damit man nicht immer das Gesamtdokument lesen muss, um Neuerungen zu erfahren.
 
-03.05.2022: Firmware 0.8.0, Applikation 0.8 (Beta-Release)
+
+18.02.2023: Firmware 1.0, Applikation 1.0
+
+* Anpassungen für 3 Varianten der Applikation:
+  * Als Sensor-, 1-Wire- und Logik-Applikation (SensorModule-OneWire) 
+  * Als Sensor-, Vpm- und Logik-Applikation (SensorModule-Vpm)
+  * Als Sensor-, Vpm-, 1-Wire- und Logik-Applikation (SensorModule-Big)
+  * Die ersten beiden sind vornehmlich dafür da, auf einem SAMD-Sensormodul zu laufen
+  * SensorModule-Big sollte für alle RP2040-Varianten benutzt werden
+* NEU: Als Helligkeitssensor wird jetzt auch der VEML7700 unterstützt.
+* Aktualisierung auf die neuste Logikmodul-Version 1.4.2.
+* Die SensorModule-OneWire- und -Big-Versionen enthalten die neuste OneWireModule-Version 1.0.
+* Das SensorModule-Big enthält die neuste PresenceModule-Version 1.7.6.  
+
+09.01.2023: Firmware 0.11, Applikation 0.11 (Beta)
 
 * initiales Release als OpenKNX SensorModule
 * Basiert auf dem [Vorgänger-Sensormodul](https://github.com/mumpf/knx-sensor) version 3.8 (im folgenden stehen die Neuerungen gegenüber 3.8)
@@ -64,7 +80,6 @@ Das soll nicht von der Nutzung abhalten, es soll nur klar machen, dass die Inten
 
 Falls versucht wird, mit dem Sensormodul alle Funktionen gleichzeitig zu nutzen, also:
 
-* 6 Inputs (Fensterkontakte, Schalter)
 * 5 iButtons
 * 15 1-Wire-Temperatursensoren
 * 5 1-Wire Temp-/Hum-Sensoren
@@ -89,25 +104,39 @@ Hardwareunabhängige Funktionen, in diesem Fall das Logikmodul, sind allerdings 
 <kbd>![Allgemeine Parameter](pics/AllgemeineParameter.png)</kbd>
 Hier werden Einstellungen getroffen, die die generelle Arbeitsweise des Sensormoduls bestimmen.
 
+## Gerätestart
+
 ### **Zeit bis das Gerät nach einem Neustart aktiv wird**
 
-Nach einem Neustart des Geräts, sei es durch Busspannungsausfall, Reset über den Bus oder auch durch ein Drücken der Reset-Taste, kann man hier festlegen, wie viele Sekunden vergehen sollen, bis das Gerät seine Funktion aufnimmt.
+Hier kann man festlegen, wie viel Zeit vergehen soll, bis das Gerät nach einem Neustart seine Funktion aufnimmt. Dabei ist es egal, ob der Neustart durch einen Busspannungsausfall, einen Reset über den Bus, durch ein Drücken der Reset-Taste oder durch den Watchdog ausgelöst wurde.
 
 Da das Gerät prinzipiell (sofern parametriert) auch Lesetelegramme auf den Bus senden kann, kann mit dieser Einstellung verhindert werden, dass bei einem Busneustart von vielen Geräten viele Lesetelegramme auf einmal gesendet werden und so der Bus überlastet wird.
+
+**Anmerkung:** Auch wenn man hier technisch bis zu 16.000 Stunden Verzögerung angeben kann, sind nur Einstellungen im Sekundenbereich sinnvoll.
 
 ### **In Betrieb senden alle**
 
 Das Gerät kann einen Status "Ich bin noch in Betrieb" über das KO 1 senden. Hier wird das Sendeintervall eingestellt.
 
-Das KO1 - In Betrieb - erscheint nur, wenn die Zeit größer 0 ist.
+Sollte hier eine 0 angegeben werden, wird kein "In Betrieb"-Signal gesendet und das KO 1 steht nicht zur Verfügung.
+
+### **Uhrzeit und Datum empfangen über**
+
+Dieses Gerät kann Uhrzeit und Datum vom Bus empfangen. Dabei kann man wählen, ob man Uhrzeit über ein Kommunikationsobjekt und das Datum über ein anders empfangen will oder beides, Uhrzeit und Datum, über ein kombiniertes Kommunikationsobjekt.
+
+#### **Zwei getrennte KO Uhrzeit und Datum**
+
+Wählt man diesen Punkt, wird je ein Kommunikationsobjekt für Uhrzeit (DPT 10) und Datum (DPT 11) bereitgestellt. Der KNX-Zeitgeber im System muss die Uhrzeit und das Datum für die beiden Kommunikationsobjekte liefern können.
+
+#### **Ein kombiniertes KO Uhrzeit/Datum**
+
+Wählt man diesen Punkt, wir ein kombiniertes Kommunikationsobjekt für Uhrzeit/Datum (DPT 19) bereitgestellt. Der KNX-Zeitgeber im System muss die kombinierte Uhrzeit/Datum entsprechend liefern können.
 
 ### **Uhrzeit und Datum nach einem Neustart vom Bus lesen**
 
-Dieses Gerät kann Uhrzeit und Datum vom Bus empfangen. Nach einem Neustart können Uhrzeit und Datum auch aktiv über Lesetelegramme abgefragt werden. Mit diesem Parameter wird bestimmt, ob Uhrzeit und Datum nach einem Neustart aktiv gelesen werden.
+Nach einem Neustart können Uhrzeit und Datum auch aktiv über Lesetelegramme abgefragt werden. Mit diesem Parameter wird bestimmt, ob Uhrzeit und Datum nach einem Neustart aktiv gelesen werden.
 
-Wenn dieser Parameter auf "Ja" gesetzt ist, wird die Uhrzeit und das Datum alle 20-30 Sekunden über ein Lesetelegramm vom Bus gelesen, bis eine entsprechende Antwort kommt. Falls keine Uhr im KNX-System vorhanden ist oder die Uhr nicht auf Leseanfragen antworten kann, sollte dieser Parameter auf "Nein" gesetzt werden.
-
-Die im Logikmodul enthaltenen Zeitschaltuhren beginnen erst zu funktionieren, wenn eine gültige Uhrzeit und ein gültiges Datum empfangen wurde. Wenn dieser Parameter auf "Nein" gesetzt wird, kann es sehr lange dauern, bis Zeitschaltuhren nach einem Neustart ihre Funktion aufnehmen.
+Wenn dieser Parameter gesetzt ist, wird die Uhrzeit und das Datum alle 20-30 Sekunden über ein Lesetelegramm vom Bus gelesen, bis eine entsprechende Antwort kommt. Falls keine Uhr im KNX-System vorhanden ist oder die Uhr nicht auf Leseanfragen antworten kann, sollte dieser Parameter auf "Nein" gesetzt werden.
 
 ## **Installierte Hardware**
 
@@ -136,16 +165,21 @@ Sensorauswahl | Temperatur | Luftfeuchte | Luftdruck | VOC | CO<sub>2</sub> | He
 SHT3x   | X | X |   |   |   |
 BME280  | X | X | X |   |   |
 BME680  | X | X | X | X | X<sup>2)</sup>
-SCD30   | X | X |   |   | X |
-SCD41   | X | X |   |   | X |
+SCD30<sup>4)</sup>   | X | X |   |   | X |
+SCD4x<sup>3)</sup>   | X | X |   |   | X |
 SGP30<sup>1)</sup>   | X | X | | X | X<sup>2)</sup>
 IAQCore | | | | X | X<sup>2)</sup>
 OPT300x | | | | | |  X
+VEML7700 | | | | | |  X
 VL53L1X | | | | | |  | X
 
 <sup>1)</sup>Noch in Entwicklung, die ETS Applikation unterstützt bereits die Einstellungen, die Firmware kann diese Sensoren noch nicht auswerten.
 
 <sup>2)</sup>Bei diesem Sensor wird der CO<sub>2</sub>-Wert nicht gemessen, sondern aus dem VOC-Wert berechnet. Die Berechnung findet nicht im Sensormodul, sondern im Sensor selbst statt.
+
+<sup>3)</sup>SCD4x meint die Sensoren SCD40 oder SCD41
+
+<sup>4)</sup>Der SCD30 wird noch weiterhin unterstützt, für diejenigen, die diesen Sensor bereits benutzen. Allerdings wird dieser Sensor für eine Neuanschaffung nicht empfohlen, da er unzuverlässig funktioniert.
 
 In den folgenden Auswahlfeldern kann man für jeden Standardmesswert bestimmen, von welchem Sensor dieser Messwert geliefert werden soll. Dabei können verschiedene Sensoren kombiniert werden. Bestimmte Kombinationen beeinflussen die Funktionsweise weiterer am Sensormodul angeschlossener Hardware. Solche Kombinationen führen zu Warnmeldungen.
 
@@ -158,22 +192,23 @@ Sollten beide Sensoren BME280 und BME680 ausgewählt worden sein, erscheint folg
 
 Messwerte | Kombi 1 | Kombi 2 | Kombi 3 | Kombi 4 | Kombi 5 | Kombi 6 | Kombi 7
 ---|:---:|:---:|:---:|:---:|:---:|:---:|:---:
-Temperatur     | SHT3x | BME280 | BME680 | SCD41 |         |         |         |
-Luftfeuchte    | SHT3x | BME280 | BME680 | SCD41 |         |         |         |
+Temperatur     | SHT3x | BME280 | BME680 | SCD4x |         |         |         |
+Luftfeuchte    | SHT3x | BME280 | BME680 | SCD4x |         |         |         |
 Luftdruck      |       | BME280 | BME680 |       |         |         |         |
 VOC            |       |        | BME680 |       | IAQCore |         |         |
-CO<sub>2</sub> |       |        | BME680 | SCD41 |         |         |         |
+CO<sub>2</sub> |       |        | BME680 | SCD4x |         |         |         |
 Helligkeit     |       |        |        |       |         | OPT300x |         |
+Helligkeit     |       |        |        |       |         | VEML7700 |         |
 Entfernung     |       |        |        |       |         |         | VL53L1X |
 ---
 Messwerte | Kombi 8 | Kombi 9 | Kombi 10 | Kombi 11 | Kombi 12 | Kombi 13 | Kombi 14
 ---|:---:|:---:|:---:|:---:|:---:|:---:|:---:
-Temperatur     | SHT3x   | SHT3x   | BME280  | BME280 | BME680 | SCD41  | SCD41  |
-Luftfeuchte    | SHT3x   | SHT3x   | BME280  | BME280 | BME680 | SCD41  | SCD41  |
+Temperatur     | SHT3x   | SHT3x   | BME280  | BME280 | BME680 | SCD4x  | SCD4x  |
+Luftfeuchte    | SHT3x   | SHT3x   | BME280  | BME280 | BME680 | SCD4x  | SCD4x  |
 Luftdruck      |         |         | BME280  | BME280 | BME680 | BME280 | BME680 |
-VOC            |         | IAQCore | IAQCore |        | BME680 |        | BME680 |
-CO<sub>2</sub> |         |         |         | SCD41  | SCD41  | SCD41  | SCD41  |
-Helligkeit     | OPT300x |         |         |        |        |        |        |
+VOC            |         |         | IAQCore |        | BME680 |        | BME680 |
+CO<sub>2</sub> |         |         |         | SCD4x  | SCD4x  | SCD4x  | SCD4x  |
+Helligkeit     | OPT300x | VEML7700 |         |        |        |        |        |
 Entfernung     |         |         |         |        |        |        |        |
 ---
 
@@ -245,7 +280,7 @@ Nur wenn ein Sensor für die Entfernungsermittlung ausgewählt wurde, können au
 
 Dieses Eingabefeld kann bei jedem Sensor zusätzlich ausgewählt werden, falls an das Sensormodul auch 1-Wire-Sensoren angeschlossen sind. Eine weitere Seite zur Detaileinstellungen für 1-Wire-Sensoren wird dann verfügbar.
 
-1-Wire-Sensoren erfordern eine fortlaufende Abfrage ihrer Werte und können speziell bei Input-Output-Bausteinen (IO) oder iButtons sehr zeitkritisch sein. Deswegen wird für diese zeitkritischen Abfragen in einem besonders schnellen Modus geschaltet. Bestimmte Sensoren, wie z.B. der IAQCore, der SCD30 und der SCD41, können dieses schnellen Modus nicht unterstützen und behindern die Kommunikation mit dem 1-Wire-Sensor. In solchen Fällen erscheint folgende Meldung:
+1-Wire-Sensoren erfordern eine fortlaufende Abfrage ihrer Werte und können speziell bei Input-Output-Bausteinen (IO) oder iButtons sehr zeitkritisch sein. Deswegen wird für diese zeitkritischen Abfragen in einem besonders schnellen Modus geschaltet. Bestimmte Sensoren, wie z.B. der IAQCore, der SCD30 und der SCD4x, können dieses schnellen Modus nicht unterstützen und behindern die Kommunikation mit dem 1-Wire-Sensor. In solchen Fällen erscheint folgende Meldung:
 <kbd>![Info One-Wire](pics/OneWire.png)</kbd>
 Die Abfragen von 1-Wire-IO und iButtons passieren dann in normaler Geschwindigkeit, was dazu führen kann, dass die Reaktionszeiten auf Eingaben größer 1 Sekunde werden oder gar dass Eingaben verpasst werden. Dies ist kein Fehler des Sensormoduls oder der Firmware, sondern eine Hardwarebeschränkung der verwendeten Bauteile, hier der beteiligten Sensoren.
 
@@ -413,7 +448,7 @@ Anmerkung zum BME680: Dieser Sensor liefert nur ein berechnetes CO<sub>2</sub>-�
 
 Ist die Sensorkombination BME680+SCD30 installiert, werden beide CO<sub>2</sub>-Werte ausgegeben, der gemessene und der berechnete.
 
-Anmerkung zum SDC30: Derzeit wird bei diesem Sensor die Nutzung vom Watchdog empfohlen (Siehe Kapitel Watchdog-Unterstützung). Mit diesem Sensor kommt es zu sporadischen "Hängern", deren Ursache noch nicht bekannt ist. Eine bessere Wahl für einen CO<sub>2</sub>-Sensor ist der SCD41.
+Anmerkung zum SDC30: Derzeit wird bei diesem Sensor die Nutzung vom Watchdog empfohlen (Siehe Kapitel Watchdog-Unterstützung). Mit diesem Sensor kommt es zu sporadischen "Hängern", deren Ursache noch nicht bekannt ist. Eine bessere Wahl für einen CO<sub>2</sub>-Sensor ist der SCD4x.
 
 ## **Standardsensoren - Helligkeit**
 
@@ -452,7 +487,7 @@ Folgende Behaglichkeitszonen werden berechnet:
 ### **Luftqualitätsampel ausgeben**
 
 <kbd>![Luftqualitätsampel](pics/Luftqualitätsampel.png)</kbd>
-Dieser Punkt ist nur sichtbar, wenn ein angeschlossener Sensor Messwerte zur Luftqualität liefert, also nur beim BME680, SCD30 oder SCD41.
+Dieser Punkt ist nur sichtbar, wenn ein angeschlossener Sensor Messwerte zur Luftqualität liefert, also nur beim BME680, SCD30 oder SCD4x.
 
 Wenn man hier "Ja" auswählt, wird anhand des gemessenen Voc-Werts (beim BME680) oder des gemessenen CO<sub>2</sub>-Werts eine Luftqualitätsampel berechnet und über KO 23 ausgegeben. Die Luftqualitätsampel kann jederzeit gelesen werden, wird aber nur bei Änderungen gesendet.
 
@@ -515,7 +550,7 @@ BME680
 
 SCD30 (sollte möglichst nicht verwendet werden)
 
-SCD41 (bessere und günstigere Alternative zum SCD30)
+SCD4x (bessere und günstigere Alternative zum SCD30)
 
 IAQCore
 

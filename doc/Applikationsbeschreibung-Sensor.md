@@ -101,7 +101,7 @@ Hardwareunabhängige Funktionen, in diesem Fall das Logikmodul, sind allerdings 
 
 ## **Allgemeine Parameter**
 
-<kbd>![Allgemeine Parameter](pics/AllgemeineParameter.png)</kbd>
+<kbd>![Allgemeine Parameter](pics/AllgemeineParameter.PNG)</kbd>
 Hier werden Einstellungen getroffen, die die generelle Arbeitsweise des Sensormoduls bestimmen.
 
 ## Gerätestart
@@ -295,7 +295,7 @@ Das Sensormodul unterstützt auch die Ausgabe von Pieptönen mittels eines Buzze
 Das Sensormodul unterstützt auch die Ausgabe eines Lichtsignals mittels einer RGB-LED. Mit einem Haken in diesem Feld wird angegeben, ob eine RGB-LED installiert ist.
 
 Wird eine RGB-LED und ein CO<sub>2</sub>-Sensor ausgewählt, erscheint folgende Information:
-<kbd>![Info RGB-LED](pics/InfoRgbLed.png)</kbd>
+<kbd>![Info RGB-LED](pics/InfoRgbLed.PNG)</kbd>
 
 Diese Information besagt, dass der Betrieb einer RBG-LED und eines CO<sub>2</sub>-Sensors gleichzeitig nicht empfohlen wird, sofern das Sensormodul vom KNX-Bus gespeist werden soll. Da der vom KNX-Bus gelieferte Strom nicht für den Betrieb beider ausreicht, kann es zu Funktionsstörungen kommen, bis hin zu Resets des Sensormoduls und zum Funktionsausfall. Falls das Sensormodul über eine zusätzliche Stromversorgung verfügt (z.B. USB), kann diese Einstellung so belassen werden. Die Applikation wird bei dieser Einstellung nicht weiter eingeschränkt.
 
@@ -337,7 +337,7 @@ Derzeit wird der Watchdog bei der Verwendung vom SCD30 (CO<sub>2</sub>-Sensor) e
 
 Zu den Standardsensoren zählen die Sensoren, die im Kapitel "Hardwareeinstellungen" in der Tabelle aufgelistet sind. Diese Sensoren werden von der Applikation bestens unterstützt. Alle Messwerte von Standardsensoren (Temperatur, Luftfeuchte, Luftdruck, Voc, CO<sub>2</sub>, Helligkeit und Entfernung) erlauben die gleichen Einstellungen, die im Folgenden detailliert für die Temperatur beschrieben werden. Für die weiteren Messwerte werden dann nur noch die Einheiten genannt, in den die Eingaben zu erfolgen sind.
 
-<kbd>![Standardsensoren](pics/Standardsensoren.png)</kbd>
+<kbd>![Standardsensoren](pics/Standardsensoren.PNG)</kbd>
 
 ## Temperatur
 
@@ -486,7 +486,7 @@ Folgende Behaglichkeitszonen werden berechnet:
 
 ### **Luftqualitätsampel ausgeben**
 
-<kbd>![Luftqualitätsampel](pics/Luftqualitätsampel.png)</kbd>
+<kbd>![Luftqualitätsampel](pics/Luftqualitaetsampel.png)</kbd>
 Dieser Punkt ist nur sichtbar, wenn ein angeschlossener Sensor Messwerte zur Luftqualität liefert, also nur beim BME680, SCD30 oder SCD4x.
 
 Wenn man hier "Ja" auswählt, wird anhand des gemessenen Voc-Werts (beim BME680) oder des gemessenen CO<sub>2</sub>-Werts eine Luftqualitätsampel berechnet und über KO 23 ausgegeben. Die Luftqualitätsampel kann jederzeit gelesen werden, wird aber nur bei Änderungen gesendet.
@@ -504,7 +504,7 @@ Es gibt 6 Luftqualitätsgrade, entsprechend deutschen Schulnoten:
 
 ### **Kalibrierungsfortschritt ausgeben**
 
-<kbd>![Kalibrierung](pics/Kalibrierung.png)</kbd>
+<kbd>![Kalibrierung](pics/Kalibrierung.PNG)</kbd>
 Wird nur sichtbar, wenn als Sensor BME680 ausgewählt ist.
 
 Manche Sensoren benötigen eine Kalibrierung, bevor sie zuverlässige Werte ausgeben können. Dies ist besonders für die Erfassung von Voc-Werten notwendig. Das Sensormodul hat für den BME680 eine Selbstkalibrierung implementiert, die ununterbrochen parallel zur Messwerterfassung läuft und die bisher ermittelten Kalibrierungswerte in den nichtflüchtigen Speicher des Prozessors speichert. Somit wird verhindert, dass nach einem Neustart des Gerätes eine erneute Kalibrierung notwendig wird.
@@ -519,7 +519,7 @@ Der Kalibrierungsfortschritt kann mit dieser Einstellung zur Information über K
 
 ### **Kalibrierungsdaten löschen**
 
-<kbd>![Bild Kalibrierungsdaten löschen](pics/KalibrierungLoeschen.png)</kbd>
+<kbd>![Bild Kalibrierungsdaten löschen](pics/KalibrierungLoeschen.PNG)</kbd>
 
 Die Applikation erlaubt auch ein explizites Löschen der Kalibrierungsdaten. Allerdings wäre es sinnlos, hierfür einen Ja-Nein-Parameter einzuführen, da dieser, einmal auf Ja gestellt, nach jedem Neustart des Gerätes die Kalibrierungsdaten löschen würde. Insofern funktioniert dieser Parameter anders als normalerweise ETS-Parameter funktionieren.
 

@@ -556,6 +556,8 @@ IAQCore
 
 OPT300x
 
+VEML7700
+
 VL53L1X
 
 SGP30 (in Entwicklung)

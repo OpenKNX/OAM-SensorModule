@@ -52,8 +52,8 @@ Die nicht Sensor-spezifischen Teile der Applikation basieren auf anderen OpenKNX
     * [Luftqualitätsampel ausgeben](#luftqualitätsampel-ausgeben)
     * [Kalibrierungsfortschritt ausgeben](#kalibrierungsfortschritt-ausgeben)
     * [Kalibrierungsdaten löschen](#kalibrierungsdaten-löschen)
-* **+ 1-Wire** (siehe [Dokumentation zum Logikmodul](https://github.com/OpenKNX/OAM-OneWireModule/blob/main/doc/Applikationsbeschreibung-Wire.md); Achtung: Version beachten!)
-* **+ PM-Kanäle** (siehe [Dokumentation zum Logikmodul](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationbeschreibung-Praesenz.md); Achtung: Version beachten!)
+* **+ 1-Wire** (siehe [Dokumentation zum OneWireGateway](https://github.com/OpenKNX/OAM-OneWireModule/blob/main/doc/Applikationsbeschreibung-Wire.md); Achtung: Version beachten!)
+* **+ PM-Kanäle** (siehe [Dokumentation zum PresenceModule](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationbeschreibung-Praesenz.md); Achtung: Version beachten!)
 * **+ Logikkanäle** (siehe [Dokumentation zum Logikmodul](https://github.com/OpenKNX/OAM-LogicModule/blob/main/doc/Applikationsbeschreibung-Logik.md); Achtung: Version beachten!)
 
 

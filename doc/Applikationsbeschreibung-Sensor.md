@@ -7,22 +7,41 @@ cSpell:words Glättungsfunktion Glättungsformel Behaglichkeitszone Behaglichkei
 
 Die Applikation für das SensorModule erlaubt die Parametrisierung des Sensormoduls mittels der ETS.
 
-Sie ist in die Bereiche
-
-* Änderungshistorie
-* Einführung
-* Allgemeine Parameter
-* Standardsensoren
-* 1-Wire
-* Präsenzmelder
-* Logikdokumentation
-* Logikkanäle
-
-gegliedert.
-
 Der Punkt 1-Wire ist in der Applikationsbeschreibung [OneWireGateway](https://github.com/OpenKNX/OAM-OneWireModule/blob/main/doc/Applikationsbeschreibung-Wire.md) beschrieben.
 Der Punkt Präsenzmelder ist in der Applikationsbeschreibung [Präsenz](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationsbeschreibung-Praesenz.md) beschrieben.
 Die letzten beiden Punkte sind in der Applikationsbeschreibung [LogikModule](https://github.com/OpenKNX/OAM-LogicModule/blob/main/doc/Applikationsbeschreibung-Logik.md) beschrieben.
+
+
+## Inhalte
+> Achtung: Nachfolgende Auflistung teilweise abweichend von Reihenfolge im Dokument
+* [Änderungshistorie](#änderungshistorie)
+* [Einführung](#einführung)
+  * [Hardware](#hardware)
+  * [Funktionsumfang](#funktionsumfang)
+* [ETS Konfiguration](#ets-konfiguration) (Übersicht aller Konfigurationsseiten und Links zu Detailbeschreibung)
+  * [Kommunikationsobjekte](#übersicht-der-vorhandenen-kommunikationsobjekte)
+  * [Update der Applikation](#update-der-applikation)
+* [Unterstützte Hardware](#hardware-1)
+
+### ETS Konfiguration
+* **+ [Allgemeine Parameter](#allgemeine-parameter)**
+  * [Gerätestart](#gerätestart)
+  * [Installierte Hardware](#installierte-hardware)
+  * [**Experteneinstellungen**](#experteneinstellungen)
+* **+ [Standardsensoren](#standardsensoren)**
+  * **[Temperatur](#standardsensoren---temperatur)**
+  * **[Luftfeuchte](#standardsensoren---luftfeuchte)**
+  * **[Luftdruck](#standardsensoren---luftdruck)**
+  * **[Voc](#standardsensoren---voc)**
+  * **[CO2](#standardsensoren---cosub2sub)**
+  * **[Helligkeit](#standardsensoren---helligkeit)**
+  * **[Entfernung](#standardsensoren---entfernung)**
+  * **[Zusatzfunktionen](#standardsensoren---zusatzfunktionen)**
+* **+ 1-Wire** (siehe [Dokumentation zum Logikmodul](https://github.com/OpenKNX/OAM-OneWireModule/blob/main/doc/Applikationsbeschreibung-Wire.md); Achtung: Version beachten!)
+* **+ PM-Kanäle** (siehe [Dokumentation zum Logikmodul](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationsbeschreibung-Praesenz.md); Achtung: Version beachten!)
+* **+ Logikkanäle** (siehe [Dokumentation zum Logikmodul](https://github.com/OpenKNX/OAM-LogicModule/blob/main/doc/Applikationsbeschreibung-Logik.md); Achtung: Version beachten!)
+
+
 
 ## **Änderungshistorie**
 

@@ -604,34 +604,35 @@ DS2484
 
 Die Liste zeigt nur die Kommunikationsobjekte (KO) der neuesten version 3.x. Es gibt noch weitere KO, die logisch betrachtet zum Logikmodul gehören, diese werden hier nicht aufgelistet, sondern nur auf das Logikmodul verwiesen.
 
-KO | Name | DPT | Bedeutung
-:---:|:---|---:|:--
-1 | bis 49 | | beschrieben im Logikmodul
-50 | Sensorwerte anfordern | 1.016 | Beim Empfang vom Trigger (1) werden alle Sensorwerte auf den Bus gesendet. So kann man mehrere Leseanforderungen sparen.
-51 | Sensorfehler | 7.001 | Gibt über eine Bitleiste an, welche Messwerte aufgrund eines aufgetretenen Fehlers nicht erfasst werden können. Falls ein ganzer Sensor ausfällt, werden mehrere Bits gleichzeitig gesetzt
-60 | Temperatur | 9.001 | Temperaturmesswert (in °C)
-61 | Luftfeuchte | 9.007 | Luftfeuchte (in %)
-62 | Luftdruck | 9.006 | Luftdruck (in mBar, nicht Pa!!! mBar = Pa / 100)
-63 | VOC | 9.* | Voc-Messwert (einheitenlos)
-64 | CO2 | 9.008 | CO2-Messwert (in ppm)
-65 | CO2-VOC | 9.008 | Berechneter CO2-Messwert vom VOC (in ppm)
-66 | Taupunkt | 9.001 | Berechneter Taupunkt (in °C)
-67 | Behaglichkeit | 5.005 | Behaglichkeitswert, errechnet aus Luftfeuchte im Verhältnis zur Temperatur (0-2)
-68 | Luftqualitätsampel | 5.005 | Luftgüte entsprechend deutscher Schulnoten (1-6)
-69 | Kalibrierungsgrad | 5.001 | Kalibrierungsfortschritt vom BME680 (in %)
-70 | Externe Temperatur 1 | 9.001 | Eingang für externe Temperatur 1 (in °C)
-71 | Externe Temperatur 2 | 9.001 | Eingang für externe Temperatur 2 (in °C)
-72 | Externe Luftfeuchte 1 | 9.007 | Eingang für externe Luftfeuchte 1 (in %)
-73 | Externe Luftfeuchte 2 | 9.007 | Eingang für externe Luftfeuchte 2 (in %)
-74 | Externer Luftdruck 1 | 9.006 | Eingang für externen Luftdruck 1 (in mBar)
-75 | Externer Luftdruck 2 | 9.006 | Eingang für externen Luftdruck 2 (in mBar)
-76 | Externer VOC 1 | 9.* | Eingang für externen VOC-Wert 1 (einheitenlos)
-77 | Externer VOC 2 | 9.* | Eingang für externen VOC-Wert 2 (einheitenlos)
-78 | Externe CO2 1 | 9.008 | Eingang für externen CO<sub>2</sub>-Wert 1 (in ppm)
-79 | Externe CO2 2 | 9.008 | Eingang für externen CO<sub>2</sub>-Wert 2 (in ppm)
-80 | Externer Helligkeit 1 | 9.004 | Eingang für externe Helligkeit 1 (in Lux)
-81 | Externer Helligkeit 2 | 9.004 | Eingang für externe Helligkeit 2 (in Lux)
-82 | Externe Entfernung 1 | 7.011 | Eingang für externe Entfernung 1 (in mm)
-83 | Externe Entfernung 2 | 7.011 | Eingang für externe Entfernung 2 (in mm)
-87 | Helligkeit | 9.004 | Helligkeit (in Lux)
-88 | Entfernung | 7.011 | Entfernung (in mm)
+|   KO    | Name                  | DPT   | Bedeutung                                                                                                                                                                                  |
+|:-------:|:----------------------|:------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  1..49  |                       |       | *siehe anderer Module*                                                                                                                                                                     |
+|   50    | Sensorwerte anfordern | 1.016 | Beim Empfang vom Trigger (1) werden alle Sensorwerte auf den Bus gesendet. So kann man mehrere Leseanforderungen sparen.                                                                   |
+|   51    | Sensorfehler          | 7.001 | Gibt über eine Bitleiste an, welche Messwerte aufgrund eines aufgetretenen Fehlers nicht erfasst werden können. Falls ein ganzer Sensor ausfällt, werden mehrere Bits gleichzeitig gesetzt |
+|   60    | Temperatur            | 9.001 | Temperaturmesswert (in °C)                                                                                                                                                                 |
+|   61    | Luftfeuchte           | 9.007 | Luftfeuchte (in %)                                                                                                                                                                         |
+|   62    | Luftdruck             | 9.006 | Luftdruck (in mBar, nicht Pa!!! mBar = Pa / 100)                                                                                                                                           |
+|   63    | VOC                   | 9.*   | Voc-Messwert (einheitenlos)                                                                                                                                                                |
+|   64    | CO2                   | 9.008 | CO2-Messwert (in ppm)                                                                                                                                                                      |
+|   65    | CO2-VOC               | 9.008 | Berechneter CO2-Messwert vom VOC (in ppm)                                                                                                                                                  |
+|   66    | Taupunkt              | 9.001 | Berechneter Taupunkt (in °C)                                                                                                                                                               |
+|   67    | Behaglichkeit         | 5.005 | Behaglichkeitswert, errechnet aus Luftfeuchte im Verhältnis zur Temperatur (0-2)                                                                                                           |
+|   68    | Luftqualitätsampel    | 5.005 | Luftgüte entsprechend deutscher Schulnoten (1-6)                                                                                                                                           |
+|   69    | Kalibrierungsgrad     | 5.001 | Kalibrierungsfortschritt vom BME680 (in %)                                                                                                                                                 |
+|   70    | Externe Temperatur 1  | 9.001 | Eingang für externe Temperatur 1 (in °C)                                                                                                                                                   |
+|   71    | Externe Temperatur 2  | 9.001 | Eingang für externe Temperatur 2 (in °C)                                                                                                                                                   |
+|   72    | Externe Luftfeuchte 1 | 9.007 | Eingang für externe Luftfeuchte 1 (in %)                                                                                                                                                   |
+|   73    | Externe Luftfeuchte 2 | 9.007 | Eingang für externe Luftfeuchte 2 (in %)                                                                                                                                                   |
+|   74    | Externer Luftdruck 1  | 9.006 | Eingang für externen Luftdruck 1 (in mBar)                                                                                                                                                 |
+|   75    | Externer Luftdruck 2  | 9.006 | Eingang für externen Luftdruck 2 (in mBar)                                                                                                                                                 |
+|   76    | Externer VOC 1        | 9.*   | Eingang für externen VOC-Wert 1 (einheitenlos)                                                                                                                                             |
+|   77    | Externer VOC 2        | 9.*   | Eingang für externen VOC-Wert 2 (einheitenlos)                                                                                                                                             |
+|   78    | Externe CO2 1         | 9.008 | Eingang für externen CO<sub>2</sub>-Wert 1 (in ppm)                                                                                                                                        |
+|   79    | Externe CO2 2         | 9.008 | Eingang für externen CO<sub>2</sub>-Wert 2 (in ppm)                                                                                                                                        |
+|   80    | Externer Helligkeit 1 | 9.004 | Eingang für externe Helligkeit 1 (in Lux)                                                                                                                                                  |
+|   81    | Externer Helligkeit 2 | 9.004 | Eingang für externe Helligkeit 2 (in Lux)                                                                                                                                                  |
+|   82    | Externe Entfernung 1  | 7.011 | Eingang für externe Entfernung 1 (in mm)                                                                                                                                                   |
+|   83    | Externe Entfernung 2  | 7.011 | Eingang für externe Entfernung 2 (in mm)                                                                                                                                                   |
+|   87    | Helligkeit            | 9.004 | Helligkeit (in Lux)                                                                                                                                                                        |
+|   88    | Entfernung            | 7.011 | Entfernung (in mm)                                                                                                                                                                         |
+| &gt;=90 |                       |       | *siehe anderer Module*                                                                                                                                                                     |

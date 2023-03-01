@@ -602,7 +602,8 @@ DS2484
 
 ## **Übersicht der vorhandenen Kommunikationsobjekte**
 
-Die Liste zeigt nur die Kommunikationsobjekte (KO) der neuesten version 3.x. Es gibt noch weitere KO, die logisch betrachtet zum Logikmodul gehören, diese werden hier nicht aufgelistet, sondern nur auf das Logikmodul verwiesen.
+Die Liste zeigt nur die spezifischen Kommunikationsobjekte (KO) des Sensor-Moduls. 
+Für weitere KO, wird auf die Dokumentation der anderen in die Applikation integrierten Module verwiesen.
 
 |   KO    | Name                  | DPT   | Bedeutung                                                                                                                                                                                  |
 |:-------:|:----------------------|:------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

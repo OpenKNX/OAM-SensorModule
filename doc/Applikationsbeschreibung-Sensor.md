@@ -10,7 +10,7 @@ Die Applikation für das SensorModule erlaubt die Parametrisierung des Sensormod
 **Weitere Dokumente zur Applikationsbeschreibung:**
 Die nicht Sensor-spezifischen Teile der Applikation basieren auf anderen OpenKNX-Modulen und sind jeweils dort beschrieben:
 * [OneWireGateway](https://github.com/OpenKNX/OAM-OneWireModule/blob/main/doc/Applikationsbeschreibung-Wire.md) (*nicht in Variante SensorModule-Vpm*)
-* [Präsenz](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationsbeschreibung-Praesenz.md) (*nicht in Variante SensorModule-OneWire*) 
+* [Präsenz](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationbeschreibung-Praesenz.md) (*nicht in Variante SensorModule-OneWire*) 
 * [LogikModule](https://github.com/OpenKNX/OAM-LogicModule/blob/main/doc/Applikationsbeschreibung-Logik.md)
 
 

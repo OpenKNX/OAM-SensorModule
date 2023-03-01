@@ -29,8 +29,16 @@ Die nicht Sensor-spezifischen Teile der Applikation basieren auf anderen OpenKNX
 * **+ [Allgemeine Parameter](#allgemeine-parameter)**
   * [Gerätestart](#gerätestart)
   * [Installierte Hardware](#installierte-hardware)
+    * [1-Wire aktivieren?](#1-wire-aktivieren)
+    * [Akustischer Signalgeber vorhanden (Buzzer)?](#akustischer-signalgeber-vorhanden-buzzer)
+    * [Optischer Signalgeber vorhanden (RGB-LED)?](#optischer-signalgeber-vorhanden-rgb-led)
   * [**Experteneinstellungen**](#experteneinstellungen)
 * **+ [Standardsensoren](#standardsensoren)**
+  * Konfiguration Standardsesnsoren am Beispiel Temperatur
+    * [~ anpassen (interner Messwert)](#temperatur-anpassen-interner-messwert)
+    * [Externe Werte](#externe-werte)
+    * [Sendeverhalten](#sendeverhalten)
+    * [Glättungsfunktion](#glättungsfunktion)
   * **[Temperatur](#standardsensoren---temperatur)**
   * **[Luftfeuchte](#standardsensoren---luftfeuchte)**
   * **[Luftdruck](#standardsensoren---luftdruck)**
@@ -39,6 +47,11 @@ Die nicht Sensor-spezifischen Teile der Applikation basieren auf anderen OpenKNX
   * **[Helligkeit](#standardsensoren---helligkeit)**
   * **[Entfernung](#standardsensoren---entfernung)**
   * **[Zusatzfunktionen](#standardsensoren---zusatzfunktionen)**
+    * [Taupunkt berechnen](#taupunkt-berechnen)
+    * [Behaglichkeitszone ausgeben](#behaglichkeitszone-ausgeben)
+    * [Luftqualitätsampel ausgeben](#luftqualitätsampel-ausgeben)
+    * [Kalibrierungsfortschritt ausgeben](#kalibrierungsfortschritt-ausgeben)
+    * [Kalibrierungsdaten löschen](#kalibrierungsdaten-löschen)
 * **+ 1-Wire** (siehe [Dokumentation zum Logikmodul](https://github.com/OpenKNX/OAM-OneWireModule/blob/main/doc/Applikationsbeschreibung-Wire.md); Achtung: Version beachten!)
 * **+ PM-Kanäle** (siehe [Dokumentation zum Logikmodul](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationsbeschreibung-Praesenz.md); Achtung: Version beachten!)
 * **+ Logikkanäle** (siehe [Dokumentation zum Logikmodul](https://github.com/OpenKNX/OAM-LogicModule/blob/main/doc/Applikationsbeschreibung-Logik.md); Achtung: Version beachten!)

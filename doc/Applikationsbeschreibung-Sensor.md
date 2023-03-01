@@ -43,7 +43,7 @@ Die nicht Sensor-spezifischen Teile der Applikation basieren auf anderen OpenKNX
   * **[Luftfeuchte](#standardsensoren---luftfeuchte)**
   * **[Luftdruck](#standardsensoren---luftdruck)**
   * **[Voc](#standardsensoren---voc)**
-  * **[CO2](#standardsensoren---cosub2sub)**
+  * **[CO2](#standardsensoren---co2)**
   * **[Helligkeit](#standardsensoren---helligkeit)**
   * **[Entfernung](#standardsensoren---entfernung)**
   * **[Zusatzfunktionen](#standardsensoren---zusatzfunktionen)**

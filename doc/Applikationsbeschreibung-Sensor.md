@@ -79,7 +79,7 @@ Im folgenden werden Änderungen an dem Dokument erfasst, damit man nicht immer d
 09.01.2023: Firmware 0.11, Applikation 0.11 (Beta)
 
 * initiales Release als OpenKNX SensorModule
-* Basiert auf dem [Vorgänger-Sensormodul](https://github.com/mumpf/knx-sensor) version 3.8 (im folgenden stehen die Neuerungen gegenüber 3.8)
+* Basiert auf dem [Vorgänger-Sensormodul](https://github.com/mumpf/knx-sensor) version 3.8 (im Folgenden stehen die Neuerungen gegenüber 3.8)
 * Erzeugung von Firmware und knxprod wurde stark vereinfacht
 * (intern) verbesserte Kommunikation mit dem KNX-Bus
 * ETS-Applikation wird auch mit der ETS 6 getestet
@@ -127,9 +127,9 @@ Falls versucht wird, mit dem Sensormodul alle Funktionen gleichzeitig zu nutzen,
 * Helligkeitsmessung
 * Entfernungsmessung
 
-das alles z.B. pro Stockwerk anzuschließen und dann auch noch über 80 Logikkanäle das restliche Haus zu steuern, dann wird das potentiell nicht laufen. Eventuell macht es dann mehr Sinn, die Funktionen auf 2, 3 oder 4 Sensormodule aufzuteilen und die in die einzelnen Räume zu platzieren und in den Räumen nur die Funktionalitäten in Betrieb zu nehmen, die dort sinnvoll sind.
+das alles z.B. pro Stockwerk anzuschließen und dann auch noch über 80 Logikkanäle das restliche Haus zu steuern, dann wird das potenziell nicht laufen. Eventuell macht es dann mehr Sinn, die Funktionen auf 2, 3 oder 4 Sensormodule aufzuteilen und die in die einzelnen Räume zu platzieren und in den Räumen nur die Funktionalitäten in Betrieb zu nehmen, die dort sinnvoll sind.
 
-Es ist wichtig zu verinnerlichen, dass die vielen Funktionen nicht dafür da sind, alle in einem Gerät genutzt zu werden, sondern dass man in vielen Geräten eher einige Wenige Funktionen nutzen kann.
+Es ist wichtig zu verinnerlichen, dass die vielen Funktionen nicht dafür da sind, alle in einem Gerät genutzt zu werden, sondern dass man in vielen Geräten eher einige wenige Funktionen nutzen kann.
 
 Hardwareunabhängige Funktionen, in diesem Fall das Logikmodul, sind allerdings so konzipiert, dass sie immer in beliebiger Kombination und in vollem Umfang mit den anderen Features funktionieren und können bzw. sollen auch so genutzt werden.
 

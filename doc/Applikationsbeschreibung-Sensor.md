@@ -225,23 +225,23 @@ Sollten beide Sensoren BME280 und BME680 ausgewählt worden sein, erscheint folg
 
 > **Achtung**: Die Möglichkeit, Sensoren für Standardmesswerte auszuwählen ermöglicht viele Sensor-Messwert-Kombinationen, die nicht alle vor einem Release getestet werden können. In der folgenden Tabelle werden Sensor-Messwert-Kombinationen angegeben, die bereits erfolgreich geprüft wurden und funktionieren. Ferner können weitere funktionierende Sensor-Messwert-Kombinationen im KNX-User-Forum ausgetauscht werden.
 
-| Messwerte | Temperatur | Luftfeuchte | Luftdruck |   VOC   | CO<sub>2</sub> | Helligkeit | Entfernung |
-|-----------|:----------:|:-----------:|:---------:|:-------:|:--------------:|:----------:|:----------:|
-| Kombi 1   |   SHT3x    |    SHT3x    |           |         |                |            |            |         
-| Kombi 2   |   BME280   |   BME280    |  BME280   |         |                |            |            |         
-| Kombi 3   |   BME680   |   BME680    |  BME680   | BME680  |     BME680     |            |            |         
-| Kombi 4   |   SCD4x    |    SCD4x    |           |         |     SCD4x      |            |            |         
-| Kombi 5   |            |             |           | IAQCore |                |            |            |         
-| Kombi 6a  |            |             |           |         |                |  OPT300x   |            |          
-| Kombi 6b  |            |             |           |         |                |  VEML7700  |            |          
-| Kombi 7   |            |             |           |         |                |            |  VL53L1X   |
-| Kombi 8   |   SHT3x    |    SHT3x    |           |         |                |  OPT300x   |            |
-| Kombi 9   |   SHT3x    |    SHT3x    |           |         |                |  VEML7700  |            |
-| Kombi 10  |   BME280   |   BME280    |  BME280   | IAQCore |                |            |            |
-| Kombi 11  |   BME280   |   BME280    |  BME280   |         |     SCD4x      |            |            |
-| Kombi 12  |   BME680   |   BME680    |  BME680   | BME680  |     SCD4x      |            |            |
-| Kombi 13  |   SCD4x    |    SCD4x    |  BME280   |         |     SCD4x      |            |            |
-| Kombi 14  |   SCD4x    |    SCD4x    |  BME680   | BME680  |     SCD4x      |            |            |
+| Kombi  | Temperatur | Luftfeuchte | Luftdruck |   VOC   | CO<sub>2</sub> | Helligkeit | Entfernung |
+|:------:|:----------:|:-----------:|:---------:|:-------:|:--------------:|:----------:|:----------:|
+|   1    |   SHT3x    |    SHT3x    |           |         |                |            |            |         
+|   2    |   BME280   |   BME280    |  BME280   |         |                |            |            |         
+|   3    |   BME680   |   BME680    |  BME680   | BME680  |     BME680     |            |            |         
+|   4    |   SCD4x    |    SCD4x    |           |         |     SCD4x      |            |            |         
+|   5    |            |             |           | IAQCore |                |            |            |         
+|   6a   |            |             |           |         |                |  OPT300x   |            |          
+|   6b   |            |             |           |         |                |  VEML7700  |            |          
+|   7    |            |             |           |         |                |            |  VL53L1X   |
+|   8    |   SHT3x    |    SHT3x    |           |         |                |  OPT300x   |            |
+|   9    |   SHT3x    |    SHT3x    |           |         |                |  VEML7700  |            |
+|   10   |   BME280   |   BME280    |  BME280   | IAQCore |                |            |            |
+|   11   |   BME280   |   BME280    |  BME280   |         |     SCD4x      |            |            |
+|   12   |   BME680   |   BME680    |  BME680   | BME680  |     SCD4x      |            |            |
+|   13   |   SCD4x    |    SCD4x    |  BME280   |         |     SCD4x      |            |            |
+|   14   |   SCD4x    |    SCD4x    |  BME680   | BME680  |     SCD4x      |            |            |
 
 Die in den Tabellen angegebenen Kombinationen sagen nichts darüber aus, ob die Sensoren direkt an das Sensormodul angeschlossen werden können. Stellenweise wurde mit zusätzlicher Hardware getestet, die einen Sensoranschluss ermöglichte.
 

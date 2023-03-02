@@ -313,6 +313,7 @@ Dieses Eingabefeld kann bei jedem Sensor zusätzlich ausgewählt werden, falls a
 
 1-Wire-Sensoren erfordern eine fortlaufende Abfrage ihrer Werte und können speziell bei Input-Output-Bausteinen (IO) oder iButtons sehr zeitkritisch sein. Deswegen wird für diese zeitkritischen Abfragen in einem besonders schnellen Modus geschaltet. Bestimmte Sensoren, wie z.B. der IAQCore, der SCD30 und der SCD4x, können dieses schnellen Modus nicht unterstützen und behindern die Kommunikation mit dem 1-Wire-Sensor. In solchen Fällen erscheint folgende Meldung:
 <kbd>![Info One-Wire](pics/OneWire.png)</kbd>
+
 Die Abfragen von 1-Wire-IO und iButtons passieren dann in normaler Geschwindigkeit, was dazu führen kann, dass die Reaktionszeiten auf Eingaben größer 1 Sekunde werden oder gar dass Eingaben verpasst werden. Dies ist kein Fehler des Sensormoduls oder der Firmware, sondern eine Hardwarebeschränkung der verwendeten Bauteile, hier der beteiligten Sensoren.
 
 Anmerkung: Die Einstellungen und die Abfrage von 1-Wire-Sensoren können in der Applikationsbeschreibung WireGateway nachgelesen werden.
@@ -500,11 +501,13 @@ Das Sensormodul kann neben gemessenen Werten auch noch einige berechnete Werte l
 ### **Taupunkt berechnen**
 
 <kbd>![Taupunkt](pics/Taupunkt.png)</kbd>
+
 Wenn man hier "Ja" auswählt, kann man für den Taupunkt Einstellungen wie unter Standardsensoren beschrieben vornehmen. Alle Angaben für den Taupunkt werden in 0.1°C vorgenommen.
 
 ### **Behaglichkeitszone ausgeben**
 
 <kbd>![Behaglichkeit](pics/Behaglichkeit.png)</kbd>
+
 Wenn man hier "Ja" auswählt, wird anhand der Temperatur und Luftfeuchte eine Behaglichkeitszone berechnet und über KO 22 ausgegeben. Die Behaglichkeitszone kann jederzeit gelesen werden, wird aber nur bei Änderungen gesendet.
 
 Falls zyklisches Senden gewünscht wird, kann man dies über die im Sensormodul enthaltenen Logikkanäle realisieren. Beispiele sind in der Applikationsbeschreibung Logik enthalten.
@@ -518,6 +521,7 @@ Folgende Behaglichkeitszonen werden berechnet:
 ### **Luftqualitätsampel ausgeben**
 
 <kbd>![Luftqualitätsampel](pics/Luftqualitaetsampel.png)</kbd>
+
 Dieser Punkt ist nur sichtbar, wenn ein angeschlossener Sensor Messwerte zur Luftqualität liefert, also nur beim BME680, SCD30 oder SCD4x.
 
 Wenn man hier "Ja" auswählt, wird anhand des gemessenen Voc-Werts (beim BME680) oder des gemessenen CO<sub>2</sub>-Werts eine Luftqualitätsampel berechnet und über KO 23 ausgegeben. Die Luftqualitätsampel kann jederzeit gelesen werden, wird aber nur bei Änderungen gesendet.
@@ -536,6 +540,7 @@ Es gibt 6 Luftqualitätsgrade, entsprechend deutschen Schulnoten:
 ### **Kalibrierungsfortschritt ausgeben**
 
 <kbd>![Kalibrierung](pics/Kalibrierung.PNG)</kbd>
+
 Wird nur sichtbar, wenn als Sensor BME680 ausgewählt ist.
 
 Manche Sensoren benötigen eine Kalibrierung, bevor sie zuverlässige Werte ausgeben können. Dies ist besonders für die Erfassung von Voc-Werten notwendig. Das Sensormodul hat für den BME680 eine Selbstkalibrierung implementiert, die ununterbrochen parallel zur Messwerterfassung läuft und die bisher ermittelten Kalibrierungswerte in den nichtflüchtigen Speicher des Prozessors speichert. Somit wird verhindert, dass nach einem Neustart des Gerätes eine erneute Kalibrierung notwendig wird.

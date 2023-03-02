@@ -136,6 +136,7 @@ Hardwareunabhängige Funktionen, in diesem Fall das Logikmodul, sind allerdings 
 ## **Allgemeine Parameter**
 
 <kbd>![Allgemeine Parameter](pics/AllgemeineParameter.PNG)</kbd>
+
 Hier werden Einstellungen getroffen, die die generelle Arbeitsweise des Sensormoduls bestimmen.
 
 ## Gerätestart
@@ -240,7 +241,6 @@ Sollten beide Sensoren BME280 und BME680 ausgewählt worden sein, erscheint folg
 | Kombi 12  |   BME680   |   BME680    |  BME680   | BME680  |     SCD4x      |                         |            |
 | Kombi 13  |   SCD4x    |    SCD4x    |  BME280   |         |     SCD4x      |                         |            |
 | Kombi 14  |   SCD4x    |    SCD4x    |  BME680   | BME680  |     SCD4x      |                         |            |
----
 
 Die in den Tabellen angegebenen Kombinationen sagen nichts darüber aus, ob die Sensoren direkt an das Sensormodul angeschlossen werden können. Stellenweise wurde mit zusätzlicher Hardware getestet, die einen Sensoranschluss ermöglichte.
 

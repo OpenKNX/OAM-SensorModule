@@ -214,7 +214,7 @@ VL53L1X | | | | | |  | X
 
 <sup>3)</sup>SCD4x meint die Sensoren SCD40 oder SCD41
 
-<sup>4)</sup>Der SCD30 wird noch weiterhin unterstützt, für diejenigen, die diesen Sensor bereits benutzen. Allerdings wird dieser Sensor für eine Neuanschaffung nicht empfohlen, da er unzuverlässig funktioniert.
+<sup>4)</sup>Der SCD30 wird weiterhin unterstützt, für diejenigen, die diesen Sensor bereits benutzen. Allerdings wird dieser Sensor für eine Neuanschaffung *nicht empfohlen*, da er unzuverlässig funktioniert.
 
 In den folgenden Auswahlfeldern kann man für jeden Standardmesswert bestimmen, von welchem Sensor dieser Messwert geliefert werden soll. Dabei können verschiedene Sensoren kombiniert werden. Bestimmte Kombinationen beeinflussen die Funktionsweise weiterer am Sensormodul angeschlossener Hardware. Solche Kombinationen führen zu Warnmeldungen.
 
@@ -245,7 +245,7 @@ Sollten beide Sensoren BME280 und BME680 ausgewählt worden sein, erscheint folg
 
 Die in den Tabellen angegebenen Kombinationen sagen nichts darüber aus, ob die Sensoren direkt an das Sensormodul angeschlossen werden können. Stellenweise wurde mit zusätzlicher Hardware getestet, die einen Sensoranschluss ermöglichte.
 
->Die Verwendung von SCD30 als Sensor, vor allem in Kombination mit weiteren Sensoren, wird nur mit eingeschaltetem Watchdog empfohlen, da der Betrieb vom SCD30 manchmal zu unerwünschten "Hängern" des Sensormoduls führt. Statt des SCD30 sollte der SDC41 genutzt werden, da er günstiger ist und zuverlässiger funktioniert.
+>Die Verwendung von SCD30 als Sensor, vor allem in Kombination mit weiteren Sensoren, wird nur mit eingeschaltetem Watchdog empfohlen, da der Betrieb vom SCD30 manchmal zu unerwünschten "Hängern" des Sensormoduls führt. Statt des SCD30 sollte der SDC4x genutzt werden, da er günstiger ist und zuverlässiger funktioniert.
 
 <kbd>![Installierte Hardware](pics/InstallierteHardware.png)</kbd>
 
@@ -477,9 +477,9 @@ Einstellungen für CO<sub>2</sub> werden wie unter Standardsensoren beschrieben 
 
 Anmerkung zum BME680: Dieser Sensor liefert nur ein berechnetes CO<sub>2</sub>-Äquivalent passend zum gemessenen Voc-Wert und keinen gemessenen CO<sub>2</sub>-Wert. Dieser berechnete CO<sub>2</sub>-Wert wird über ein zusätzliches KO 20 ausgegeben.
 
-Ist die Sensorkombination BME680+SCD30 installiert, werden beide CO<sub>2</sub>-Werte ausgegeben, der gemessene und der berechnete.
+Ist die Sensorkombination BME680+SCD30/SCD4x installiert, werden beide CO<sub>2</sub>-Werte ausgegeben, der gemessene und der berechnete.
 
-Anmerkung zum SDC30: Derzeit wird bei diesem Sensor die Nutzung vom Watchdog empfohlen (Siehe Kapitel Watchdog-Unterstützung). Mit diesem Sensor kommt es zu sporadischen "Hängern", deren Ursache noch nicht bekannt ist. Eine bessere Wahl für einen CO<sub>2</sub>-Sensor ist der SCD4x.
+> **Anmerkung zum SDC30:** Derzeit wird bei diesem Sensor die Nutzung vom Watchdog empfohlen (Siehe Kapitel Watchdog-Unterstützung). Mit diesem Sensor kommt es zu sporadischen "Hängern", deren Ursache noch nicht bekannt ist. Eine bessere Wahl für einen CO<sub>2</sub>-Sensor ist der SCD4x.
 
 ## **Standardsensoren - Helligkeit**
 

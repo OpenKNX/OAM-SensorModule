@@ -133,6 +133,7 @@ Es ist wichtig zu verinnerlichen, dass die vielen Funktionen nicht dafür da sin
 
 Hardwareunabhängige Funktionen, in diesem Fall das Logikmodul, sind allerdings so konzipiert, dass sie immer in beliebiger Kombination und in vollem Umfang mit den anderen Features funktionieren und können bzw. sollen auch so genutzt werden.
 
+# ETS-Konfiguration
 ## **Allgemeine Parameter**
 
 <kbd>![Allgemeine Parameter](pics/AllgemeineParameter.PNG)</kbd>

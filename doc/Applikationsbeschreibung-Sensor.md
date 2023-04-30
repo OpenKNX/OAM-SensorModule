@@ -576,35 +576,35 @@ Der Vorgang ist im [OpenKNX-Wiki](https://github.com/OpenKNX/OpenKNX/wiki/Wie-ak
 Dieses Kapital beschreibt die von dieser Firmware unterstützte Hardware
 (noch nicht ausgearbeitet)
 
-Sensormodul Masifi
+* Sensormodul Masifi
 
-SHT3x (neu)
+* SHT3x (neu)
 
-BME280
+* BME280
 
-BME680
+* BME680
 
-SCD30 (sollte möglichst nicht verwendet werden)
+* SCD30 (sollte möglichst nicht verwendet werden)
 
-SCD4x (bessere und günstigere Alternative zum SCD30)
+* SCD4x (bessere und günstigere Alternative zum SCD30)
 
-IAQCore
+* IAQCore
 
-OPT300x
+* OPT300x
 
-VEML7700
+* VEML7700
 
-VL53L1X
+* VL53L1X
 
-SGP30 (in Entwicklung)
+* SGP30 (in Entwicklung)
 
-Buzzer
+* Buzzer
 
-RGB-LED
+* RGB-LED
 
-NCN5130
+* NCN5130
 
-DS2484
+* DS2484
 
 ## **Übersicht der vorhandenen Kommunikationsobjekte**
 

@@ -176,7 +176,8 @@ Wenn dieser Parameter gesetzt ist, wird die Uhrzeit und das Datum alle 20-30 Sek
 
 ## **Installierte Hardware**
 
-Die Firmware im Sensormodul unterstützt eine Vielzahl an Hardwarevarianten. Um nicht für jede Hardwarekombination ein eigenes Applikationsprogramm zu benötigen, kann über die folgenden Felder die Hardwareausstattung des Sensormoduls dem Applikationsprogramm mitgeteilt werden.
+Die Firmware im Sensormodul unterstützt verschiedene Hardware-Sensor-Typen.
+Über die folgenden Felder kann angegeben werden, welcher der Messwerte durch welchen mit dem Sensormodul verbunden Sensor ermittelt werden soll.
 
 **Die Angaben in diesem Teil müssen der vorhandenen Hardware entsprechen**, da sie das Verhalten der Applikation und auch der Firmware bestimmen. **Das Applikationsprogramm hat keine Möglichkeit, die Korrektheit der Angaben zu überprüfen.**
 

@@ -28,6 +28,14 @@ Die letzten beiden Punkte sind in der Applikationsbeschreibung [LogikModule](htt
 
 Im folgenden werden Änderungen an dem Dokument erfasst, damit man nicht immer das Gesamtdokument lesen muss, um Neuerungen zu erfahren.
 
+29.08.2023: Firmware 1.1, Applikation 1.1
+
+* Aktualisierung auf die neuste Logikmodul-Version 1.5.
+* Das SensorModule-Big enthält die neuste PresenceModule-Version 1.11.  
+
+* FIX: Der KNX-Stack ist jetzt wesentlich robuster bei hoch ausgelastetem KNX-Bus. 
+* FIX: Einige wenige DPT9-Werte ungleich 0 wurden vom KNX-Stack als 0 gesendet. Das ist gelöst. Es waren Werte der Form &pm;(2<sup>n</sup>)/100 für n>10, also z.B. &pm;20.48, &pm;40.96, &pm;81.92, &pm;163.84, &pm;327.68, &pm;655.36 usw. 
+* Anmerkung: Der DPT9-Fehler im KNX-Stack war auch die Ursache für einen im Sensormodul immer wieder auftretenden 0-Wert bei der Glättungsfunktion der einzelnen Sensoren. Dieser Fehler ist somit auch behoben.
 
 18.02.2023: Firmware 1.0, Applikation 1.0
 

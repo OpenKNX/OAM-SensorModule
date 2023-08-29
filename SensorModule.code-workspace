@@ -36,6 +36,15 @@
 			"istream": "cpp",
 			"ostream": "cpp"
 		},
-		"cSpell.language": "en,de-DE"
+		"cSpell.language": "en,de-DE",
+		"workbench.colorCustomizations": {
+			"activityBar.background": "#00ebf4",
+			"activityBar.foreground": "#000000",
+			"activityBar.activeBackground": "#00b1b8",
+			"statusBar.foreground": "#000000",
+			"statusBar.background": "#00ebf4",
+			"titleBar.activeBackground": "#00ebf4",
+			"titleBar.activeForeground": "#000000"
+		}
 	}
 }

@@ -28,7 +28,7 @@ Die letzten beiden Punkte sind in der Applikationsbeschreibung [LogikModule](htt
 
 Im folgenden werden Änderungen an dem Dokument erfasst, damit man nicht immer das Gesamtdokument lesen muss, um Neuerungen zu erfahren.
 
-29.08.2023: Firmware 1.1, Applikation 1.1
+29.08.2023: Firmware 1.1.1, Applikation 1.1
 
 * Aktualisierung auf die neuste Logikmodul-Version 1.5.
 * Das SensorModule-Big enthält die neuste PresenceModule-Version 1.11.  

@@ -28,10 +28,11 @@ Die letzten beiden Punkte sind in der Applikationsbeschreibung [LogikModule](htt
 
 Im folgenden werden Änderungen an dem Dokument erfasst, damit man nicht immer das Gesamtdokument lesen muss, um Neuerungen zu erfahren.
 
-29.08.2023: Firmware 1.1.1, Applikation 1.1
+29.08.2023: Firmware 1.1.3, Applikation 1.1
 
-* Aktualisierung auf die neuste Logikmodul-Version 1.5.
-* Das SensorModule-Big enthält die neuste PresenceModule-Version 1.11.  
+* Aktualisierung auf die neuste Logikmodul-Version 1.5.3.
+* Das SensorModule-Vpm bzw. SensorModule-Big enthält die neuste PresenceModule-Version 1.11.3. 
+* Die SensorModule-OneWire- und -Big-Versionen enthalten die aktuelle OneWireModule-Version 1.0.
 
 * FIX: Der KNX-Stack ist jetzt wesentlich robuster bei hoch ausgelastetem KNX-Bus. 
 * FIX: Einige wenige DPT9-Werte ungleich 0 wurden vom KNX-Stack als 0 gesendet. Das ist gelöst. Es waren Werte der Form &pm;(2<sup>n</sup>)/100 für n>10, also z.B. &pm;20.48, &pm;40.96, &pm;81.92, &pm;163.84, &pm;327.68, &pm;655.36 usw. 

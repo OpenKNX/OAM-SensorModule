@@ -7,22 +7,56 @@ cSpell:words Glättungsfunktion Glättungsformel Behaglichkeitszone Behaglichkei
 
 Die Applikation für das SensorModule erlaubt die Parametrisierung des Sensormoduls mittels der ETS.
 
-Sie ist in die Bereiche
+**Weitere Dokumente zur Applikationsbeschreibung:**
+Die nicht Sensor-spezifischen Teile der Applikation basieren auf anderen OpenKNX-Modulen und sind jeweils dort beschrieben:
+* [OneWireGateway](https://github.com/OpenKNX/OAM-OneWireModule/blob/main/doc/Applikationsbeschreibung-Wire.md) (*nicht in Variante SensorModule-Vpm*)
+* [Präsenz](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationbeschreibung-Praesenz.md) (*nicht in Variante SensorModule-OneWire*) 
+* [LogikModule](https://github.com/OpenKNX/OAM-LogicModule/blob/main/doc/Applikationsbeschreibung-Logik.md)
 
-* Änderungshistorie
-* Einführung
-* Allgemeine Parameter
-* Standardsensoren
-* 1-Wire
-* Präsenzmelder
-* Logikdokumentation
-* Logikkanäle
 
-gegliedert.
+## Inhalte
+> Achtung: Nachfolgende Auflistung teilweise abweichend von Reihenfolge im Dokument
+* [Änderungshistorie](#änderungshistorie)
+* [Einführung](#einführung)
+  * [Hardware](#hardware)
+  * [Funktionsumfang](#funktionsumfang)
+* [ETS Konfiguration](#ets-konfiguration) (Übersicht aller Konfigurationsseiten und Links zu Detailbeschreibung)
+  * [Kommunikationsobjekte](#übersicht-der-vorhandenen-kommunikationsobjekte)
+  * [Update der Applikation](#update-der-applikation)
+* [Unterstützte Hardware](#hardware-1)
 
-Der Punkt 1-Wire ist in der Applikationsbeschreibung [OneWireGateway](https://github.com/OpenKNX/OAM-OneWireModule/blob/main/doc/Applikationsbeschreibung-Wire.md) beschrieben.
-Der Punkt Präsenzmelder ist in der Applikationsbeschreibung [Präsenz](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationsbeschreibung-Praesenz.md) beschrieben.
-Die letzten beiden Punkte sind in der Applikationsbeschreibung [LogikModule](https://github.com/OpenKNX/OAM-LogicModule/blob/main/doc/Applikationsbeschreibung-Logik.md) beschrieben.
+### ETS Konfiguration
+* **+ [Allgemeine Parameter](#allgemeine-parameter)**
+  * [Gerätestart](#gerätestart)
+  * [Installierte Hardware](#installierte-hardware)
+    * [1-Wire aktivieren?](#1-wire-aktivieren)
+    * [Akustischer Signalgeber vorhanden (Buzzer)?](#akustischer-signalgeber-vorhanden-buzzer)
+    * [Optischer Signalgeber vorhanden (RGB-LED)?](#optischer-signalgeber-vorhanden-rgb-led)
+  * [**Experteneinstellungen**](#experteneinstellungen)
+* **+ [Standardsensoren](#standardsensoren)**
+  * Konfiguration Standardsesnsoren am Beispiel Temperatur
+    * [~ anpassen (interner Messwert)](#temperatur-anpassen-interner-messwert)
+    * [Externe Werte](#externe-werte)
+    * [Sendeverhalten](#sendeverhalten)
+    * [Glättungsfunktion](#glättungsfunktion)
+  * **[Temperatur](#standardsensoren---temperatur)**
+  * **[Luftfeuchte](#standardsensoren---luftfeuchte)**
+  * **[Luftdruck](#standardsensoren---luftdruck)**
+  * **[Voc](#standardsensoren---voc)**
+  * **[CO2](#standardsensoren---co2)**
+  * **[Helligkeit](#standardsensoren---helligkeit)**
+  * **[Entfernung](#standardsensoren---entfernung)**
+  * **[Zusatzfunktionen](#standardsensoren---zusatzfunktionen)**
+    * [Taupunkt berechnen](#taupunkt-berechnen)
+    * [Behaglichkeitszone ausgeben](#behaglichkeitszone-ausgeben)
+    * [Luftqualitätsampel ausgeben](#luftqualitätsampel-ausgeben)
+    * [Kalibrierungsfortschritt ausgeben](#kalibrierungsfortschritt-ausgeben)
+    * [Kalibrierungsdaten löschen](#kalibrierungsdaten-löschen)
+* **+ 1-Wire** (siehe [Dokumentation zum OneWireGateway](https://github.com/OpenKNX/OAM-OneWireModule/blob/main/doc/Applikationsbeschreibung-Wire.md); Achtung: Version beachten!)
+* **+ PM-Kanäle** (siehe [Dokumentation zum PresenceModule](https://github.com/OpenKNX/OAM-PresenceModule/blob/main/doc/Applikationbeschreibung-Praesenz.md); Achtung: Version beachten!)
+* **+ Logikkanäle** (siehe [Dokumentation zum Logikmodul](https://github.com/OpenKNX/OAM-LogicModule/blob/main/doc/Applikationsbeschreibung-Logik.md); Achtung: Version beachten!)
+
+
 
 ## **Änderungshistorie**
 
@@ -54,7 +88,7 @@ Im folgenden werden Änderungen an dem Dokument erfasst, damit man nicht immer d
 09.01.2023: Firmware 0.11, Applikation 0.11 (Beta)
 
 * initiales Release als OpenKNX SensorModule
-* Basiert auf dem [Vorgänger-Sensormodul](https://github.com/mumpf/knx-sensor) version 3.8 (im folgenden stehen die Neuerungen gegenüber 3.8)
+* Basiert auf dem [Vorgänger-Sensormodul](https://github.com/mumpf/knx-sensor) version 3.8 (im Folgenden stehen die Neuerungen gegenüber 3.8)
 * Erzeugung von Firmware und knxprod wurde stark vereinfacht
 * (intern) verbesserte Kommunikation mit dem KNX-Bus
 * ETS-Applikation wird auch mit der ETS 6 getestet
@@ -102,15 +136,17 @@ Falls versucht wird, mit dem Sensormodul alle Funktionen gleichzeitig zu nutzen,
 * Helligkeitsmessung
 * Entfernungsmessung
 
-das alles z.B. pro Stockwerk anzuschließen und dann auch noch über 80 Logikkanäle das restliche Haus zu steuern, dann wird das potentiell nicht laufen. Eventuell macht es dann mehr Sinn, die Funktionen auf 2, 3 oder 4 Sensormodule aufzuteilen und die in die einzelnen Räume zu platzieren und in den Räumen nur die Funktionalitäten in Betrieb zu nehmen, die dort sinnvoll sind.
+das alles z.B. pro Stockwerk anzuschließen und dann auch noch über 80 Logikkanäle das restliche Haus zu steuern, dann wird das potenziell nicht laufen. Eventuell macht es dann mehr Sinn, die Funktionen auf 2, 3 oder 4 Sensormodule aufzuteilen und die in die einzelnen Räume zu platzieren und in den Räumen nur die Funktionalitäten in Betrieb zu nehmen, die dort sinnvoll sind.
 
-Es ist wichtig zu verinnerlichen, dass die vielen Funktionen nicht dafür da sind, alle in einem Gerät genutzt zu werden, sondern dass man in vielen Geräten eher einige Wenige Funktionen nutzen kann.
+Es ist wichtig zu verinnerlichen, dass die vielen Funktionen nicht dafür da sind, alle in einem Gerät genutzt zu werden, sondern dass man in vielen Geräten eher einige wenige Funktionen nutzen kann.
 
 Hardwareunabhängige Funktionen, in diesem Fall das Logikmodul, sind allerdings so konzipiert, dass sie immer in beliebiger Kombination und in vollem Umfang mit den anderen Features funktionieren und können bzw. sollen auch so genutzt werden.
 
+# ETS-Konfiguration
 ## **Allgemeine Parameter**
 
 <kbd>![Allgemeine Parameter](pics/AllgemeineParameter.PNG)</kbd>
+
 Hier werden Einstellungen getroffen, die die generelle Arbeitsweise des Sensormoduls bestimmen.
 
 ## Gerätestart
@@ -149,7 +185,8 @@ Wenn dieser Parameter gesetzt ist, wird die Uhrzeit und das Datum alle 20-30 Sek
 
 ## **Installierte Hardware**
 
-Die Firmware im Sensormodul unterstützt eine Vielzahl an Hardwarevarianten. Um nicht für jede Hardwarekombination ein eigenes Applikationsprogramm zu benötigen, kann über die folgenden Felder die Hardwareausstattung des Sensormoduls dem Applikationsprogramm mitgeteilt werden.
+Die Firmware im Sensormodul unterstützt verschiedene Hardware-Sensor-Typen.
+Über die folgenden Felder kann angegeben werden, welcher der Messwerte durch welchen mit dem Sensormodul verbunden Sensor ermittelt werden soll.
 
 **Die Angaben in diesem Teil müssen der vorhandenen Hardware entsprechen**, da sie das Verhalten der Applikation und auch der Firmware bestimmen. **Das Applikationsprogramm hat keine Möglichkeit, die Korrektheit der Angaben zu überprüfen.**
 
@@ -188,7 +225,7 @@ VL53L1X | | | | | |  | X
 
 <sup>3)</sup>SCD4x meint die Sensoren SCD40 oder SCD41
 
-<sup>4)</sup>Der SCD30 wird noch weiterhin unterstützt, für diejenigen, die diesen Sensor bereits benutzen. Allerdings wird dieser Sensor für eine Neuanschaffung nicht empfohlen, da er unzuverlässig funktioniert.
+<sup>4)</sup>Der SCD30 wird weiterhin unterstützt, für diejenigen, die diesen Sensor bereits benutzen. Allerdings wird dieser Sensor für eine Neuanschaffung *nicht empfohlen*, da er unzuverlässig funktioniert.
 
 In den folgenden Auswahlfeldern kann man für jeden Standardmesswert bestimmen, von welchem Sensor dieser Messwert geliefert werden soll. Dabei können verschiedene Sensoren kombiniert werden. Bestimmte Kombinationen beeinflussen die Funktionsweise weiterer am Sensormodul angeschlossener Hardware. Solche Kombinationen führen zu Warnmeldungen.
 
@@ -199,31 +236,27 @@ Sollten beide Sensoren BME280 und BME680 ausgewählt worden sein, erscheint folg
 
 > **Achtung**: Die Möglichkeit, Sensoren für Standardmesswerte auszuwählen ermöglicht viele Sensor-Messwert-Kombinationen, die nicht alle vor einem Release getestet werden können. In der folgenden Tabelle werden Sensor-Messwert-Kombinationen angegeben, die bereits erfolgreich geprüft wurden und funktionieren. Ferner können weitere funktionierende Sensor-Messwert-Kombinationen im KNX-User-Forum ausgetauscht werden.
 
-Messwerte | Kombi 1 | Kombi 2 | Kombi 3 | Kombi 4 | Kombi 5 | Kombi 6 | Kombi 7
----|:---:|:---:|:---:|:---:|:---:|:---:|:---:
-Temperatur     | SHT3x | BME280 | BME680 | SCD4x |         |         |         |
-Luftfeuchte    | SHT3x | BME280 | BME680 | SCD4x |         |         |         |
-Luftdruck      |       | BME280 | BME680 |       |         |         |         |
-VOC            |       |        | BME680 |       | IAQCore |         |         |
-CO<sub>2</sub> |       |        | BME680 | SCD4x |         |         |         |
-Helligkeit     |       |        |        |       |         | OPT300x |         |
-Helligkeit     |       |        |        |       |         | VEML7700 |         |
-Entfernung     |       |        |        |       |         |         | VL53L1X |
----
-Messwerte | Kombi 8 | Kombi 9 | Kombi 10 | Kombi 11 | Kombi 12 | Kombi 13 | Kombi 14
----|:---:|:---:|:---:|:---:|:---:|:---:|:---:
-Temperatur     | SHT3x   | SHT3x   | BME280  | BME280 | BME680 | SCD4x  | SCD4x  |
-Luftfeuchte    | SHT3x   | SHT3x   | BME280  | BME280 | BME680 | SCD4x  | SCD4x  |
-Luftdruck      |         |         | BME280  | BME280 | BME680 | BME280 | BME680 |
-VOC            |         |         | IAQCore |        | BME680 |        | BME680 |
-CO<sub>2</sub> |         |         |         | SCD4x  | SCD4x  | SCD4x  | SCD4x  |
-Helligkeit     | OPT300x | VEML7700 |         |        |        |        |        |
-Entfernung     |         |         |         |        |        |        |        |
----
+| Kombi  | Temperatur | Luftfeuchte | Luftdruck |   VOC   | CO<sub>2</sub> | Helligkeit | Entfernung |
+|:------:|:----------:|:-----------:|:---------:|:-------:|:--------------:|:----------:|:----------:|
+|   1    |   SHT3x    |    SHT3x    |           |         |                |            |            |         
+|   2    |   BME280   |   BME280    |  BME280   |         |                |            |            |         
+|   3    |   BME680   |   BME680    |  BME680   | BME680  |     BME680     |            |            |         
+|   4    |   SCD4x    |    SCD4x    |           |         |     SCD4x      |            |            |         
+|   5    |            |             |           | IAQCore |                |            |            |         
+|   6a   |            |             |           |         |                |  OPT300x   |            |          
+|   6b   |            |             |           |         |                |  VEML7700  |            |          
+|   7    |            |             |           |         |                |            |  VL53L1X   |
+|   8    |   SHT3x    |    SHT3x    |           |         |                |  OPT300x   |            |
+|   9    |   SHT3x    |    SHT3x    |           |         |                |  VEML7700  |            |
+|   10   |   BME280   |   BME280    |  BME280   | IAQCore |                |            |            |
+|   11   |   BME280   |   BME280    |  BME280   |         |     SCD4x      |            |            |
+|   12   |   BME680   |   BME680    |  BME680   | BME680  |     SCD4x      |            |            |
+|   13   |   SCD4x    |    SCD4x    |  BME280   |         |     SCD4x      |            |            |
+|   14   |   SCD4x    |    SCD4x    |  BME680   | BME680  |     SCD4x      |            |            |
 
 Die in den Tabellen angegebenen Kombinationen sagen nichts darüber aus, ob die Sensoren direkt an das Sensormodul angeschlossen werden können. Stellenweise wurde mit zusätzlicher Hardware getestet, die einen Sensoranschluss ermöglichte.
 
->Die Verwendung von SCD30 als Sensor, vor allem in Kombination mit weiteren Sensoren, wird nur mit eingeschaltetem Watchdog empfohlen, da der Betrieb vom SCD30 manchmal zu unerwünschten "Hängern" des Sensormoduls führt. Statt des SCD30 sollte der SDC41 genutzt werden, da er günstiger ist und zuverlässiger funktioniert.
+>Die Verwendung von SCD30 als Sensor, vor allem in Kombination mit weiteren Sensoren, wird nur mit eingeschaltetem Watchdog empfohlen, da der Betrieb vom SCD30 manchmal zu unerwünschten "Hängern" des Sensormoduls führt. Statt des SCD30 sollte der SDC4x genutzt werden, da er günstiger ist und zuverlässiger funktioniert.
 
 <kbd>![Installierte Hardware](pics/InstallierteHardware.png)</kbd>
 
@@ -291,6 +324,7 @@ Dieses Eingabefeld kann bei jedem Sensor zusätzlich ausgewählt werden, falls a
 
 1-Wire-Sensoren erfordern eine fortlaufende Abfrage ihrer Werte und können speziell bei Input-Output-Bausteinen (IO) oder iButtons sehr zeitkritisch sein. Deswegen wird für diese zeitkritischen Abfragen in einem besonders schnellen Modus geschaltet. Bestimmte Sensoren, wie z.B. der IAQCore, der SCD30 und der SCD4x, können dieses schnellen Modus nicht unterstützen und behindern die Kommunikation mit dem 1-Wire-Sensor. In solchen Fällen erscheint folgende Meldung:
 <kbd>![Info One-Wire](pics/OneWire.png)</kbd>
+
 Die Abfragen von 1-Wire-IO und iButtons passieren dann in normaler Geschwindigkeit, was dazu führen kann, dass die Reaktionszeiten auf Eingaben größer 1 Sekunde werden oder gar dass Eingaben verpasst werden. Dies ist kein Fehler des Sensormoduls oder der Firmware, sondern eine Hardwarebeschränkung der verwendeten Bauteile, hier der beteiligten Sensoren.
 
 Anmerkung: Die Einstellungen und die Abfrage von 1-Wire-Sensoren können in der Applikationsbeschreibung WireGateway nachgelesen werden.
@@ -455,9 +489,9 @@ Einstellungen für CO<sub>2</sub> werden wie unter Standardsensoren beschrieben 
 
 Anmerkung zum BME680: Dieser Sensor liefert nur ein berechnetes CO<sub>2</sub>-Äquivalent passend zum gemessenen Voc-Wert und keinen gemessenen CO<sub>2</sub>-Wert. Dieser berechnete CO<sub>2</sub>-Wert wird über ein zusätzliches KO 20 ausgegeben.
 
-Ist die Sensorkombination BME680+SCD30 installiert, werden beide CO<sub>2</sub>-Werte ausgegeben, der gemessene und der berechnete.
+Ist die Sensorkombination BME680+SCD30/SCD4x installiert, werden beide CO<sub>2</sub>-Werte ausgegeben, der gemessene und der berechnete.
 
-Anmerkung zum SDC30: Derzeit wird bei diesem Sensor die Nutzung vom Watchdog empfohlen (Siehe Kapitel Watchdog-Unterstützung). Mit diesem Sensor kommt es zu sporadischen "Hängern", deren Ursache noch nicht bekannt ist. Eine bessere Wahl für einen CO<sub>2</sub>-Sensor ist der SCD4x.
+> **Anmerkung zum SDC30:** Derzeit wird bei diesem Sensor die Nutzung vom Watchdog empfohlen (Siehe Kapitel Watchdog-Unterstützung). Mit diesem Sensor kommt es zu sporadischen "Hängern", deren Ursache noch nicht bekannt ist. Eine bessere Wahl für einen CO<sub>2</sub>-Sensor ist der SCD4x.
 
 ## **Standardsensoren - Helligkeit**
 
@@ -478,11 +512,13 @@ Das Sensormodul kann neben gemessenen Werten auch noch einige berechnete Werte l
 ### **Taupunkt berechnen**
 
 <kbd>![Taupunkt](pics/Taupunkt.png)</kbd>
+
 Wenn man hier "Ja" auswählt, kann man für den Taupunkt Einstellungen wie unter Standardsensoren beschrieben vornehmen. Alle Angaben für den Taupunkt werden in 0.1°C vorgenommen.
 
 ### **Behaglichkeitszone ausgeben**
 
 <kbd>![Behaglichkeit](pics/Behaglichkeit.png)</kbd>
+
 Wenn man hier "Ja" auswählt, wird anhand der Temperatur und Luftfeuchte eine Behaglichkeitszone berechnet und über KO 22 ausgegeben. Die Behaglichkeitszone kann jederzeit gelesen werden, wird aber nur bei Änderungen gesendet.
 
 Falls zyklisches Senden gewünscht wird, kann man dies über die im Sensormodul enthaltenen Logikkanäle realisieren. Beispiele sind in der Applikationsbeschreibung Logik enthalten.
@@ -496,6 +532,7 @@ Folgende Behaglichkeitszonen werden berechnet:
 ### **Luftqualitätsampel ausgeben**
 
 <kbd>![Luftqualitätsampel](pics/Luftqualitaetsampel.png)</kbd>
+
 Dieser Punkt ist nur sichtbar, wenn ein angeschlossener Sensor Messwerte zur Luftqualität liefert, also nur beim BME680, SCD30 oder SCD4x.
 
 Wenn man hier "Ja" auswählt, wird anhand des gemessenen Voc-Werts (beim BME680) oder des gemessenen CO<sub>2</sub>-Werts eine Luftqualitätsampel berechnet und über KO 23 ausgegeben. Die Luftqualitätsampel kann jederzeit gelesen werden, wird aber nur bei Änderungen gesendet.
@@ -514,6 +551,7 @@ Es gibt 6 Luftqualitätsgrade, entsprechend deutschen Schulnoten:
 ### **Kalibrierungsfortschritt ausgeben**
 
 <kbd>![Kalibrierung](pics/Kalibrierung.PNG)</kbd>
+
 Wird nur sichtbar, wenn als Sensor BME680 ausgewählt ist.
 
 Manche Sensoren benötigen eine Kalibrierung, bevor sie zuverlässige Werte ausgeben können. Dies ist besonders für die Erfassung von Voc-Werten notwendig. Das Sensormodul hat für den BME680 eine Selbstkalibrierung implementiert, die ununterbrochen parallel zur Messwerterfassung läuft und die bisher ermittelten Kalibrierungswerte in den nichtflüchtigen Speicher des Prozessors speichert. Somit wird verhindert, dass nach einem Neustart des Gerätes eine erneute Kalibrierung notwendig wird.
@@ -549,68 +587,70 @@ Der Vorgang ist im [OpenKNX-Wiki](https://github.com/OpenKNX/OpenKNX/wiki/Wie-ak
 Dieses Kapital beschreibt die von dieser Firmware unterstützte Hardware
 (noch nicht ausgearbeitet)
 
-Sensormodul Masifi
+* Sensormodul Masifi
 
-SHT3x (neu)
+* SHT3x (neu)
 
-BME280
+* BME280
 
-BME680
+* BME680
 
-SCD30 (sollte möglichst nicht verwendet werden)
+* SCD30 (sollte möglichst nicht verwendet werden)
 
-SCD4x (bessere und günstigere Alternative zum SCD30)
+* SCD4x (bessere und günstigere Alternative zum SCD30)
 
-IAQCore
+* IAQCore
 
-OPT300x
+* OPT300x
 
-VEML7700
+* VEML7700
 
-VL53L1X
+* VL53L1X
 
-SGP30 (in Entwicklung)
+* SGP30 (in Entwicklung)
 
-Buzzer
+* Buzzer
 
-RGB-LED
+* RGB-LED
 
-NCN5130
+* NCN5130
 
-DS2484
+* DS2484
 
 ## **Übersicht der vorhandenen Kommunikationsobjekte**
 
-Die Liste zeigt nur die Kommunikationsobjekte (KO) der neuesten version 3.x. Es gibt noch weitere KO, die logisch betrachtet zum Logikmodul gehören, diese werden hier nicht aufgelistet, sondern nur auf das Logikmodul verwiesen.
+Die Liste zeigt nur die spezifischen Kommunikationsobjekte (KO) des Sensor-Moduls. 
+Für weitere KO, wird auf die Dokumentation der anderen in die Applikation integrierten Module verwiesen.
 
-KO | Name | DPT | Bedeutung
-:---:|:---|---:|:--
-1 | bis 49 | | beschrieben im Logikmodul
-50 | Sensorwerte anfordern | 1.016 | Beim Empfang vom Trigger (1) werden alle Sensorwerte auf den Bus gesendet. So kann man mehrere Leseanforderungen sparen.
-51 | Sensorfehler | 7.001 | Gibt über eine Bitleiste an, welche Messwerte aufgrund eines aufgetretenen Fehlers nicht erfasst werden können. Falls ein ganzer Sensor ausfällt, werden mehrere Bits gleichzeitig gesetzt
-60 | Temperatur | 9.001 | Temperaturmesswert (in °C)
-61 | Luftfeuchte | 9.007 | Luftfeuchte (in %)
-62 | Luftdruck | 9.006 | Luftdruck (in mBar, nicht Pa!!! mBar = Pa / 100)
-63 | VOC | 9.* | Voc-Messwert (einheitenlos)
-64 | CO2 | 9.008 | CO2-Messwert (in ppm)
-65 | CO2-VOC | 9.008 | Berechneter CO2-Messwert vom VOC (in ppm)
-66 | Taupunkt | 9.001 | Berechneter Taupunkt (in °C)
-67 | Behaglichkeit | 5.005 | Behaglichkeitswert, errechnet aus Luftfeuchte im Verhältnis zur Temperatur (0-2)
-68 | Luftqualitätsampel | 5.005 | Luftgüte entsprechend deutscher Schulnoten (1-6)
-69 | Kalibrierungsgrad | 5.001 | Kalibrierungsfortschritt vom BME680 (in %)
-70 | Externe Temperatur 1 | 9.001 | Eingang für externe Temperatur 1 (in °C)
-71 | Externe Temperatur 2 | 9.001 | Eingang für externe Temperatur 2 (in °C)
-72 | Externe Luftfeuchte 1 | 9.007 | Eingang für externe Luftfeuchte 1 (in %)
-73 | Externe Luftfeuchte 2 | 9.007 | Eingang für externe Luftfeuchte 2 (in %)
-74 | Externer Luftdruck 1 | 9.006 | Eingang für externen Luftdruck 1 (in mBar)
-75 | Externer Luftdruck 2 | 9.006 | Eingang für externen Luftdruck 2 (in mBar)
-76 | Externer VOC 1 | 9.* | Eingang für externen VOC-Wert 1 (einheitenlos)
-77 | Externer VOC 2 | 9.* | Eingang für externen VOC-Wert 2 (einheitenlos)
-78 | Externe CO2 1 | 9.008 | Eingang für externen CO<sub>2</sub>-Wert 1 (in ppm)
-79 | Externe CO2 2 | 9.008 | Eingang für externen CO<sub>2</sub>-Wert 2 (in ppm)
-80 | Externer Helligkeit 1 | 9.004 | Eingang für externe Helligkeit 1 (in Lux)
-81 | Externer Helligkeit 2 | 9.004 | Eingang für externe Helligkeit 2 (in Lux)
-82 | Externe Entfernung 1 | 7.011 | Eingang für externe Entfernung 1 (in mm)
-83 | Externe Entfernung 2 | 7.011 | Eingang für externe Entfernung 2 (in mm)
-87 | Helligkeit | 9.004 | Helligkeit (in Lux)
-88 | Entfernung | 7.011 | Entfernung (in mm)
+|   KO    | Name                  | DPT   | Bedeutung                                                                                                                                                                                  |
+|:-------:|:----------------------|:------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  1..49  |                       |       | *siehe anderer Module*                                                                                                                                                                     |
+|   50    | Sensorwerte anfordern | 1.016 | Beim Empfang vom Trigger (1) werden alle Sensorwerte auf den Bus gesendet. So kann man mehrere Leseanforderungen sparen.                                                                   |
+|   51    | Sensorfehler          | 7.001 | Gibt über eine Bitleiste an, welche Messwerte aufgrund eines aufgetretenen Fehlers nicht erfasst werden können. Falls ein ganzer Sensor ausfällt, werden mehrere Bits gleichzeitig gesetzt |
+|   60    | Temperatur            | 9.001 | Temperaturmesswert (in °C)                                                                                                                                                                 |
+|   61    | Luftfeuchte           | 9.007 | Luftfeuchte (in %)                                                                                                                                                                         |
+|   62    | Luftdruck             | 9.006 | Luftdruck (in mBar, nicht Pa!!! mBar = Pa / 100)                                                                                                                                           |
+|   63    | VOC                   | 9.*   | Voc-Messwert (einheitenlos)                                                                                                                                                                |
+|   64    | CO2                   | 9.008 | CO2-Messwert (in ppm)                                                                                                                                                                      |
+|   65    | CO2-VOC               | 9.008 | Berechneter CO2-Messwert vom VOC (in ppm)                                                                                                                                                  |
+|   66    | Taupunkt              | 9.001 | Berechneter Taupunkt (in °C)                                                                                                                                                               |
+|   67    | Behaglichkeit         | 5.005 | Behaglichkeitswert, errechnet aus Luftfeuchte im Verhältnis zur Temperatur (0-2)                                                                                                           |
+|   68    | Luftqualitätsampel    | 5.005 | Luftgüte entsprechend deutscher Schulnoten (1-6)                                                                                                                                           |
+|   69    | Kalibrierungsgrad     | 5.001 | Kalibrierungsfortschritt vom BME680 (in %)                                                                                                                                                 |
+|   70    | Externe Temperatur 1  | 9.001 | Eingang für externe Temperatur 1 (in °C)                                                                                                                                                   |
+|   71    | Externe Temperatur 2  | 9.001 | Eingang für externe Temperatur 2 (in °C)                                                                                                                                                   |
+|   72    | Externe Luftfeuchte 1 | 9.007 | Eingang für externe Luftfeuchte 1 (in %)                                                                                                                                                   |
+|   73    | Externe Luftfeuchte 2 | 9.007 | Eingang für externe Luftfeuchte 2 (in %)                                                                                                                                                   |
+|   74    | Externer Luftdruck 1  | 9.006 | Eingang für externen Luftdruck 1 (in mBar)                                                                                                                                                 |
+|   75    | Externer Luftdruck 2  | 9.006 | Eingang für externen Luftdruck 2 (in mBar)                                                                                                                                                 |
+|   76    | Externer VOC 1        | 9.*   | Eingang für externen VOC-Wert 1 (einheitenlos)                                                                                                                                             |
+|   77    | Externer VOC 2        | 9.*   | Eingang für externen VOC-Wert 2 (einheitenlos)                                                                                                                                             |
+|   78    | Externe CO2 1         | 9.008 | Eingang für externen CO<sub>2</sub>-Wert 1 (in ppm)                                                                                                                                        |
+|   79    | Externe CO2 2         | 9.008 | Eingang für externen CO<sub>2</sub>-Wert 2 (in ppm)                                                                                                                                        |
+|   80    | Externer Helligkeit 1 | 9.004 | Eingang für externe Helligkeit 1 (in Lux)                                                                                                                                                  |
+|   81    | Externer Helligkeit 2 | 9.004 | Eingang für externe Helligkeit 2 (in Lux)                                                                                                                                                  |
+|   82    | Externe Entfernung 1  | 7.011 | Eingang für externe Entfernung 1 (in mm)                                                                                                                                                   |
+|   83    | Externe Entfernung 2  | 7.011 | Eingang für externe Entfernung 2 (in mm)                                                                                                                                                   |
+|   87    | Helligkeit            | 9.004 | Helligkeit (in Lux)                                                                                                                                                                        |
+|   88    | Entfernung            | 7.011 | Entfernung (in mm)                                                                                                                                                                         |
+| &gt;=90 |                       |       | *siehe anderer Module*                                                                                                                                                                     |

@@ -62,6 +62,13 @@ Die nicht Sensor-spezifischen Teile der Applikation basieren auf anderen OpenKNX
 
 Im folgenden werden Änderungen an dem Dokument erfasst, damit man nicht immer das Gesamtdokument lesen muss, um Neuerungen zu erfahren.
 
+24.09.2023: Firmware 1.3.4, Applikation 1.3
+
+* FIX: Zyklisches senden von Temperaturen funktionierte nicht korrekt, weil in der Berechnung für den Vergleichswert fälschlicherweise gerundet wurde.
+* FIX: Die Berechnung der Behaglichkeitszone ist jetzt genauer, da die nicht gerundete Temperatur einfließt.
+
+* Alle enthaltenen Module behalten ihre Versionen.
+
 29.08.2023: Firmware 1.1.3, Applikation 1.1
 
 * Aktualisierung auf die neuste Logikmodul-Version 1.5.3.

@@ -10,7 +10,7 @@
                                              
 #define MAIN_OpenKnxId 0xA0
 #define MAIN_ApplicationNumber 64
-#define MAIN_ApplicationVersion 17
+#define MAIN_ApplicationVersion 19
 #define MAIN_ParameterSize 6835
 #define MAIN_MaxKoNumber 409
 #define MAIN_OrderNumber "OpenKnxSensorVpm"

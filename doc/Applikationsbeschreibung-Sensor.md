@@ -62,6 +62,11 @@ Die nicht Sensor-spezifischen Teile der Applikation basieren auf anderen OpenKNX
 
 Im folgenden werden Änderungen an dem Dokument erfasst, damit man nicht immer das Gesamtdokument lesen muss, um Neuerungen zu erfahren.
 
+09.10.2023: Firmware 1.5, Applikation 1.5
+
+* Aktualisierung auf die neuste Logikmodul-Version 1.6, siehe dortige Änderungshistorie
+* Das SensorModule-Vpm bzw. SensorModule-Big enthält die neuste PresenceModule-Version 1.12. 
+
 24.09.2023: Firmware 1.3.4, Applikation 1.3
 
 * FIX: Zyklisches senden von Temperaturen funktionierte nicht korrekt, weil in der Berechnung für den Vergleichswert fälschlicherweise gerundet wurde.

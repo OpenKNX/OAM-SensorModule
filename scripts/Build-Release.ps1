@@ -29,8 +29,7 @@ $releaseIndication = $args[0]
 ../OGM-Common/scripts/setup/reusable/Build-Release-Preprocess.ps1 $args[0]
 if (!$?) { exit 1 }
 
-if ($releaseIndication -eq "Big")
-{
+if ($releaseIndication -eq "Big") {
     # build firmware for RP2040 sensormodule breakout board
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_Breakout_RP2040 firmware-Sensormodul-Breakout-RP2040 uf2 Sensormodul-Breakout-Board-Just-for-testers
     if (!$?) { exit 1 }
@@ -41,15 +40,20 @@ if ($releaseIndication -eq "Big")
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_SmartMF_1TE_RP2040 firmware-SmartMF-1TE-RP2040 uf2
     if (!$?) { exit 1 }
+
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_RealPresence firmware-RealPresence uf2
+    if (!$?) { exit 1 }
 }
 
-if ($releaseIndication -eq "Vpm")
-{
+if ($releaseIndication -eq "Vpm") {
     # build firmware productive RP2040 sensormodule
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040_Vpm firmware-Sensormodul-v40-RP2040 uf2
     if (!$?) { exit 1 }
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_SmartMF_1TE_RP2040_Vpm firmware-SmartMF-1TE-RP2040 uf2
+    if (!$?) { exit 1 }
+
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_RealPresence_Vpm firmware-RealPresence uf2
     if (!$?) { exit 1 }
 
     # build firmware for legacy SAMD sensormodules
@@ -60,8 +64,7 @@ if ($releaseIndication -eq "Vpm")
     if (!$?) { exit 1 }
 }
 
-if ($releaseIndication -eq "OneWire")
-{
+if ($releaseIndication -eq "OneWire") {
     # build firmware productive RP2040 sensormodule
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040_Wire firmware-Sensormodul-v40-RP2040 uf2
     if (!$?) { exit 1 }

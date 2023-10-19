@@ -7,13 +7,13 @@
 			"path": "../OFM-SensorModule"
 		},
 		{
-			"path": "../OAM-OneWireModule"
+			"path": "../OFM-OneWireModule"
 		},
 		{
-			"path": "../OAM-PresenceModule"
+			"path": "../OFM-PresenceModule"
 		},
 		{
-			"path": "../OAM-LogicModule"
+			"path": "../OFM-LogicModule"
 		},
 		{
 			"path": "../OGM-SensorDevices"
@@ -38,12 +38,12 @@
 		},
 		"cSpell.language": "en,de-DE",
 		"workbench.colorCustomizations": {
-			"activityBar.background": "#00ebf4",
+			"activityBar.background": "#2aa5b3",
 			"activityBar.foreground": "#000000",
-			"activityBar.activeBackground": "#00b1b8",
+			"activityBar.activeBackground": "#1d7b85",
 			"statusBar.foreground": "#000000",
-			"statusBar.background": "#00ebf4",
-			"titleBar.activeBackground": "#00ebf4",
+			"statusBar.background": "#2aa5b3",
+			"titleBar.activeBackground": "#2aa5b3",
 			"titleBar.activeForeground": "#000000"
 		}
 	}

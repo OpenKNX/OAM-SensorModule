@@ -4,21 +4,31 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build SAMD",
+            "label": "Develop SAMD Vpm",
             "type": "shell",
             "command": "scripts/OpenKNX-Build.ps1",
             "args": [
-                "build_SAMD"
+                "develop_SAMD_Vpm"
             ],
             "group": "build",
             "problemMatcher": []
         },
         {
-            "label": "Build RP2040",
+            "label": "Develop SAMD Wire",
             "type": "shell",
             "command": "scripts/OpenKNX-Build.ps1",
             "args": [
-                "build_RP2040"
+                "develop_SAMD_Wire"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Develop RP2040 Big",
+            "type": "shell",
+            "command": "scripts/OpenKNX-Build.ps1",
+            "args": [
+                "develop_RP2040"
             ],
             "group": "build",
             "problemMatcher": []
@@ -81,23 +91,20 @@
         {
             "label": "Create Dependencies",
             "type": "shell",
-            "command": "lib/OGM-Common/scripts/setup/reusable/Build-Dependencies.ps1", 
-            "args": [
-            ],
+            "command": "lib/OGM-Common/scripts/setup/reusable/Build-Dependencies.ps1",
+            "args": [],
             "problemMatcher": [],
             "group": "build"
         },
         {
             "label": "OpenKNXproducer",
             "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}/src"
-            },
             "command": "~/bin/OpenKNXproducer.exe",
             "args": [
                 "create",
                 "--Debug",
-                "Sensormodul"
+                "--HeaderFileName=include/knxprod.h",
+                "src/Sensormodul"
             ],
             "problemMatcher": [],
             "group": "test"
@@ -106,8 +113,7 @@
             "label": "Build-Release-Package",
             "type": "shell",
             "command": "scripts/Build-Release-Package.ps1",
-            "args": [
-            ],
+            "args": [],
             "problemMatcher": [],
             "group": "test"
         },

@@ -9,3 +9,5 @@ Restart.txt
 **/*.debug.xml
 release/*
 release-package/*
+include/knxprod.h
+include/versions.h

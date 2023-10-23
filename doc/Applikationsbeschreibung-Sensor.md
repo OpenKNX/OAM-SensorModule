@@ -66,6 +66,7 @@ Im folgenden werden Änderungen an dem Dokument erfasst, damit man nicht immer d
 
 * Aktualisierung auf die neuste Logikmodul-Version 1.6, siehe dortige Änderungshistorie
 * Das SensorModule-Vpm bzw. SensorModule-Big enthält die neuste PresenceModule-Version 1.12. 
+* Das Sensormodul unterstützt jetzt auch die Hardware für den RealPresence, damit dort auch andere I²C-Sensoren als nur ein Helligkeitssensor genutzt werden können. 
 
 24.09.2023: Firmware 1.3.4, Applikation 1.3
 

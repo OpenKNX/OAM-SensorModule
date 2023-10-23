@@ -19,16 +19,16 @@
               <RelativeSegment Id="%AID%_RS-04-00000" Name="Parameters" Offset="0" Size="%MemorySize%" LoadStateMachine="4" />
             </Code>
             <op:define prefix="SENS" header="Sensormodul.h" ModuleType="4">
-              <op:verify File="../lib/OFM-SensorModule/src/ModuleVersion.h" ModuleVersion="0" />
+              <op:verify File="../lib/OFM-SensorModule/library.json" ModuleVersion="32" />
             </op:define>
             <op:define prefix="WIRE" header="Sensormodul.h" NumChannels="30" KoOffset="90"  ModuleType="2" KoSingleOffset="10">
-              <op:verify File="../lib/OFM-OneWireModule/src/ModuleVersion.h" ModuleVersion="0" />
+              <op:verify File="../lib/OFM-OneWireModule/library.json" ModuleVersion="32" />
             </op:define>
             <op:define prefix="PM"   header="Sensormodul.h" NumChannels="40" KoOffset="120" ModuleType="3">
-              <op:verify File="../lib/OFM-PresenceModule/src/ModuleVersion.h" ModuleVersion="25" />
+              <op:verify File="../lib/OFM-PresenceModule/library.json" ModuleVersion="32" />
             </op:define>
             <op:define prefix="LOG"  header="Sensormodul.h" NumChannels="99" KoOffset="920" ModuleType="1">
-              <op:verify File="../lib/OFM-LogicModule/src/ModuleVersion.h" ModuleVersion="32" />
+              <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="32" />
             </op:define>
             <ParameterTypes>
               <!-- generic parameter types for any device -->

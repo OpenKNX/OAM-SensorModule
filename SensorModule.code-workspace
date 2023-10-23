@@ -16,6 +16,9 @@
 			"path": "../OFM-LogicModule"
 		},
 		{
+			"path": "../OFM-FileTransferModule"
+		},
+		{
 			"path": "../OGM-SensorDevices"
 		},
 		{

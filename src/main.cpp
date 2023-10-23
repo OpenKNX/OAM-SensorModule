@@ -8,7 +8,7 @@
 #endif
 #include "SensorModule.h"
 #ifdef ARDUINO_ARCH_RP2040
-    #include "UpdaterModule.h"
+    #include "FileTransferModule.h"
 #endif
 #include "OpenKNX.h"
 
@@ -50,7 +50,7 @@ void setup()
 #endif
     openknx.addModule(4, new SensorModule());
 #ifdef ARDUINO_ARCH_RP2040
-    openknx.addModule(3, new UpdaterModule());
+    openknx.addModule(5, new FileTransferModule());
 #endif
     openknx.setup();
 }

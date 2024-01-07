@@ -11,3 +11,4 @@ release/*
 release-package/*
 include/knxprod.h
 include/versions.h
+src/Sensormodul.baggages/*

@@ -28,7 +28,17 @@
             "type": "shell",
             "command": "scripts/OpenKNX-Build.ps1",
             "args": [
-                "develop_RP2040"
+                "develop_RP2040_Big"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Develop RP2040 Vpm",
+            "type": "shell",
+            "command": "scripts/OpenKNX-Build.ps1",
+            "args": [
+                "develop_RP2040_Vpm"
             ],
             "group": "build",
             "problemMatcher": []
@@ -104,6 +114,7 @@
                 "create",
                 "--Debug",
                 "--HeaderFileName=include/knxprod.h",
+                // "--ConfigFileName=src/Sensormodul.conf.xml",
                 "src/Sensormodul"
             ],
             "problemMatcher": [],

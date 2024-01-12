@@ -20,28 +20,25 @@
 
 #include <Wire.h>
 
+
 void setup()
 {
     const uint8_t firmwareRevision = 0;
 
 #ifdef ARDUINO_ARCH_RP2040
-    #ifdef KNX_I2C_SDA_PIN
-    Wire.setSDA(KNX_I2C_SDA_PIN);
-    Wire.setSCL(KNX_I2C_SCL_PIN);
-    #endif
-    #ifdef KNX_I2C1_SDA_PIN
-    Wire1.setSDA(KNX_I2C1_SDA_PIN);
-    Wire1.setSCL(KNX_I2C1_SCL_PIN);
+    #ifdef I2C_WIRE
+    Sensor::SetWire(I2C_WIRE);
+    Wire.setSDA(I2C_SDA_PIN);
+    Wire.setSCL(I2C_SCL_PIN);
     #endif
     #ifdef ONEWIRE_5V_ENABLE
     pinMode(ONEWIRE_5V_ENABLE, OUTPUT);
     digitalWrite(ONEWIRE_5V_ENABLE, HIGH);
     #endif
-    Sensor::SetWire(Wire);
 #endif
 
     openknx.init(firmwareRevision);
-    openknx.addModule(1, new Logic());
+    openknx.addModule(1, openknxLogic);
 #ifdef WIREMODULE
     openknx.addModule(2, new WireGateway());
 #endif
@@ -50,7 +47,7 @@ void setup()
 #endif
     openknx.addModule(4, new SensorModule());
 #ifdef ARDUINO_ARCH_RP2040
-    openknx.addModule(5, new FileTransferModule());
+    openknx.addModule(5, openknxFileTransferModule);
 #endif
     openknx.setup();
 }

@@ -4,5 +4,8 @@
         "PLATFORMIO_CALLER": "vscode"
     },
     "cSpell.language": "en,de-DE",
-    "C_Cpp.errorSquiggles": "enabled"
+    "C_Cpp.errorSquiggles": "enabled",
+    "files.associations": {
+        "new": "cpp"
+    }
 }

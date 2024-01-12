@@ -118,12 +118,10 @@
         // #define COUNT_1WIRE_CHANNEL 30
         #define KNX_UART_RX_PIN 17
         #define KNX_UART_TX_PIN 16
-        #define KNX_I2C_SDA_PIN 20
-        #define KNX_I2C_SCL_PIN 21
-        #define KNX_I2C1_SDA_PIN 14
-        #define KNX_I2C1_SCL_PIN 15
-        #define KNX_I2C1_SDA_PIN 14
-        #define KNX_I2C1_SCL_PIN 15
+        #define I2C_SDA_PIN 20
+        #define I2C_SCL_PIN 21
+        #define I2C1_SDA_PIN 14
+        #define I2C1_SCL_PIN 15
         #define COUNT_1WIRE_BUSMASTER 1
         #define COUNT_1WIRE_CHANNEL 30
         #define I2C_1WIRE_DEVICE_ADDRESSS 0x18 // Address of DS2484 1-Wire-Busmaster chip
@@ -148,10 +146,10 @@
         #define SAVE_INTERRUPT_PIN 29
         #define KNX_UART_RX_PIN 17
         #define KNX_UART_TX_PIN 16
-        #define KNX_I2C_SDA_PIN 20
-        #define KNX_I2C_SCL_PIN 21
-        #define KNX_I2C1_SDA_PIN 14
-        #define KNX_I2C1_SCL_PIN 15
+        #define I2C_SDA_PIN 20
+        #define I2C_SCL_PIN 21
+        #define I2C1_SDA_PIN 14
+        #define I2C1_SCL_PIN 15
         #define COUNT_1WIRE_BUSMASTER 1
         #define COUNT_1WIRE_CHANNEL 30
         #define I2C_1WIRE_DEVICE_ADDRESSS 0x18 // Address of DS2484 1-Wire-Busmaster chip
@@ -171,10 +169,10 @@
         // #define INFO_LED_PIN_ACTIVE_ON HIGH
         #define KNX_UART_RX_PIN 17
         #define KNX_UART_TX_PIN 16
-        #define KNX_I2C_SDA_PIN 20
-        #define KNX_I2C_SCL_PIN 21
-        #define KNX_I2C1_SDA_PIN 14
-        #define KNX_I2C1_SCL_PIN 15
+        #define I2C_SDA_PIN 20
+        #define I2C_SCL_PIN 21
+        #define I2C1_SDA_PIN 14
+        #define I2C1_SCL_PIN 15
         #define COUNT_1WIRE_BUSMASTER 1
         #define COUNT_1WIRE_CHANNEL 30
         #define I2C_1WIRE_DEVICE_ADDRESSS 0x18 // Address of DS2484 1-Wire-Busmaster chip
@@ -223,12 +221,38 @@
         // #define COUNT_LOG_CHANNEL 99
         #define KNX_UART_RX_PIN 17
         #define KNX_UART_TX_PIN 16
-        #define KNX_I2C_SDA_PIN 20
-        #define KNX_I2C_SCL_PIN 21
+        #define I2C_WIRE Wire
+        #define I2C_SDA_PIN 20
+        #define I2C_SCL_PIN 21
         // Buzzer
         #define BUZZER_PIN 27
         // #define I2C_1WIRE_DEVICE_ADDRESSS 0x18  // Address of DS2484 1-Wire-Busmaster chip
         // #define I2C_EEPROM_DEVICE_ADDRESSS 0x50 // Address of 24LC256 eeprom chip
         #define I2C_RGBLED_DEVICE_ADDRESS 0x60 // Address of PCA9632 RBGW-LED-Driver
+    #endif
+    // Sensormodul auf RP2040 Basis
+    #ifdef BOARD_AB_HFPM_HLKLD2420
+        #define PROG_LED_PIN 10
+        #define PROG_LED_PIN_ACTIVE_ON HIGH
+        #define PROG_BUTTON_PIN 9
+        #define PROG_BUTTON_PIN_INTERRUPT_ON FALLING
+        #define INFO_LED_PIN 11
+        #define INFO_LED_PIN_ACTIVE_ON HIGH
+        #define PRESENCE_LED_PIN 28
+        #define PRESENCE_LED_PIN_ACTIVE_ON HIGH
+        #define MOVE_LED_PIN 29
+        #define MOVE_LED_PIN_ACTIVE_ON HIGH
+        #define KNX_UART_TX_PIN 12
+        #define KNX_UART_RX_PIN 13
+        #define SAVE_INTERRUPT_PIN 0
+        #define I2C_WIRE Wire1
+        #define I2C_SDA_PIN 2
+        #define I2C_SCL_PIN 3
+        #define HF_SERIAL Serial2
+        #define HF_SERIAL_SPEED 115200
+        #define HF_POWER_PIN 27
+        #define HF_UART_TX_PIN 4
+        #define HF_UART_RX_PIN 5
+        #define PIR_PIN 1
     #endif
 #endif

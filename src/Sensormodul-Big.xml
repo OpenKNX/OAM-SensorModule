@@ -1,165 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-model href="../../Organization/knxprod-support/knx_project_20/knx-editor.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
-<KNX xmlns:op="http://github.com/OpenKNX/OpenKNXproducer" xmlns="http://knx.org/xml/project/20" CreatedBy="KNX MT" ToolVersion="5.1.255.16695">
-  <ManufacturerData>
-    <Manufacturer RefId="M-00FA">
-      <Catalog>
-        <CatalogSection Id="M-00FA_CS-OpenKNX" Name="OpenKNX" Number="OpenKNX" DefaultLanguage="de">
-          <CatalogItem Id="%CatalogItemId%" Name="OpenKNX: Sensormodul-Big" Number="1" ProductRefId="%ProductId%" Hardware2ProgramRefId="%Hardware2ProgramId%" DefaultLanguage="de" />
-        </CatalogSection>
-      </Catalog>
-      <ApplicationPrograms>
-        <!-- Each increase of AppliationVersion FORCES the Enduser to update according firmware, too -->
-        <!-- If you just want to have a BUGFIX-Update of the ETS-Appliation (without firmware), increase ApplicationVersion AND ApplicationRevision simultaneously -->
-        <!-- To sync ETS-Application and firmware again, increase ApplicationVersion AND set ApplicationRevision to 0 -->
-        <op:version OpenKnxId="0xA0" ApplicationNumber="18" ApplicationVersion="18" ReplacesVersions="2 3 11 16 17" ApplicationRevision="0" />
-        <ApplicationProgram Id="%AID%" ProgramType="ApplicationProgram" MaskVersion="MV-07B0" Name="WP-Sensor-Wire-PM-Logic" LoadProcedureStyle="MergedProcedure" PeiType="0" DefaultLanguage="de" DynamicTableManagement="false" Linkable="true" MinEtsVersion="4.0" ApplicationNumber="0" ApplicationVersion="0" ReplacesVersions="0">
-          <Static>
-            <Code>
-              <RelativeSegment Id="%AID%_RS-04-00000" Name="Parameters" Offset="0" Size="%MemorySize%" LoadStateMachine="4" />
-            </Code>
-            <op:define prefix="SENS" header="Sensormodul.h" ModuleType="4">
-              <op:verify File="../lib/OFM-SensorModule/library.json" ModuleVersion="32" />
-            </op:define>
-            <op:define prefix="WIRE" header="Sensormodul.h" NumChannels="30" KoOffset="90"  ModuleType="2" KoSingleOffset="10">
-              <op:verify File="../lib/OFM-OneWireModule/library.json" ModuleVersion="32" />
-            </op:define>
-            <op:define prefix="PM"   header="Sensormodul.h" NumChannels="40" KoOffset="120" ModuleType="3">
-              <op:verify File="../lib/OFM-PresenceModule/library.json" ModuleVersion="32" />
-            </op:define>
-            <op:define prefix="LOG"  header="Sensormodul.h" NumChannels="99" KoOffset="920" ModuleType="1">
-              <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="32" />
-            </op:define>
-            <ParameterTypes>
-              <!-- generic parameter types for any device -->
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="LOG" />
-              <op:include href="../lib/OFM-PresenceModule/src/PMmodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="PM" />
-              <op:include href="../lib/OFM-OneWireModule/src/WireGateway.share.xml" xpath="//ParameterTypes/ParameterType" prefix="WIRE" />
-              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="SENS" />
-            </ParameterTypes>
-            <Parameters>
-              <!-- Standard parameter in any of our devices -->
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="LOG" />
-              <op:include href="../lib/OFM-PresenceModule/src/PMmodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="PM" />
-              <op:include href="../lib/OFM-OneWireModule/src/WireGateway.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="WIRE" />
-              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="SENS" />
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.templ.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="template" prefix="LOG" />
-              <op:include href="../lib/OFM-PresenceModule/src/PMmodul.templ.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="template" prefix="PM" />
-              <op:include href="../lib/OFM-OneWireModule/src/WireGateway.templ.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="template" prefix="WIRE" />
-            </Parameters>
-            <ParameterRefs>
-              <!-- General -->
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="LOG" />
-              <op:include href="../lib/OFM-PresenceModule/src/PMmodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="PM" />
-              <op:include href="../lib/OFM-OneWireModule/src/WireGateway.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="WIRE" />
-              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="SENS"/>
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.parts.xml" xpath="//ParameterRefs/ParameterRef" prefix="LOG" />
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.templ.xml" xpath="//ParameterRefs/ParameterRef" type="template" prefix="LOG" />
-              <op:include href="../lib/OFM-PresenceModule/src/PMmodul.templ.xml" xpath="//ParameterRefs/ParameterRef" type="template" prefix="PM" />
-              <op:include href="../lib/OFM-OneWireModule/src/WireGateway.templ.xml" xpath="//ParameterRefs/ParameterRef" type="template" prefix="WIRE" />
-            </ParameterRefs>
-            <ComObjectTable>
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="LOG" />
-              <op:include href="../lib/OFM-PresenceModule/src/PMmodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="PM" />
-              <op:include href="../lib/OFM-OneWireModule/src/WireGateway.share.xml" xpath="//ComObjectTable/ComObject" prefix="WIRE" />
-              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="SENS" />
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.templ.xml" xpath="//ComObjectTable/ComObject" type="template" prefix="LOG" />
-              <op:include href="../lib/OFM-PresenceModule/src/PMmodul.templ.xml" xpath="//ComObjectTable/ComObject" type="template" prefix="PM" />
-              <op:include href="../lib/OFM-OneWireModule/src/WireGateway.templ.xml" xpath="//ComObjectTable/ComObject" type="template" prefix="WIRE" />
-            </ComObjectTable>
-            <ComObjectRefs>
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="LOG" />
-              <op:include href="../lib/OFM-PresenceModule/src/PMmodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="PM" />
-              <op:include href="../lib/OFM-OneWireModule/src/WireGateway.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="WIRE" />
-              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="SENS" />
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.templ.xml" xpath="//ComObjectRefs/ComObjectRef" type="template" prefix="LOG" />
-              <op:include href="../lib/OFM-PresenceModule/src/PMmodul.templ.xml" xpath="//ComObjectRefs/ComObjectRef" type="template" prefix="PM" />
-              <op:include href="../lib/OFM-OneWireModule/src/WireGateway.templ.xml" xpath="//ComObjectRefs/ComObjectRef" type="template" prefix="WIRE" />
-            </ComObjectRefs>
-            <AddressTable MaxEntries="2047" />
-            <AssociationTable MaxEntries="2047" />
-            <LoadProcedures>
-              <LoadProcedure MergeId="1">
-                <LdCtrlCompareProp InlineData="%VersionCheck%" ObjIdx="0" PropId="78">
-                  <OnError Cause="CompareMismatch" MessageRef="%AID%_M-1" />
-                </LdCtrlCompareProp>
-              </LoadProcedure>
-              <LoadProcedure MergeId="2">
-                <LdCtrlRelSegment LsmIdx="4" Size="%MemorySize%" Mode="1" Fill="0" AppliesTo="full" />
-                <LdCtrlRelSegment LsmIdx="4" Size="%MemorySize%" Mode="0" Fill="0" AppliesTo="par" />
-              </LoadProcedure>
-              <LoadProcedure MergeId="4">
-                <LdCtrlWriteRelMem ObjIdx="4" Offset="0" Size="%MemorySize%" Verify="true" AppliesTo="full,par" />
-              </LoadProcedure>
-              <LoadProcedure MergeId="7">
-                <LdCtrlLoadImageProp ObjIdx="1" PropId="27" />
-                <LdCtrlLoadImageProp ObjIdx="2" PropId="27" />
-                <LdCtrlLoadImageProp ObjIdx="3" PropId="27" />
-                <LdCtrlLoadImageProp ObjIdx="4" PropId="27" />
-              </LoadProcedure>
-            </LoadProcedures>
-            <Messages>
-              <Message Id="%AID%_M-1" Name="VersionMismatch" Text="Diese Applikaiton benötigt die Firmware-Version %VersionMessage%, siehe Geräteinfo." />
-            </Messages>
-            <Options />
-          </Static>
-          <Dynamic>
-            <ChannelIndependentBlock>
-              <!-- ChannelIndependentBlock is a composition of different parts of different modules -->
-              <ParameterBlock Id="%AID%_PB-nnn" Name="General" Text="Allgemeine Parameter">
-                <op:include href="../lib/OFM-LogicModule/src/Logikmodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='General']/*" prefix="LOG" />
-                <op:include href="../lib/OFM-SensorModule/src/Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware1']/*" prefix="SENS" />
-                <op:include href="../lib/OFM-SensorModule/src/Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware2']/*" prefix="SENS" />
-                <op:include href="../lib/OFM-SensorModule/src/Sensormodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Hardware3']/*" prefix="SENS" />
-                <op:include href="../lib/OFM-LogicModule/src/Logikmodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Diagnose']/*" prefix="LOG" />
-              </ParameterBlock>
-            </ChannelIndependentBlock>
-            <!-- Sensormodul generic settings -->
-            <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//Dynamic/*" prefix="SENS" />
-            <choose ParamRefId="%AID%_UP-4000168_R-400016801">
-              <when test="1">
-                <Channel Id="%AID%_CH-3" Name="Devices" Number="3" Text="1-Wire">
-                  <!-- OneWire channel independent settings -->
-                  <ParameterBlock Id="%AID%_PB-1" Name="BM" Text="Busmaster-Einstellungen">
-                    <op:include href="../lib/OFM-OneWireModule/src/WireGateway.share.xml" xpath="//Dynamic/Channel/ParameterBlock[@Name='BM']/*" prefix="WIRE" />
-                    <op:include href="../lib/OFM-OneWireModule/src/WireGateway.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Expert']" prefix="WIRE" />
-                  </ParameterBlock>
-                  <op:include href="../lib/OFM-OneWireModule/src/WireGateway.share.xml" xpath="//Dynamic/Channel/*[position()>1]" prefix="LOG" />
-                  <!-- OneWire channel settings -->
-                  <op:include href="../lib/OFM-OneWireModule/src/WireGateway.templ.xml" xpath="//Dynamic/ChannelIndependentBlock/*" type="template" prefix="WIRE" />
-                </Channel>
-              </when>
-            </choose>
-            <Channel Id="%AID%_CH-4" Name="PMChannels" Number="4" Text="PM-Kanäle">
-              <!-- PM channel independent settings -->
-              <op:include href="../lib/OFM-PresenceModule/src/PMmodul.share.xml" xpath="//Dynamic/Channel/*" prefix="PM" />
-              <!-- PM channel settings -->
-              <op:include href="../lib/OFM-PresenceModule/src/PMmodul.templ.xml" xpath="//Dynamic/ChannelIndependentBlock/*" type="template" prefix="PM" />
-            </Channel>
-            <Channel Name="Logikkanaele" Text="Logikkanäle" Number="5" Id="%AID%_CH-5">
-              <!-- compose logicmodule channel from some static blocks... -->
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.share.xml" xpath="//Dynamic/Channel/*" prefix="LOG" />
-              <!-- followed by all logic channels -->
-              <op:include href="../lib/OFM-LogicModule/src/Logikmodul.templ.xml" xpath="//Dynamic/ChannelIndependentBlock/*" type="template" prefix="LOG" />
-            </Channel>
-          </Dynamic>
-        </ApplicationProgram>
-      </ApplicationPrograms>
-      <Hardware>
-        <Hardware Id="%HardwareId%" Name="OpenKNX-Sensor" SerialNumber="0xA012" VersionNumber="1" BusCurrent="10" HasIndividualAddress="true" HasApplicationProgram="true">
-          <Products>
-            <Product Id="%ProductId%" Text="OpenKNX: Sensormodul-Big" OrderNumber="OpenKnxSensorBig" IsRailMounted="false" DefaultLanguage="de">
-              <RegistrationInfo RegistrationStatus="Registered" />
-            </Product>
-          </Products>
-          <Hardware2Programs>
-            <Hardware2Program Id="%Hardware2ProgramId%" MediumTypes="MT-0">
-              <ApplicationProgramRef RefId="%AID%" />
-              <RegistrationInfo RegistrationStatus="Registered" RegistrationNumber="0001/11" />
-            </Hardware2Program>
-          </Hardware2Programs>
-        </Hardware>
-      </Hardware>
-    </Manufacturer>
-  </ManufacturerData>
+<KNX xmlns="http://knx.org/xml/project/20" xmlns:op="http://github.com/OpenKNX/OpenKNXproducer">
+  <op:ETS OpenKnxId="0xA0" 
+          ApplicationNumber="0x12" 
+          ApplicationVersion="1.3"
+          ReplacesVersions="2 3 11 16 17 18" 
+          ApplicationRevision="0" 
+          ProductName="Sensormodul-Big"
+          ApplicationName="WP-Sensor-Wire-PM-Logic"
+          OrderNumber="OpenKnxSensorBig"
+          SerialNumber="0xA012"        
+  />
+
+  <op:define prefix="BASE" ModuleType="1"
+             share="../lib/OGM-Common/src/Common.share.xml"
+  />
+
+  <op:define prefix="SENS" 
+             share="../lib/OFM-SensorModule/src/Sensormodul.share.xml"
+             ModuleType="4">
+    <op:verify File="../lib/OFM-SensorModule/library.json" ModuleVersion="2.0" />
+  </op:define>
+
+  <op:define prefix="WIRE" 
+             share="../lib/OFM-OneWireModule/src/WireGateway.share.xml"
+             template="../lib/OFM-OneWireModule/src/WireGateway.templ.xml"
+             NumChannels="30" 
+             KoOffset="90"  
+             ModuleType="2" 
+             KoSingleOffset="10">
+    <op:verify File="../lib/OFM-OneWireModule/library.json" ModuleVersion="2.0" />
+  </op:define>
+
+  <op:define prefix="PM" 
+             share="../lib/OFM-PresenceModule/src/PMmodul.share.xml"
+             template="../lib/OFM-PresenceModule/src/PMmodul.templ.xml"
+             NumChannels="40" 
+             KoOffset="120" 
+             ModuleType="3">
+    <op:verify File="../lib/OFM-PresenceModule/library.json" ModuleVersion="3.0" />
+  </op:define>
+
+  <op:define prefix="LOG" 
+             share="../lib/OFM-LogicModule/src/Logikmodul.share.xml" 
+             template="../lib/OFM-LogicModule/src/Logikmodul.templ.xml" 
+             NumChannels="99" 
+             KoOffset="920" 
+             ModuleType="1" >
+    <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="3.0" />
+  </op:define>
+  <generate />
 </KNX>

@@ -3,7 +3,7 @@
 <KNX xmlns="http://knx.org/xml/project/20" xmlns:op="http://github.com/OpenKNX/OpenKNXproducer">
   <op:ETS OpenKnxId="0xA0" 
           ApplicationNumber="0x11" 
-          ApplicationVersion="2.3"
+          ApplicationVersion="2.10"
           ReplacesVersions="0.5 0.6" 
           ApplicationRevision="0" 
           ProductName="Sensormodul-Big"

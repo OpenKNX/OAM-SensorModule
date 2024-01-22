@@ -12,3 +12,4 @@ release-package/*
 include/knxprod.h
 include/versions.h
 src/Sensormodul.baggages/*
+**/*.jdebug.user

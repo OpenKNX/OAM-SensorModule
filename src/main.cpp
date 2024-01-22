@@ -23,7 +23,7 @@
 
 void setup()
 {
-    const uint8_t firmwareRevision = 0;
+    const uint8_t firmwareRevision = 3;
 
 #ifdef ARDUINO_ARCH_RP2040
     #ifdef I2C_WIRE
@@ -43,9 +43,9 @@ void setup()
     openknx.addModule(2, new WireGateway());
 #endif
 #ifdef PRESENCEMODULE
-    openknx.addModule(3, new Presence());
+    openknx.addModule(3, openknxPresenceModule);
 #endif
-    openknx.addModule(4, new SensorModule());
+    openknx.addModule(4, openknxSensorModule);
 #ifdef ARDUINO_ARCH_RP2040
     openknx.addModule(5, openknxFileTransferModule);
 #endif

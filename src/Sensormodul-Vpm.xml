@@ -1,17 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-model href="../../Organization/knxprod-support/knx_project_20/knx-editor.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <KNX xmlns="http://knx.org/xml/project/20" xmlns:op="http://github.com/OpenKNX/OpenKNXproducer">
-  <op:config name="%LOG_EnableHardware%" value="1" />
-  <op:config name="%LOG_LedAccess%" value="ReadWrite" />
-  <op:config name="%LOG_LedDefault%" value="0" />
-  <op:config name="%LOG_BuzzerAccess%" value="ReadWrite" />
-  <op:config name="%LOG_BuzzerDefault%" value="0" />
-  <op:config name="%LOG_EnableSave%" value="1" />
+
+  <op:config href="Sensormodul.conf.xml" />
 
   <op:ETS OpenKnxId="0xA0" 
           ApplicationNumber="0x40" 
-          ApplicationVersion="2.0"
-          ReplacesVersions="1 2 3 4 5 6 7 8 9 10 11 16 17 18 19 20 1.5" 
+          ApplicationVersion="%SENS_ApplicationVersion%"
+          ReplacesVersions="%SENS_ReplacesVersions%" 
           ApplicationRevision="0" 
           ProductName="Sensormodul-Vpm"
           ApplicationName="WP-Sensor-PM-Logic"
@@ -44,7 +40,7 @@
              NumChannels="70" 
              KoOffset="200" 
              ModuleType="1" >
-    <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="3.0" />
+    <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="3.1" />
   </op:define>
   <generate />
 </KNX>

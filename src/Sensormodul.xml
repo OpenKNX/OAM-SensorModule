@@ -3,8 +3,8 @@
 <KNX xmlns="http://knx.org/xml/project/20" xmlns:op="http://github.com/OpenKNX/OpenKNXproducer">
   <op:ETS OpenKnxId="0xA0" 
           ApplicationNumber="0x11" 
-          ApplicationVersion="2.10"
-          ReplacesVersions="0.5 0.6" 
+          ApplicationVersion="2.13"
+          ReplacesVersions="0.5 0.6 2.11 2.12" 
           ApplicationRevision="0" 
           ProductName="Sensormodul-Big"
           ApplicationName="WP-Sensor-Wire-PM-Logic"
@@ -49,7 +49,7 @@
              NumChannels="5" 
              KoOffset="920" 
              ModuleType="1" >
-    <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="3.0" />
+    <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="3.1" />
   </op:define>
   <generate />
     <!-- <Dynamic>

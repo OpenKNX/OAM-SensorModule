@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-model href="../../Organization/knxprod-support/knx_project_20/knx-editor.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <KNX xmlns="http://knx.org/xml/project/20" xmlns:op="http://github.com/OpenKNX/OpenKNXproducer">
+
+  <op:config href="Sensormodul.conf.xml" />
+
   <op:ETS OpenKnxId="0xA0" 
           ApplicationNumber="0x12" 
-          ApplicationVersion="1.3"
-          ReplacesVersions="2 3 11 16 17 18" 
+          ApplicationVersion="%SENS_ApplicationVersion%"
+          ReplacesVersions="%SENS_ReplacesVersions%" 
           ApplicationRevision="0" 
           ProductName="Sensormodul-Big"
           ApplicationName="WP-Sensor-Wire-PM-Logic"
@@ -47,7 +50,7 @@
              NumChannels="99" 
              KoOffset="920" 
              ModuleType="1" >
-    <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="3.0" />
+    <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="3.1" />
   </op:define>
   <generate />
 </KNX>

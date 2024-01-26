@@ -15,13 +15,15 @@
           SerialNumber="0xA040"        
   />
 
-  <op:define prefix="BASE" ModuleType="1"
+  <op:define prefix="BASE"
              share="../lib/OGM-Common/src/Common.share.xml"
-  />
+             ModuleType="10" >
+    <op:verify File="../lib/OFM-SensorModule/library.json" ModuleVersion="2.0" />
+  </op:define>
 
   <op:define prefix="SENS" 
              share="../lib/OFM-SensorModule/src/Sensormodul.share.xml"
-             ModuleType="3">
+             ModuleType="30" >
     <op:verify File="../lib/OFM-SensorModule/library.json" ModuleVersion="2.0" />
   </op:define>
 
@@ -30,7 +32,7 @@
              template="../lib/OFM-PresenceModule/src/PMmodul.templ.xml"
              NumChannels="5" 
              KoOffset="90" 
-             ModuleType="2">
+             ModuleType="20" >
     <op:verify File="../lib/OFM-PresenceModule/library.json" ModuleVersion="3.0" />
   </op:define>
 
@@ -39,7 +41,7 @@
              template="../lib/OFM-LogicModule/src/Logikmodul.templ.xml" 
              NumChannels="70" 
              KoOffset="200" 
-             ModuleType="1" >
+             ModuleType="10" >
     <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="3.1" />
   </op:define>
   <generate />

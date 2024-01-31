@@ -23,13 +23,13 @@
 
 void setup()
 {
-    const uint8_t firmwareRevision = 0;
+    const uint8_t firmwareRevision = 2;
 
 #ifdef ARDUINO_ARCH_RP2040
     #ifdef I2C_WIRE
     Sensor::SetWire(I2C_WIRE);
-    Wire.setSDA(I2C_SDA_PIN);
-    Wire.setSCL(I2C_SCL_PIN);
+    I2C_WIRE.setSDA(I2C_SDA_PIN);
+    I2C_WIRE.setSCL(I2C_SCL_PIN);
     #endif
     #ifdef ONEWIRE_5V_ENABLE
     pinMode(ONEWIRE_5V_ENABLE, OUTPUT);

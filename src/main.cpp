@@ -27,9 +27,9 @@ void setup()
 
 #ifdef ARDUINO_ARCH_RP2040
     #ifdef I2C_WIRE
-    Sensor::SetWire(I2C_WIRE);
     I2C_WIRE.setSDA(I2C_SDA_PIN);
     I2C_WIRE.setSCL(I2C_SCL_PIN);
+    Sensor::SetWire(I2C_WIRE);
     #endif
     #ifdef ONEWIRE_5V_ENABLE
     pinMode(ONEWIRE_5V_ENABLE, OUTPUT);

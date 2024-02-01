@@ -253,6 +253,6 @@
         #define HF_POWER_PIN 27
         #define HF_UART_TX_PIN 4
         #define HF_UART_RX_PIN 5
-        #define PIR_PIN 1
+        #define PIR_PIN 26
     #endif
 #endif

@@ -136,7 +136,6 @@
                 "create",
                 "--Debug",
                 "--HeaderFileName=include/knxprod.h",
-                // "--ConfigFileName=src/Sensormodul.conf.xml",
                 "src/Sensormodul"
             ],
             "problemMatcher": [],

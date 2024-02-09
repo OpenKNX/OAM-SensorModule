@@ -18,7 +18,7 @@
   <op:define prefix="BASE"
              share="../lib/OGM-Common/src/Common.share.xml"
              ModuleType="10" >
-    <op:verify File="../lib/OFM-SensorModule/library.json" ModuleVersion="2.0" />
+    <op:verify File="../lib/OGM-Common/library.json" ModuleVersion="1.1" />
   </op:define>
 
   <op:define prefix="SENS" 

@@ -14,3 +14,4 @@ include/versions.h
 src/Sensormodul.baggages/*
 **/*.jdebug.user
 src/*.baggages/*
+release-collection/*

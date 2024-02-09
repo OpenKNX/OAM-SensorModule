@@ -35,7 +35,7 @@ if ($releaseIndication -eq "Big") {
     if (!$?) { exit 1 }
 
     # build firmware productive RP2040 sensormodule
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040 firmware-Sensormodul-v40-RP2040 uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040 firmware-Sensormodul-v4x-RP2040 uf2
     if (!$?) { exit 1 }
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_1TE_RP2040_SmartMF firmware-SmartMF-1TE-RP2040 uf2
@@ -44,7 +44,7 @@ if ($releaseIndication -eq "Big") {
 
 if ($releaseIndication -eq "Vpm") {
     # build firmware productive RP2040 sensormodule
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040_Vpm firmware-Sensormodul-v40-RP2040 uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040_Vpm firmware-Sensormodul-v4x-RP2040 uf2
     if (!$?) { exit 1 }
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_1TE_RP2040_SmartMF_Vpm firmware-SmartMF-1TE-RP2040 uf2
@@ -60,7 +60,7 @@ if ($releaseIndication -eq "Vpm") {
 
 if ($releaseIndication -eq "OneWire") {
     # build firmware productive RP2040 sensormodule
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040_Wire firmware-Sensormodul-v40-RP2040 uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040_Wire firmware-Sensormodul-v4x-RP2040 uf2
     if (!$?) { exit 1 }
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_1TE_RP2040_SmartMF_Wire firmware-SmartMF-1TE-RP2040 uf2

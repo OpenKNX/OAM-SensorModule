@@ -6,6 +6,7 @@
 #ifdef PRESENCEMODULE
     #include "Presence.h"
 #endif
+#include "SensorDevices.h"
 #include "SensorModule.h"
 #ifdef ARDUINO_ARCH_RP2040
     #include "FileTransferModule.h"
@@ -23,13 +24,13 @@
 
 void setup()
 {
-    const uint8_t firmwareRevision = 2;
+    const uint8_t firmwareRevision = 0;
 
 #ifdef ARDUINO_ARCH_RP2040
     #ifdef I2C_WIRE
     I2C_WIRE.setSDA(I2C_SDA_PIN);
     I2C_WIRE.setSCL(I2C_SCL_PIN);
-    Sensor::SetWire(I2C_WIRE);
+    openknxSensorDevicesModule.defaultWire(I2C_WIRE);
     #endif
     #ifdef ONEWIRE_5V_ENABLE
     pinMode(ONEWIRE_5V_ENABLE, OUTPUT);
@@ -45,6 +46,7 @@ void setup()
 #ifdef PRESENCEMODULE
     openknx.addModule(3, openknxPresenceModule);
 #endif
+    openknx.addModule(6, openknxSensorDevicesModule);
     openknx.addModule(4, openknxSensorModule);
 #ifdef ARDUINO_ARCH_RP2040
     openknx.addModule(5, openknxFileTransferModule);

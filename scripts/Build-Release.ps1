@@ -40,6 +40,9 @@ if ($releaseIndication -eq "Big") {
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_1TE_RP2040_SmartMF firmware-SmartMF-1TE-RP2040 uf2
     if (!$?) { exit 1 }
+
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2
+    if (!$?) { exit 1 }
 }
 
 if ($releaseIndication -eq "Vpm") {
@@ -55,6 +58,9 @@ if ($releaseIndication -eq "Vpm") {
     if (!$?) { exit 1 }
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v30_SAMD_Vpm firmware-Sensormodul-v30-SAMD bin
+    if (!$?) { exit 1 }
+
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2
     if (!$?) { exit 1 }
 }
 
@@ -76,3 +82,7 @@ if ($releaseIndication -eq "OneWire") {
 # execute generic post-build steps
 ../OGM-Common/scripts/setup/reusable/Build-Release-Postprocess.ps1 $args[0]
 if (!$?) { exit 1 }
+
+if (Test-Path -Path release-collection -PathType Container) {
+    Copy-Item release/* release-collection/
+}

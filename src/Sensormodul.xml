@@ -5,23 +5,36 @@
   <op:config href="Sensormodul.conf.xml" />
   <op:nowarn id="1" />
   
-  <op:ETS OpenKnxId="0xA0" 
-          ApplicationNumber="0x11" 
-          ApplicationVersion="2.15"
-          ReplacesVersions="2.14 2.13 2.12 2.11 0.6 0.5" 
-          ApplicationRevision="0" 
-          ProductName="Sensormodul-Big"
-          ApplicationName="WP-Sensor-Wire-PM-Logic"
-          BuildSuffix="-dev"
-          BuildSuffixText=" (dev)"
-          OrderNumber="OpenKnxSensorBig"
-          SerialNumber="0xA011"        
+  <op:ETS OpenKnxId="0xA0"
+    ApplicationNumber="0x11"
+    ApplicationVersion="3.5"
+    ReplacesVersions="3.4 3.3 3.2 3.1 3.0 2.15 2.14 2.13 2.12 2.11 0.6 0.5"
+    ApplicationRevision="0"
+    ProductName="Sensormodul-Big"
+    ApplicationName="WP-Sensor-Wire-PM-Logic"
+    BuildSuffix="-dev"
+    BuildSuffixText=" (dev)"
+    OrderNumber="OpenKnxSensorBig"
+    SerialNumber="0xA011"
   />
+
+  <op:define prefix="BUTTONLINK"
+             share="Sensormodul-VirtualButton.link.xml"
+             noConfigTransfer="true"
+             ModuleType="99" >
+  </op:define>
 
   <op:define prefix="BASE"
              share="../lib/OGM-Common/src/Common.share.xml"
              ModuleType="10" >
-    <op:verify File="../lib/OGM-Common/library.json" ModuleVersion="1.1" />
+    <op:verify File="../lib/OGM-Common/library.json" ModuleVersion="1.1" />         
+  </op:define>  
+
+  <op:define prefix="TRANSFER"
+    share="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml"
+    noConfigTransfer="true"
+    ModuleType="98">
+    <op:verify File="../../OFM-ConfigTransfer/library.json" ModuleVersion="0.1" />
   </op:define>
 
   <op:define prefix="SENS" 
@@ -30,43 +43,52 @@
     <op:verify File="../lib/OFM-SensorModule/library.json" ModuleVersion="2.0" />
   </op:define>
 
-  <op:define prefix="WIRE" 
+  <!-- <op:define prefix="WIRE" 
              share="../lib/OFM-OneWireModule/src/WireGateway.share.xml"
              template="../lib/OFM-OneWireModule/src/WireGateway.templ.xml"
-             NumChannels="10" 
+             NumChannels="1" 
              KoOffset="90"  
              ModuleType="20" 
              KoSingleOffset="10" >
     <op:verify File="../lib/OFM-OneWireModule/library.json" ModuleVersion="2.0" />
   </op:define>
-
-  <op:define prefix="PM" 
-             share="../lib/OFM-PresenceModule/src/PMmodul.share.xml"
-             template="../lib/OFM-PresenceModule/src/PMmodul.templ.xml"
-             NumChannels="10" 
-             KoOffset="120" 
-             ModuleType="30" >
+ -->
+  <op:define prefix="PM"
+    share="../lib/OFM-PresenceModule/src/PMmodul.share.xml"
+    template="../lib/OFM-PresenceModule/src/PMmodul.templ.xml"
+    NumChannels="40"
+    KoOffset="120"
+    ModuleType="30">
     <op:verify File="../lib/OFM-PresenceModule/library.json" ModuleVersion="3.0" />
   </op:define>
 
   <op:define prefix="LOG"
     share="../lib/OFM-LogicModule/src/Logikmodul.share.xml"
     template="../lib/OFM-LogicModule/src/Logikmodul.templ.xml"
-    NumChannels="10"
+    NumChannels="99"
     KoOffset="920"
     ModuleType="10">
     <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="3.2" />
   </op:define>
+
+  <op:define prefix="BTN"
+    share="../lib/OFM-VirtualButton/src/VirtualButton.share.xml"
+    template="../lib/OFM-VirtualButton/src/VirtualButton.templ.xml"
+    NumChannels="30"
+    KoOffset="1220"
+    ModuleType="50">
+    <op:verify File="../lib/OFM-VirtualButton/library.json" ModuleVersion="0.4" />
+  </op:define>
+
+  <op:define prefix="BI"
+    share="../lib/OFM-BinaryInput/src/BinaryInputChannel.share.xml"
+    template="../lib/OFM-BinaryInput/src/BinaryInputChannel.templ.xml"
+    NumChannels="4"
+    KoOffset="45"
+    ModuleType="60">
+    <op:verify File="../lib/OFM-BinaryInput/library.json" ModuleVersion="0.1" />
+  </op:define>
+
+
   <generate />
-  <!-- <Dynamic>
-      <ChannelIndependentBlock>
-        <ParameterBlock Id="%AID%_PB-1" Name="General" Text="Allgemeine Parameter" Icon="application-cog-outline">
-          <op:include href="../lib/OFM-LogicModule/src/Logikmodul.parts.xml" xpath="//Dynamic/Channel/ParameterBlock[@Name='General']/*" prefix="LOG" />
-          <op:include href="../lib/OFM-LogicModule/src/Logikmodul.parts.xml" xpath="//Dynamic/Channel/ParameterBlock[@Name='Diagnose']/*" prefix="LOG" />
-        </ParameterBlock>
-      </ChannelIndependentBlock>
-      <op:include href="../lib/OFM-PresenceModule/src/PMmodul.share.xml" xpath="//Dynamic/Channel" prefix="PM" />
-      <op:include href="../lib/OFM-LogicModule/src/Logikmodul.share.xml" xpath="//Dynamic/Channel" prefix="LOG" />
-    </Dynamic>
-  </generate> -->
 </KNX>

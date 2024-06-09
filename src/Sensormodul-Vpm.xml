@@ -4,21 +4,34 @@
 
   <op:config href="Sensormodul.conf.xml" />
 
-  <op:ETS OpenKnxId="0xA0" 
-          ApplicationNumber="0x40" 
-          ApplicationVersion="%SENS_ApplicationVersion%"
-          ReplacesVersions="%SENS_ReplacesVersions%" 
-          ApplicationRevision="0" 
-          ProductName="Sensormodul-Vpm"
-          ApplicationName="WP-Sensor-PM-Logic"
-          OrderNumber="OpenKnxSensorVpm"
-          SerialNumber="0xA040"        
+  <op:ETS OpenKnxId="0xA0"
+    ApplicationNumber="0x40"
+    ApplicationVersion="%SENS_ApplicationVersion%"
+    ReplacesVersions="%SENS_ReplacesVersions%"
+    ApplicationRevision="0"
+    ProductName="Sensormodul-Vpm"
+    ApplicationName="Sensor-PM-Logic"
+    OrderNumber="OpenKnxSensorVpm"
+    SerialNumber="0xA040"
   />
+
+  <op:define prefix="BUTTONLINK"
+             share="Sensormodul-VirtualButton.link.xml"
+             noConfigTransfer="true"
+             ModuleType="99" >
+  </op:define>
 
   <op:define prefix="BASE"
              share="../lib/OGM-Common/src/Common.share.xml"
              ModuleType="10" >
     <op:verify File="../lib/OGM-Common/library.json" ModuleVersion="%BASE_VerifyVersion%" />
+  </op:define>
+
+  <op:define prefix="UCT"
+    share="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml"
+    noConfigTransfer="true"
+    ModuleType="98">
+    <op:verify File="../../OFM-ConfigTransfer/library.json" ModuleVersion="%UCT_VerifyVersion%" />
   </op:define>
 
   <op:define prefix="SENS" 
@@ -44,5 +57,6 @@
              ModuleType="10" >
     <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="%LOG_VerifyVersion%" />
   </op:define>
+
   <generate />
 </KNX>

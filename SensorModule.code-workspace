@@ -16,6 +16,12 @@
 			"path": "../OFM-LogicModule"
 		},
 		{
+			"path": "../OFM-VirtualButton"
+		},
+		{
+			"path": "../OFM-BinaryInput"
+		},
+		{
 			"path": "../OFM-FileTransferModule"
 		},
 		{
@@ -26,6 +32,9 @@
 		},
 		{
 			"path": "../knx"
+		},
+		{
+			"path": "../OFM-ConfigTransfer"
 		}
 	],
 	"settings": {

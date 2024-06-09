@@ -4,21 +4,34 @@
 
   <op:config href="Sensormodul.conf.xml" />
 
-  <op:ETS OpenKnxId="0xA0" 
-          ApplicationNumber="0x12" 
-          ApplicationVersion="%SENS_ApplicationVersion%"
-          ReplacesVersions="%SENS_ReplacesVersions%" 
-          ApplicationRevision="0" 
-          ProductName="Sensormodul-Big"
-          ApplicationName="WP-Sensor-Wire-PM-Logic"
-          OrderNumber="OpenKnxSensorBig"
-          SerialNumber="0xA012"        
+  <op:ETS OpenKnxId="0xA0"
+    ApplicationNumber="0x12"
+    ApplicationVersion="%SENS_ApplicationVersion%"
+    ReplacesVersions="%SENS_ReplacesVersions%"
+    ApplicationRevision="0"
+    ProductName="Sensormodul-Big"
+    ApplicationName="Sensor-Wire-PM-Logic-Button-BinInput"
+    OrderNumber="OpenKnxSensorBig"
+    SerialNumber="0xA012"
   />
+
+  <op:define prefix="BUTTONLINK"
+             share="Sensormodul-VirtualButton.link.xml"
+             noConfigTransfer="true"
+             ModuleType="99" >
+  </op:define>
 
   <op:define prefix="BASE"
              share="../lib/OGM-Common/src/Common.share.xml"
              ModuleType="10" >
     <op:verify File="../lib/OGM-Common/library.json" ModuleVersion="%BASE_VerifyVersion%" />
+  </op:define>
+
+  <op:define prefix="UCT"
+    share="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml"
+    noConfigTransfer="true"
+    ModuleType="98">
+    <op:verify File="../../OFM-ConfigTransfer/library.json" ModuleVersion="%UCT_VerifyVersion%" />
   </op:define>
 
   <op:define prefix="SENS" 
@@ -27,7 +40,7 @@
     <op:verify File="../lib/OFM-SensorModule/library.json" ModuleVersion="%SENS_VerifyVersion%" />
   </op:define>
 
-  <op:define prefix="WIRE" 
+  <!-- <op:define prefix="WIRE" 
              share="../lib/OFM-OneWireModule/src/WireGateway.share.xml"
              template="../lib/OFM-OneWireModule/src/WireGateway.templ.xml"
              NumChannels="30" 
@@ -36,7 +49,7 @@
              KoSingleOffset="10" >
     <op:verify File="../lib/OFM-OneWireModule/library.json" ModuleVersion="%WIRE_VerifyVersion%" />
   </op:define>
-
+ -->
   <op:define prefix="PM" 
              share="../lib/OFM-PresenceModule/src/PMmodul.share.xml"
              template="../lib/OFM-PresenceModule/src/PMmodul.templ.xml"
@@ -53,6 +66,24 @@
              KoOffset="920" 
              ModuleType="10" >
     <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="%LOG_VerifyVersion%" />
+  </op:define>
+
+  <op:define prefix="BTN"
+    share="../lib/OFM-VirtualButton/src/VirtualButton.share.xml"
+    template="../lib/OFM-VirtualButton/src/VirtualButton.templ.xml"
+    NumChannels="30"
+    KoOffset="1220"
+    ModuleType="50">
+    <op:verify File="../lib/OFM-VirtualButton/library.json" ModuleVersion="%BTN_VerifyVersion%" />
+  </op:define>
+
+  <op:define prefix="BI"
+    share="../lib/OFM-BinaryInput/src/BinaryInputChannel.share.xml"
+    template="../lib/OFM-BinaryInput/src/BinaryInputChannel.templ.xml"
+    NumChannels="4"
+    KoOffset="45"
+    ModuleType="60">
+    <op:verify File="../lib/OFM-BinaryInput/library.json" ModuleVersion="%BI_VerifyVersion%" />
   </op:define>
   <generate />
 </KNX>

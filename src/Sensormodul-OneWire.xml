@@ -4,15 +4,15 @@
 
   <op:config href="Sensormodul.conf.xml" />
 
-  <op:ETS OpenKnxId="0xA0" 
-          ApplicationNumber="0x10" 
-          ApplicationVersion="%SENS_ApplicationVersion%"
-          ReplacesVersions="%SENS_ReplacesVersions%" 
-          ApplicationRevision="0" 
-          ProductName="Sensormodul-OneWire"
-          ApplicationName="WP-Sensor-Wire-Logic"
-          OrderNumber="OpenKnxSensorWire"
-          SerialNumber="0xA010"        
+  <op:ETS OpenKnxId="0xA0"
+    ApplicationNumber="0x10"
+    ApplicationVersion="%SENS_ApplicationVersion%"
+    ReplacesVersions="%SENS_ReplacesVersions%"
+    ApplicationRevision="0"
+    ProductName="Sensormodul-OneWire"
+    ApplicationName="Sensor-Wire-Logic"
+    OrderNumber="OpenKnxSensorWire"
+    SerialNumber="0xA010"
   />
 
   <op:define prefix="BASE"

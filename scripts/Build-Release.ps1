@@ -31,8 +31,8 @@ if (!$?) { exit 1 }
 
 if ($releaseIndication -eq "Big") {
     # build firmware for RP2040 sensormodule breakout board
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_Breakout_RP2040 firmware-Sensormodul-Breakout-RP2040 uf2 Sensormodul-Breakout-Board-Just-for-testers
-    if (!$?) { exit 1 }
+    # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_Breakout_RP2040 firmware-Sensormodul-Breakout-RP2040 uf2 Sensormodul-Breakout-Board-Just-for-testers
+    # if (!$?) { exit 1 }
 
     # build firmware productive RP2040 sensormodule
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040 firmware-Sensormodul-v4x-RP2040 uf2
@@ -41,7 +41,7 @@ if ($releaseIndication -eq "Big") {
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_1TE_RP2040_SmartMF firmware-SmartMF-1TE-RP2040 uf2
     if (!$?) { exit 1 }
 
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2 firmware-AB-SmartHouse-PresenceMultiSensor
     if (!$?) { exit 1 }
 }
 
@@ -54,17 +54,18 @@ if ($releaseIndication -eq "Vpm") {
     if (!$?) { exit 1 }
 
     # build firmware for legacy SAMD sensormodules
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v31_SAMD_Vpm firmware-Sensormodul-v31-SAMD bin
-    if (!$?) { exit 1 }
+    # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v31_SAMD_Vpm firmware-Sensormodul-v31-SAMD bin
+    # if (!$?) { exit 1 }
 
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v30_SAMD_Vpm firmware-Sensormodul-v30-SAMD bin
-    if (!$?) { exit 1 }
+    # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v30_SAMD_Vpm firmware-Sensormodul-v30-SAMD bin
+    # if (!$?) { exit 1 }
 
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2 firmware-AB-SmartHouse-PresenceMultiSensor
     if (!$?) { exit 1 }
 }
 
 if ($releaseIndication -eq "OneWire") {
+    exit 1
     # build firmware productive RP2040 sensormodule
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040_Wire firmware-Sensormodul-v4x-RP2040 uf2
     if (!$?) { exit 1 }

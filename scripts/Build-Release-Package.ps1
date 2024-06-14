@@ -22,9 +22,9 @@ scripts/Build-Release.ps1 Big
 if (!$?) { exit 1 }
 Copy-Item release/* release-package
 
-scripts/Build-Release.ps1 OneWire
-if (!$?) { exit 1 }
-Copy-Item release/* release-package
+# scripts/Build-Release.ps1 OneWire
+# if (!$?) { exit 1 }
+# Copy-Item release/* release-package
 
 scripts/Build-Release.ps1 Vpm
 if (!$?) { exit 1 }

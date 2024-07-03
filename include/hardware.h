@@ -139,6 +139,7 @@
         #define HW_REVISION_ID2 11
         #define HW_REVISION_ID3 12
         #define OPENKNX_BI_GPIO_PINS 2, 4, 6, 7
+        #define OPENKNX_BI_GPIO_COUNT 4
     #endif
 
     #ifdef BOARD_SMARTMF_1TE_RP2040

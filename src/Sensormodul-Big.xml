@@ -10,7 +10,7 @@
     ReplacesVersions="%SENS_ReplacesVersions%"
     ApplicationRevision="0"
     ProductName="Sensormodul-Big"
-    ApplicationName="Sensor-Wire-PM-Logic-Button-BinInput"
+    ApplicationName="Sensor-Wire-PM-Logic-Button-BI"
     OrderNumber="OpenKnxSensorBig"
     SerialNumber="0xA012"
   />
@@ -59,15 +59,6 @@
     <op:verify File="../lib/OFM-PresenceModule/library.json" ModuleVersion="%PM_VerifyVersion%" />
   </op:define>
 
-  <op:define prefix="LOG" 
-             share="../lib/OFM-LogicModule/src/Logikmodul.share.xml" 
-             template="../lib/OFM-LogicModule/src/Logikmodul.templ.xml" 
-             NumChannels="99" 
-             KoOffset="920" 
-             ModuleType="10" >
-    <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="%LOG_VerifyVersion%" />
-  </op:define>
-
   <op:define prefix="BTN"
     share="../lib/OFM-VirtualButton/src/VirtualButton.share.xml"
     template="../lib/OFM-VirtualButton/src/VirtualButton.templ.xml"
@@ -85,5 +76,15 @@
     ModuleType="60">
     <op:verify File="../lib/OFM-BinaryInput/library.json" ModuleVersion="%BI_VerifyVersion%" />
   </op:define>
+
+  <op:define prefix="LOG" 
+             share="../lib/OFM-LogicModule/src/Logikmodul.share.xml" 
+             template="../lib/OFM-LogicModule/src/Logikmodul.templ.xml" 
+             NumChannels="99" 
+             KoOffset="920" 
+             ModuleType="10" >
+    <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="%LOG_VerifyVersion%" />
+  </op:define>
+
   <generate />
 </KNX>

@@ -1,3 +1,3 @@
 Ab sofort ist die Applikationsbeschreibung hier zu finden:
 
-[Applikationsbeschreibung-Sensor](../../OFM-SensorModule/doc/Applikationsbeschreibung-Sensor.md)
+[Applikationsbeschreibung-Sensor](https://github.com/OpenKNX/OFM-SensorModule/blob/v1/doc/Applikationsbeschreibung-Sensor.md)

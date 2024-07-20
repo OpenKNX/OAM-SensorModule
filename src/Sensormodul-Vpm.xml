@@ -1,6 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <?xml-model href="../../Organization/knxprod-support/knx_project_20/knx-editor.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <KNX xmlns:op="http://github.com/OpenKNX/OpenKNXproducer" xmlns="http://knx.org/xml/project/20" CreatedBy="KNX MT" ToolVersion="5.1.255.16695">
+
+  <op:define prefix="SENS"
+    share="../lib/OFM-SensorModule/src/Sensormodul.share.xml"
+    KoOffset="20"
+    ModuleType="3"
+    configTransferName="Standardsensoren" />
+  <op:define prefix="UCT"
+    share="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml"
+    noConfigTransfer="true"
+    ModuleType="99">
+    <op:verify File="../../OFM-ConfigTransfer/library.json" ModuleVersion="0.1" />
+  </op:define>
+  <op:define prefix="PM"
+    share="../lib/OAM-PresenceModule/src/PMmodul.share.xml"
+    template="../lib/OAM-PresenceModule/src/PMmodul.templ.xml"
+    NumChannels="5"
+    KoOffset="90"
+    ModuleType="2"
+    configTransferName="PM-Kanäle" />
+  <op:define prefix="LOG"
+    share="../lib/OAM-LogicModule/src/Logikmodul.share.xml"
+    template="../lib/OAM-LogicModule/src/Logikmodul.templ.xml"
+    NumChannels="70"
+    KoOffset="200"
+    ModuleType="1"
+    configTransferName="Logikkanäle" />
   <ManufacturerData>
     <Manufacturer RefId="M-00FA">
       <Catalog>
@@ -12,26 +38,25 @@
         <!-- Each increase of AppliationVersion FORCES the Enduser to update according firmware, too -->
         <!-- If you just want to have a BUGFIX-Update of the ETS-Appliation (without firmware), increase ApplicationVersion AND ApplicationRevision simultaneously -->
         <!-- To sync ETS-Application and firmware again, increase ApplicationVersion AND set ApplicationRevision to 0 -->
-        <op:version OpenKnxId="0xA0" ApplicationNumber="64" ApplicationVersion="21" ReplacesVersions="1 2 3 4 5 6 7 8 9 10 11 16 17 18 19 20" ApplicationRevision="0" />
+        <op:version OpenKnxId="0xA0" ApplicationNumber="64" ApplicationVersion="22" ReplacesVersions="1 2 3 4 5 6 7 8 9 10 11 16 17 18 19 20 21" ApplicationRevision="1" />
         <ApplicationProgram Id="%AID%" ProgramType="ApplicationProgram" MaskVersion="MV-07B0" Name="WP-Sensor-PM-Logic" LoadProcedureStyle="MergedProcedure" PeiType="0" DefaultLanguage="de" DynamicTableManagement="false" Linkable="true" MinEtsVersion="4.0" ApplicationNumber="0" ApplicationVersion="0" ReplacesVersions="0">
           <Static>
             <Code>
               <RelativeSegment Id="%AID%_RS-04-00000" Name="Parameters" Offset="0" Size="%MemorySize%" LoadStateMachine="4" />
             </Code>
-            <op:define prefix="SENS" header="Sensormodul.h" NumChannels="2"  KoOffset="20"  ModuleType="3" />
-            <op:define prefix="PM"   header="Sensormodul.h" NumChannels="5"  KoOffset="90" ModuleType="2" />
-            <op:define prefix="LOG"  header="Sensormodul.h" NumChannels="70" KoOffset="200" ModuleType="1" />
             <ParameterTypes>
               <!-- generic parameter types for any device -->
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="PM" />
               <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ParameterTypes/ParameterType" prefix="SENS" />
+              <op:include href="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml" xpath="//ParameterTypes/ParameterType" prefix="UCT" />
             </ParameterTypes>
             <Parameters>
               <!-- Standard parameter in any of our devices -->
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="PM" />
               <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="parameter" prefix="SENS" />
+              <op:include href="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml" xpath="//Parameters/Parameter|//Parameters/Union" prefix="UCT" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.templ.xml" xpath="//Parameters/Parameter|//Parameters/Union" type="template" prefix="PM" />
             </Parameters>
@@ -39,15 +64,23 @@
               <!-- General -->
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="PM" />
-              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="SENS"/>
+              <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="SENS" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.parts.xml" xpath="//ParameterRefs/ParameterRef" prefix="LOG" />
+              <op:include href="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml" xpath="//ParameterRefs/ParameterRef" prefix="UCT" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//ParameterRefs/ParameterRef" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.templ.xml" xpath="//ParameterRefs/ParameterRef" type="template" prefix="PM" />
             </ParameterRefs>
+            <ParameterCalculations>
+              <op:include href="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml" xpath="//ApplicationProgram/Static/ParameterCalculations/ParameterCalculation" prefix="UCT" />
+            </ParameterCalculations>
+            <ParameterValidations>
+              <op:include href="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml" xpath="//ApplicationProgram/Static/ParameterValidations/ParameterValidation" prefix="UCT" />
+            </ParameterValidations>
             <ComObjectTable>
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="PM" />
               <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ComObjectTable/ComObject" prefix="SENS" />
+              <op:include href="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml" xpath="//ComObjectTable/ComObject" prefix="UCT" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//ComObjectTable/ComObject" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.templ.xml" xpath="//ComObjectTable/ComObject" type="template" prefix="PM" />
             </ComObjectTable>
@@ -55,6 +88,7 @@
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="PM" />
               <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="SENS" />
+              <op:include href="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml" xpath="//ComObjectRefs/ComObjectRef" prefix="UCT" />
               <op:include href="../lib/OAM-LogicModule/src/Logikmodul.templ.xml" xpath="//ComObjectRefs/ComObjectRef" type="template" prefix="LOG" />
               <op:include href="../lib/OAM-PresenceModule/src/PMmodul.templ.xml" xpath="//ComObjectRefs/ComObjectRef" type="template" prefix="PM" />
             </ComObjectRefs>
@@ -82,7 +116,11 @@
             </LoadProcedures>
             <Messages>
               <Message Id="%AID%_M-1" Name="VersionMismatch" Text="Diese Applikaiton benötigt die Firmware-Version %VersionMessage%, siehe Geräteinfo." />
+              <op:include href="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml" xpath="//ApplicationProgram/Static/Messages/*" prefix="UCT" />
             </Messages>
+            <Script>
+              <op:include href="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml" xpath="//ApplicationProgram/Static/Script/text()" prefix="UCT" />
+            </Script>
             <Options />
           </Static>
           <Dynamic>
@@ -95,6 +133,7 @@
                 <op:include href="../lib/OAM-LogicModule/src/Logikmodul.parts.xml" xpath="//Dynamic/ChannelIndependentBlock/ParameterBlock[@Name='Diagnose']/*" prefix="LOG" />
               </ParameterBlock>
             </ChannelIndependentBlock>
+            <op:include href="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml" xpath="//ApplicationProgram/Dynamic/*" prefix="UCT" />
             <!-- Sensormodul generic settings -->
             <op:include href="../lib/OFM-SensorModule/src/Sensormodul.share.xml" xpath="//Dynamic/*" prefix="SENS" />
             <Channel Id="%AID%_CH-3" Name="PMChannels" Number="3" Text="PM-Kanäle">
@@ -112,6 +151,9 @@
           </Dynamic>
         </ApplicationProgram>
       </ApplicationPrograms>
+      <Baggages>
+        <op:include href="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml" xpath="//Manufacturer/Baggages/*" prefix="UCT" />
+      </Baggages>
       <Hardware>
         <Hardware Id="%HardwareId%" Name="OpenKNX-Sensor" SerialNumber="0xA040" VersionNumber="1" BusCurrent="10" HasIndividualAddress="true" HasApplicationProgram="true">
           <Products>

@@ -4,6 +4,9 @@
 
   <op:config href="Sensormodul.conf.xml" />
   
+  <op:nowarn id="1" regex="SENS_ApplicationVersion" />
+  <op:nowarn id="1" regex="SENS_ReplacesVersions" />
+
   <op:ETS OpenKnxId="0xA0"
     ApplicationNumber="0x11"
     ApplicationVersion="5.1"

@@ -41,7 +41,7 @@ if ($releaseIndication -eq "Big") {
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_1TE_RP2040_SmartMF firmware-SmartMF-1TE-RP2040 uf2
     if (!$?) { exit 1 }
 
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2 firmware-AB-SmartHouse-PresenceMultiSensor
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2 AB-SmartHouse-PresenceMultiSensor
     if (!$?) { exit 1 }
 }
 

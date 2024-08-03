@@ -1,8 +1,30 @@
 #pragma once
 
-#include <OpenKNXHardware.h>
-
 #ifndef BOARD_ENDUSER
+
+    // UP1 als 1-Kanal-Sensormodul
+    #ifdef BOARD_UP1_SENSOR_1KANAL
+        #define PROG_LED_PIN 6
+        #define PROG_LED_PIN_ACTIVE_ON HIGH
+        #define PROG_BUTTON_PIN 7
+        #define PROG_BUTTON_PIN_INTERRUPT_ON FALLING
+        #define SAVE_INTERRUPT_PIN 5
+        #define KNX_SERIAL Serial1
+        #define KNX_UART_RX_PIN 1
+        #define KNX_UART_TX_PIN 0
+
+        // #define INFO_LED_PIN 13
+        // #define INFO_LED_PIN_ACTIVE_ON HIGH
+        // #define COUNT_1WIRE_BUSMASTER 1
+        // #define COUNT_1WIRE_CHANNEL 30
+        // #define COUNT_PM_CHANNEL 6
+        // #define COUNT_LOG_CHANNEL 99
+        #define KNX_I2C_SDA_PIN 20 // Channel E
+        #define KNX_I2C_SCL_PIN 21 // Channel E
+    #endif
+
+    #include <OpenKNXHardware.h>
+
     // // Board specific definitions
     // // #define BOARD_MASIFI
     // // ################################################
@@ -160,6 +182,9 @@
         #define I2C_BUS_1WIRE Wire1
         #define ONEWIRE_5V_ENABLE 5
         #define ONEWIRE_5V_SHORT 4
+        #define OPENKNX_BI_GPIO_PINS 14, 15, 4
+        #define OPENKNX_BI_GPIO_COUNT 3
+        #define OPENKNX_BI_ONLEVEL LOW
     #endif
 
     // Sensormodul-Breakout-Board
@@ -259,4 +284,5 @@
         #define HF_UART_RX_PIN 5
         #define PIR_PIN 26
     #endif
+
 #endif

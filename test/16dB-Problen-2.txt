@@ -1,0 +1,7 @@
+Vorher: 3s Nachlaufzeit reichen, perfekte Erkennung
+
+ETS: 3.5 auf 2.8 m ändern -> proggen
+-> kommt sofort ins 16dB-Problem, alte Kalibrierungswerte, aber Dauerpräsenz
+hlk reb hard
+-> Jetzt ist der Sensor wieder wie am Anfang, ein Range-Gate weniger
+

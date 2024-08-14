@@ -1,0 +1,33 @@
+Vorher: 3s Nachlaufzeit reichen, perfekte Erkennung
+hlk cr read
+-> HLK c00r 41.39
+
+ETS: 2.8 auf 3.5 m ändern
+-> kommt sofort ins 16dB-Problem, alte Kalibrierungswerte, aber Dauerpräsenz
+hlk cal run
+hlk cr read
+-> HLK c00r 57.88
+hlk reb hard
+hlk cal run
+hlk cr read
+-> HLK c00r 40.98
+Gerät neu starten
+-> Jetzt ist der Sensor wieder wie am Anfang, ein Range-Gate mehr
+
+
+HLK c00d-0.14
+HLK c01d-0.07
+HLK c02d-0.11
+HLK c03d-0.47
+HLK c04d-1.17
+HLK c05d 0.43
+HLK c06d 1.11
+HLK c07d-0.21
+HLK c08d 0.89
+HLK c09d 0.65
+HLK c10d-0.31
+HLK c11d-0.47
+HLK c12d-0.38
+HLK c13d-0.40
+HLK c14d-0.09
+HLK c15d 0.17

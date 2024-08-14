@@ -174,6 +174,9 @@
         #define I2C_BUS_1WIRE Wire1
         #define ONEWIRE_5V_ENABLE 5
         #define ONEWIRE_5V_SHORT 4
+        #define OPENKNX_BI_GPIO_PINS 14, 15, 4
+        #define OPENKNX_BI_GPIO_COUNT 3
+        #define OPENKNX_BI_ONLEVEL LOW
     #endif
 
     // Sensormodul-Breakout-Board
@@ -273,4 +276,5 @@
         #define HF_UART_RX_PIN 5
         #define PIR_PIN 26
     #endif
+
 #endif

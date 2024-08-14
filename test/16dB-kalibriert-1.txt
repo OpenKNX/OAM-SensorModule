@@ -1,0 +1,82 @@
+Vorher: Durch Parameteränderung in den 16dB-Modus gekommen
+
+Kalibrierung angestossen:
+5	31.07.2024 19:58:35,761	hlk cal run
+6	31.07.2024 19:58:35,920	HLK cal start
+7	31.07.2024 19:59:15,919	HLK cal start
+8	31.07.2024 19:59:41,093	HLK cal done
+9	31.07.2024 19:59:41,156	HLK cal send
+10	31.07.2024 19:59:49,201 Aus
+-> Sensor geht in dauer-AUS, auffällig: Es werden 2 cal start erzeugt.
+-> Vermutung: Sensor misst auch +16dB und kommt nicht mehr über die Trigger-Schwelle
+
+Jetzt Sensor hard reset:
+11	31.07.2024 20:06:25,045	hlk reb hard
+12	31.07.2024 20:06:32,326	Ein
+13	31.07.2024 20:06:38,458	Aus
+-> Sensor geht wieder in dauer-AUS, hier die Vermutung, dass er aus +16 dB raus ist 
+   und dann sowieso nicht mehr über die Trigger-Schwelle kommt
+
+Verifizieren durch Testkalibrierung:
+14	31.07.2024 20:09:59,176	hlk calt run
+15	31.07.2024 20:09:59,335	HLK calt start
+16	31.07.2024 20:10:21,395	HLK calt done
+17	31.07.2024 20:10:21,654	Ein
+18	31.07.2024 20:10:27,789	Aus
+
+Ausgabe bestätigt das:
+19	31.07.2024 20:11:33,103	hlk cd read
+20	31.07.2024 20:11:33,167	HLK c00d-16.86
+21	31.07.2024 20:11:33,226	HLK c01d-18.76
+22	31.07.2024 20:11:33,288	HLK c02d-24.22
+23	31.07.2024 20:11:33,349	HLK c03d-18.81
+24	31.07.2024 20:11:33,415	HLK c04d-14.88
+25	31.07.2024 20:11:33,473	HLK c05d-18.51
+26	31.07.2024 20:11:33,543	HLK c06d-15.99
+27	31.07.2024 20:11:33,602	HLK c07d-20.10
+28	31.07.2024 20:11:33,666	HLK c08d-18.38
+29	31.07.2024 20:11:33,724	HLK c09d-15.10
+30	31.07.2024 20:11:33,786	HLK c10d-18.30
+31	31.07.2024 20:11:33,847	HLK c11d-13.18
+32	31.07.2024 20:11:33,910	HLK c12d-16.31
+33	31.07.2024 20:11:33,971	HLK c13d-14.61
+34	31.07.2024 20:11:34,041	HLK c14d-13.51
+35	31.07.2024 20:11:34,101	HLK c15d-14.50
+
+Also erneut Kalibrieren:
+36	31.07.2024 20:17:49,109	hlk cal run
+37	31.07.2024 20:17:49,268	HLK cal start
+38	31.07.2024 20:18:14,501	HLK cal done
+39	31.07.2024 20:18:14,562	HLK cal send
+40	31.07.2024 20:18:19,680	Ein
+-> Anmerkung: Hier nur ein cal start!
+-> Sensor geht wieder in dauer-Ein
+-> Vermutung: das cal send hat ihn wieder in +16 dB Moduls versetzt
+
+Verifizieren durch Testkalibrierung:
+41	31.07.2024 20:22:58,649	hlk calt run
+42	31.07.2024 20:22:58,808	HLK calt start
+43	31.07.2024 20:23:20,910	HLK calt done
+44	31.07.2024 20:23:56,696	hlk cd read
+45	31.07.2024 20:23:56,757	HLK c00d 16.92
+46	31.07.2024 20:23:56,817	HLK c01d 18.78
+47	31.07.2024 20:23:56,879	HLK c02d 24.37
+48	31.07.2024 20:23:56,941	HLK c03d 18.89
+49	31.07.2024 20:23:57,003	HLK c04d 14.79
+50	31.07.2024 20:23:57,066	HLK c05d 18.75
+51	31.07.2024 20:23:57,128	HLK c06d 16.47
+52	31.07.2024 20:23:57,192	HLK c07d 19.89
+53	31.07.2024 20:23:57,252	HLK c08d 17.19
+54	31.07.2024 20:23:57,315	HLK c09d 14.24
+55	31.07.2024 20:23:57,377	HLK c10d 17.68
+56	31.07.2024 20:23:57,439	HLK c11d 12.64
+57	31.07.2024 20:23:57,500	HLK c12d 15.95
+58	31.07.2024 20:23:57,562	HLK c13d 14.15
+59	31.07.2024 20:23:57,624	HLK c14d 13.73
+60	31.07.2024 20:23:57,687	HLK c15d 13.57
+-> hat sich bestätigt
+
+Kalibrierung stimmt, jetzt hard reset, um Sensor aus +16 dB zu holen
+61	31.07.2024 20:26:43,864	hlk reb hard
+62	31.07.2024 20:26:54,015	Aus
+-> ja, hat geklappt, Sensor funktioniert wieder prima.

@@ -1,8 +1,22 @@
 #pragma once
 
-#include <OpenKNXHardware.h>
-
 #ifndef BOARD_ENDUSER
+
+    // UP1 als 1-Kanal-Sensormodul
+    #ifdef BOARD_UP1_SENSOR_1KANAL
+        #define OKNXHW_UP1_CONTROLLER2040   // this loads the pin definitions from OpenKNXHardware.h
+        #define HARDWARE_NAME "SEN-UP1-8xTH"
+
+        #define I2C_SDA_PIN 20 // Channel E on SEN-UP1-8xTH
+        #define I2C_SCL_PIN 21 // Channel E on SEN-UP1-8xTH
+
+        #define OPENKNX_BI_GPIO_PINS 25, 24, 23, 22 // Channel C, D on SEN-UP1-8xTH
+        #define OPENKNX_BI_GPIO_COUNT 4
+        #define OPENKNX_BI_ONLEVEL LOW
+    #endif
+
+    #include <OpenKNXHardware.h>
+
     // // Board specific definitions
     // // #define BOARD_MASIFI
     // // ################################################

@@ -276,5 +276,8 @@
         #define HF_UART_RX_PIN 5
         #define PIR_PIN 26
     #endif
+    #ifdef BOARD_AB_HFPM_HLKLD2420_MR16
+        #define HF_POWER_BCU true
+    #endif
 
 #endif

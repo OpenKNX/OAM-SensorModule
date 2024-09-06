@@ -46,6 +46,9 @@ if ($releaseIndication -eq "Big") {
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2 AB-SmartHouse-PresenceMultiSensor
     if (!$?) { exit 1 }
+
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensorMR16_ABSmartHouse firmware-AB-SmartHouse-MR16-PresenceSensor uf2
+    if (!$?) { exit 1 }
 }
 
 if ($releaseIndication -eq "Vpm") {

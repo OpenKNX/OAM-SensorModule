@@ -252,6 +252,10 @@
         #define I2C_RGBLED_DEVICE_ADDRESS 0x60 // Address of PCA9632 RBGW-LED-Driver
     #endif
     // Sensormodul auf RP2040 Basis
+    #ifdef BOARD_AB_HFPM_HLKLD2420_MR16
+        #define HF_POWER_BCU true
+        #define BOARD_AB_HFPM_HLKLD2420
+    #endif
     #ifdef BOARD_AB_HFPM_HLKLD2420
         #define PROG_LED_PIN 10
         #define PROG_LED_PIN_ACTIVE_ON HIGH
@@ -275,9 +279,6 @@
         #define HF_UART_TX_PIN 4
         #define HF_UART_RX_PIN 5
         #define PIR_PIN 26
-    #endif
-    #ifdef BOARD_AB_HFPM_HLKLD2420_MR16
-        #define HF_POWER_BCU true
     #endif
 
 #endif

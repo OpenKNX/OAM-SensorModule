@@ -31,8 +31,12 @@ if (!$?) { exit 1 }
 
 if ($releaseIndication -eq "Big") {
     # build firmware for RP2040 sensormodule breakout board
-    scripts/Build-Step.ps1 release_Sensormodul_Breakout_RP2040 firmware-Sensormodul-Breakout-RP2040 uf2 Sensormodul-Breakout-Board-Just-for-testers
+    # scripts/Build-Step.ps1 release_Sensormodul_Breakout_RP2040 firmware-Sensormodul-Breakout-RP2040 uf2 Sensormodul-Breakout-Board-Just-for-testers
     # if (!$?) { exit 1 }
+
+    # build firmware for Test-Sensormodule on MR16-Board
+    scripts/Build-Step.ps1 release_Sensormodul_Rund_RP2040 firmware-Sensormodul-Rund-RP2040 uf2 Sensormodul-Rund-Just-for-testers
+    if (!$?) { exit 1 }
 
     # build firmware productive RP2040 sensormodule
     scripts/Build-Step.ps1 release_Sensormodul_v40_RP2040 firmware-Sensormodul-v4x-RP2040 uf2

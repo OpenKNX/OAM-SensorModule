@@ -53,6 +53,7 @@
 			"activityBar.background": "#2aa5b3",
 			"activityBar.foreground": "#000000",
 			"activityBar.activeBackground": "#1d7b85",
+			"activityBar.inactiveForeground": "#000000",
 			"statusBar.foreground": "#000000",
 			"statusBar.background": "#2aa5b3",
 			"titleBar.activeBackground": "#2aa5b3",

@@ -269,7 +269,8 @@
         #define I2C_WIRE Wire1
         #define I2C_SDA_PIN 2
         #define I2C_SCL_PIN 3
-        #define HF_SERIAL Serial2
+        #define HF_USE_SERIALPIO
+        // #define HF_SERIAL serialPio1
         #define HF_SERIAL_SPEED 115200
         #define HF_POWER_PIN 27
         #define HF_UART_TX_PIN 4

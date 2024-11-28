@@ -1,4 +1,0 @@
-TOF als Näherungssensor
-Einstellungen für HLK
-Entfernung pro Tagesphase ?
-Kurzzeitpräsenz für HLK

@@ -46,7 +46,8 @@
 			"*.json": "jsonc",
 			"*.yaml": "home-assistant",
 			"istream": "cpp",
-			"ostream": "cpp"
+			"ostream": "cpp",
+			"compare": "cpp"
 		},
 		"cSpell.language": "en,de-DE",
 		"workbench.colorCustomizations": {
@@ -57,6 +58,10 @@
 			"statusBar.background": "#2aa5b3",
 			"titleBar.activeBackground": "#2aa5b3",
 			"titleBar.activeForeground": "#000000"
-		}
+		},
+		"cSpell.words": [
+			"Präsenzkanal",
+			"Präsenzkanals"
+		]
 	}
 }

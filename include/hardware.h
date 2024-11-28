@@ -277,4 +277,69 @@
         #define PIR_PIN 26
     #endif
 
+    #ifdef BOARD_MASIFI_HFPM_DEVEL2
+        #define PROG_LED_PIN 18
+        #define PROG_LED_PIN_ACTIVE_ON HIGH
+        #define PROG_BUTTON_PIN 17
+        #define PROG_BUTTON_PIN_INTERRUPT_ON FALLING
+        // #define INFO_LED_PIN 9
+        // #define INFO_LED_PIN_ACTIVE_ON HIGH
+        #define PRESENCE_LED_PIN 0
+        #define PRESENCE_LED_PIN_ACTIVE_ON HIGH
+        #define MOVE_LED_PIN 1
+        #define MOVE_LED_PIN_ACTIVE_ON HIGH
+        #define KNX_UART_TX_PIN 12
+        #define KNX_UART_RX_PIN 13
+        #define I2C_WIRE Wire1
+        #define I2C_SDA_PIN 26 // I2C1
+        #define I2C_SCL_PIN 27 // I2C1
+        #define HF_SERIAL Serial2
+        #define HF_SERIAL_SPEED 9600
+        #define HF_UART_TX_PIN 4
+        #define HF_UART_RX_PIN 5
+        #define HF_S1_PIN 2
+        #define HF_S2_PIN 3
+        #define HF_POWER_PIN 10
+        #define SAVE_INTERRUPT_PIN 11
+        #define SmartMF_HardwareVariant_PIN 29
+        #define SmartMF_HardwareRevision_ID1 22
+        #define SmartMF_HardwareRevision_ID2 23
+        #define SmartMF_HardwareRevision_ID3 24
+    // #define SENSOR_I2C_OPT300x Wire1
+    // #define SENSOR_I2C_VEML7700 Wire1
+    #endif
+
+    #ifdef BOARD_MASIFI_HFPM_V20
+        #define PROG_LED_PIN 18
+        #define PROG_LED_PIN_ACTIVE_ON HIGH
+        #define PROG_BUTTON_PIN 17
+        #define PROG_BUTTON_PIN_INTERRUPT_ON FALLING
+        // #define INFO_LED_PIN 9
+        // #define INFO_LED_PIN_ACTIVE_ON HIGH
+        #define PRESENCE_LED_PIN 0
+        #define PRESENCE_LED_PIN_ACTIVE_ON HIGH
+        #define MOVE_LED_PIN 1
+        #define MOVE_LED_PIN_ACTIVE_ON HIGH
+        #define KNX_UART_TX_PIN 12
+        #define KNX_UART_RX_PIN 13
+        #define I2C_WIRE Wire1
+        #define I2C_SDA_PIN 26 // I2C1
+        #define I2C_SCL_PIN 27 // I2C1
+        #define HF_SERIAL Serial2
+        #define HF_SERIAL_SPEED 9600
+        #define HF_UART_TX_PIN 4
+        #define HF_UART_RX_PIN 5
+        #define HF_S1_PIN 2
+        #define HF_S2_PIN 3
+        #define HF_POWER_PIN 28
+        #define SAVE_INTERRUPT_PIN 11
+        #define SmartMF_HardwareVariant_PIN 29
+        #define SmartMF_HardwareRevision_ID1 22
+        #define SmartMF_HardwareRevision_ID2 23
+        #define SmartMF_HardwareRevision_ID3 24
+    // #define SENSOR_I2C_OPT300x Wire1
+    // #define SENSOR_I2C_VEML7700 Wire1
+    #endif
+
+
 #endif

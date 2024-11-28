@@ -80,6 +80,23 @@ if ($binaryFormat -eq "bin") {
   $processor = "SAMD"
 }
 
+if ($processor -eq "RP2040") {
+  # create Upload-via-KNX-Firmware-<firmwarename>.ps1 script
+  $fileName = "release/Upload-via-KNX-Firmware-$productName.ps1"
+  if (![string]::IsNullOrEmpty($ProjectDir)) {
+    $fileName = Join-Path $ProjectDir $fileName
+  }
+
+  # create Bus-Upload-Firmware-<firmwarename>.ps1 script
+  $scriptContent = "./data/Upload-via-KNX-Generic.ps1 $firmwareName.$binaryFormat"
+  if (Test-Path $fileName) { Clear-Content -Path $fileName }
+  Add-Content -Path $fileName -Value $scriptContent
+  if (!$?) {
+    Write-Host "ERROR: $fileName could not be created!"
+    exit 1
+  }
+}
+
 # create Upload-Firmware-<firmwarename>.ps1 script
 $fileName = "release/Upload-Firmware-$productName.ps1"
 if (![string]::IsNullOrEmpty($ProjectDir)) {
@@ -88,21 +105,6 @@ if (![string]::IsNullOrEmpty($ProjectDir)) {
 
 # Write the script file content to the file 
 $scriptContent = "./data/Upload-Firmware-Generic-$processor.ps1 $firmwareName.$binaryFormat"
-if (Test-Path $fileName) { Clear-Content -Path $fileName }
-Add-Content -Path $fileName -Value $scriptContent
-if (!$?) {
-  Write-Host "ERROR: $fileName could not be created!"
-  exit 1
-}
-
-# create Bus-Upload-Firmware-<firmwarename>.ps1 script
-$fileName = "release/Upload-via-KNX-Firmware-$productName.ps1"
-if (![string]::IsNullOrEmpty($ProjectDir)) {
-  $fileName = Join-Path $ProjectDir $fileName
-}
-
-# Write the script file content to the file 
-$scriptContent = "~/bin/KnxFileTransferClient.exe fwupdate ./data/$firmwareName.$binaryFormat `r`ntimeout /T -1"
 if (Test-Path $fileName) { Clear-Content -Path $fileName }
 Add-Content -Path $fileName -Value $scriptContent
 if (!$?) {

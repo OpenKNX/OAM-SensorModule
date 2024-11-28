@@ -29,6 +29,11 @@ $releaseIndication = $args[0]
 ../OGM-Common/scripts/setup/reusable/Build-Release-Preprocess.ps1 $args[0]
 if (!$?) { exit 1 }
 
+if (Test-Path -Path scripts/data -PathType Container) {
+    Copy-Item scripts/data/* release/data/
+    if (!$?) { exit 1 }
+}
+
 if ($releaseIndication -eq "Big") {
     # build firmware for RP2040 sensormodule breakout board
     # scripts/Build-Step.ps1 release_Sensormodul_Breakout_RP2040 firmware-Sensormodul-Breakout-RP2040 uf2 Sensormodul-Breakout-Board-Just-for-testers

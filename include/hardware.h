@@ -275,6 +275,9 @@
         #define HF_UART_TX_PIN 4
         #define HF_UART_RX_PIN 5
         #define PIR_PIN 26
+        #define OPENKNX_BI_GPIO_PINS 14, 15
+        #define OPENKNX_BI_GPIO_COUNT 2
+        #define OPENKNX_BI_ONLEVEL LOW
     #endif
 
     #ifdef BOARD_MASIFI_HFPM_DEVEL2

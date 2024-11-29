@@ -1,7 +1,7 @@
 $checkVersion = "0.2.1"
 $toolsExist = Test-Path -PathType Leaf ~/bin/KnxFileTransferClient.exe
 if ($toolsExist) {
-    $versionLine = C:\Users\walde\bin\KnxFileTransferClient.exe version | findstr /R /C:"Version Client: *\d*.\d*.\d*"
+    $versionLine = ~/bin/KnxFileTransferClient.exe version | findstr /R /C:"Version Client: *\d*.\d*.\d*"
     $splitted = $versionLine.split(' ')
     $toolsExist = [System.Version]$splitted[$splitted.length-1] -ge [System.Version]$checkVersion
 }

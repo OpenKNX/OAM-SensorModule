@@ -36,38 +36,40 @@ if (Test-Path -Path scripts/data -PathType Container) {
 
 if ($releaseIndication -eq "Big") {
     # build firmware for RP2040 sensormodule breakout board
-    # scripts/Build-Step.ps1 release_Sensormodul_Breakout_RP2040 firmware-Sensormodul-Breakout-RP2040 uf2 Sensormodul-Breakout-Board-Just-for-testers
+    # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_Breakout_RP2040 firmware-Sensormodul-Breakout-RP2040 uf2 Sensormodul-Breakout-Board-Just-for-testers
     # if (!$?) { exit 1 }
 
     # build firmware productive RP2040 sensormodule
-    scripts/Build-Step.ps1 release_Sensormodul_v40_RP2040 firmware-Sensormodul-v4x-RP2040 uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040 firmware-Sensormodul-v4x-RP2040 uf2
     if (!$?) { exit 1 }
 
-    scripts/Build-Step.ps1 release_PiPico_BCU_Connector firmware-PiPico-BCU-Connector uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PiPico_BCU_Connector firmware-PiPico-BCU-Connector uf2
     if (!$?) { exit 1 }
     
-    scripts/Build-Step.ps1 release_1TE_RP2040_SmartMF firmware-SmartMF-1TE-RP2040 uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_1TE_RP2040_SmartMF firmware-SmartMF-1TE-RP2040 uf2
     if (!$?) { exit 1 }
 
-    scripts/Build-Step.ps1 release_UP1_SENSOR_1KANAL firmware-UP1_SENSOR_1KANAL uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_UP1_SENSOR_1KANAL firmware-UP1_SENSOR_1KANAL uf2
     if (!$?) { exit 1 }
 
     # build firmware for OpenKNX-REG1-Base-V0
-    scripts/Build-Step.ps1 release_OpenKNX_REG1_Controller2040 firmware-OpenKNX-REG1-BASE-V0 uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_OpenKNX_REG1_BASE_V0 firmware-OpenKNX-REG1-BASE-V0 uf2
     if (!$?) { exit 1 }
 
     # build firmware for OpenKNX-REG1-Base-V1
-    scripts/Build-Step.ps1 release_OpenKNX_REG1_BASE_V1 firmware-OpenKNX-REG1-BASE-V1 uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_OpenKNX_REG1_BASE_V1 firmware-OpenKNX-REG1-BASE-V1 uf2
     if (!$?) { exit 1 }
 
-    scripts/Build-Step.ps1 release_RealPresence firmware-RealPresence uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_RealPresence firmware-RealPresence uf2
     if (!$?) { exit 1 }
 
-    scripts/Build-Step.ps1 release_RealPresence_v20 firmware-RealPresence_v2.0 uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_RealPresence_v20 firmware-RealPresence_v2.0 uf2
     if (!$?) { exit 1 }
 
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2 AB-SmartHouse-PresenceMultiSensor
+    if (!$?) { exit 1 }
 
-    scripts/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2 AB-SmartHouse-PresenceMultiSensor
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMR16_ABSmartHouse firmware-ABSmartHouse-PresenceMR16 uf2 AB-SmartHouse-PresenceMR16
     if (!$?) { exit 1 }
 }
 

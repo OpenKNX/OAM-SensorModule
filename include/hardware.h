@@ -17,6 +17,16 @@
 
     #include <OpenKNXHardware.h>
 
+    #ifdef DEVICE_REG1_BASE_V1
+        #define I2C_SDA_PIN OKNXHW_REG1_SENSOR_SDA_TX_PIN
+        #define I2C_SCL_PIN OKNXHW_REG1_SENSOR_SCL_RX_PIN
+    #endif
+
+    #ifdef DEVICE_REG1_BASE_V0
+        #define I2C_SDA_PIN OKNXHW_REG1_SENSOR_SDA_TX_PIN
+        #define I2C_SCL_PIN OKNXHW_REG1_SENSOR_SCL_RX_PIN
+    #endif
+
     // // Board specific definitions
     // // #define BOARD_MASIFI
     // // ################################################
@@ -251,8 +261,23 @@
         // #define I2C_EEPROM_DEVICE_ADDRESSS 0x50 // Address of 24LC256 eeprom chip
         #define I2C_RGBLED_DEVICE_ADDRESS 0x60 // Address of PCA9632 RBGW-LED-Driver
     #endif
+
+    #ifdef BOARD_AB_PRE
+        #define BOARD_AB_PRE_BASE
+        #define DEVICE_ID "AB-PRE"
+        #define HARDWARE_NAME "AB-PRE"
+        #define DEVICE_NAME "AB-SmartHouse Presence MultiSensor"
+    #endif
+
+    #ifdef BOARD_AB_PRE_MR16
+        #define BOARD_AB_PRE_BASE
+        #define DEVICE_ID "AB-PRE-MR16"
+        #define HARDWARE_NAME "AB-PRE-MR16"
+        #define DEVICE_NAME "AB-SmartHouse Presence MR16"
+    #endif
+
     // Sensormodul auf RP2040 Basis
-    #ifdef BOARD_AB_HFPM_HLKLD2420
+    #ifdef BOARD_AB_PRE_BASE
         #define PROG_LED_PIN 10
         #define PROG_LED_PIN_ACTIVE_ON HIGH
         #define PROG_BUTTON_PIN 9

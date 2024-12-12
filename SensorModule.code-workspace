@@ -47,7 +47,12 @@
 			"*.yaml": "home-assistant",
 			"istream": "cpp",
 			"ostream": "cpp",
-			"compare": "cpp"
+			"compare": "cpp",
+			"*.inc": "cpp",
+			"*.tcc": "cpp",
+			"algorithm": "cpp",
+			"mutex": "cpp",
+			"stop_token": "cpp"
 		},
 		"cSpell.language": "en,de-DE",
 		"workbench.colorCustomizations": {

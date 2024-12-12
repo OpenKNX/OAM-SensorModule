@@ -2,6 +2,8 @@
 
 #ifndef BOARD_ENDUSER
 
+    #define FIRMWARE_NAME "Sensormodul-Big"
+    
     // UP1 als 1-Kanal-Sensormodul
     #ifdef BOARD_UP1_SENSOR_1KANAL
         #define OKNXHW_UP1_CONTROLLER2040   // this loads the pin definitions from OpenKNXHardware.h
@@ -369,5 +371,32 @@
     // #define SENSOR_I2C_VEML7700 Wire1
     #endif
 
+    #ifdef DEVICE_SMARTMF_REALPRESENCE_HLK
+        #define DEVICE_ID "SMARTMF-RP_V2"
+        #define DEVICE_NAME "Smart-MF RealPresence 2.0"
+
+        #define PROG_LED_PIN 18
+        #define PROG_LED_PIN_ACTIVE_ON HIGH
+        #define PROG_BUTTON_PIN 17
+        #define PROG_BUTTON_PIN_INTERRUPT_ON FALLING
+        #define INFO_LED_PIN 16
+        #define INFO_LED_PIN_ACTIVE_ON HIGH
+        #define PRESENCE_LED_PIN 1
+        #define PRESENCE_LED_PIN_ACTIVE_ON HIGH
+        #define MOVE_LED_PIN 0
+        #define MOVE_LED_PIN_ACTIVE_ON HIGH
+        #define KNX_UART_TX_PIN 12
+        #define KNX_UART_RX_PIN 13
+        #define SAVE_INTERRUPT_PIN 11
+        #define I2C_WIRE Wire1
+        #define I2C_SDA_PIN 26
+        #define I2C_SCL_PIN 27
+        #define HF_SERIAL Serial2
+        #define HF_SERIAL_SPEED 115200
+        #define HF_POWER_PIN 28
+        #define HF_UART_TX_PIN 4
+        #define HF_UART_RX_PIN 5
+
+    #endif
 
 #endif

@@ -35,6 +35,9 @@
 		},
 		{
 			"path": "../OFM-ConfigTransfer"
+		},
+		{
+			"path": "../OFM-ADCInput"
 		}
 	],
 	"settings": {

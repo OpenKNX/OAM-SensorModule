@@ -1,6 +1,6 @@
 {
     "name": "OAM-SensorModule",
-    "version": "4.0.2",
+    "version": "4.2.2",
     "description": "SensorModule module for the knx stack, can be parametrized with ETS",
     "homepage": "https://openknx.de",
     "authors": {

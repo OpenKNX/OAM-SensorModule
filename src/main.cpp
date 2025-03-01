@@ -23,6 +23,10 @@
     #endif
 #endif
 
+#ifdef OPENKNX_ADC_ADS_GAIN
+    #include "ADCInputModule.h"
+#endif
+
 #include "Sensor.h"
 #ifdef BTN_ChannelCount
     #include "VirtualButtonModule.h"
@@ -60,6 +64,10 @@ void setup()
     openknx.addModule(8, openknxGpioBinaryInputModule);
     #endif
 #endif
+#ifdef OPENKNX_ADC_ADS_GAIN
+    openknx.addModule(9, openknxADCInputModule);
+#endif
+
     openknx.setup();
 }
 

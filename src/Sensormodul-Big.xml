@@ -2,7 +2,10 @@
 <?xml-model href="../../Organization/knxprod-support/knx_project_20/knx-editor.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <KNX xmlns="http://knx.org/xml/project/20" xmlns:op="http://github.com/OpenKNX/OpenKNXproducer">
 
+  
   <op:config href="Sensormodul.conf.xml" />
+  
+  <op:nowarn id="1" regex="%WIRE_" />
 
   <op:ETS OpenKnxId="0xA0"
     ApplicationNumber="0x12"
@@ -75,6 +78,15 @@
     KoOffset="45"
     ModuleType="60">
     <op:verify File="../lib/OFM-BinaryInput/library.json" ModuleVersion="%BI_VerifyVersion%" />
+  </op:define>
+
+  <op:define prefix="ADC"
+    share="../lib/OFM-ADCInput/src/ADCInputChannel.share.xml"
+    template="../lib/OFM-ADCInput/src/ADCInputChannel.templ.xml"
+    NumChannels="4"
+    KoOffset="56"
+    ModuleType="70">
+    <op:verify File="../lib/OFM-ADCInput/library.json" ModuleVersion="%ADC_VerifyVersion%" />
   </op:define>
 
   <op:define prefix="LOG" 

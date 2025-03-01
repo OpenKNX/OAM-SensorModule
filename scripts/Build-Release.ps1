@@ -49,15 +49,18 @@ if ($releaseIndication -eq "Big") {
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_1TE_RP2040_SmartMF firmware-SmartMF-1TE-RP2040 uf2
     if (!$?) { exit 1 }
 
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_UP1_SENSOR_1KANAL firmware-UP1_SENSOR_1KANAL uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_UP1_SENSOR_1KANAL firmware-SEN-UP1-8XTH uf2
+    if (!$?) { exit 1 }
+
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_UP1_PM_HF firmware-UP1-PM-HF uf2
     if (!$?) { exit 1 }
 
     # build firmware for OpenKNX-REG1-Base-V0
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_OpenKNX_REG1_BASE_V0 firmware-OpenKNX-REG1-BASE-V0 uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_OpenKNX_REG1_BASE_V0 firmware-OpenKNX-REG1-Base-V0 uf2
     if (!$?) { exit 1 }
 
     # build firmware for OpenKNX-REG1-Base-V1
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_OpenKNX_REG1_BASE_V1 firmware-OpenKNX-REG1-BASE-V1 uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_OpenKNX_REG1_BASE_V1 firmware-OpenKNX-REG1-Base-V1 uf2
     if (!$?) { exit 1 }
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_RealPresence firmware-RealPresence uf2
@@ -73,6 +76,9 @@ if ($releaseIndication -eq "Big") {
     if (!$?) { exit 1 }
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMR16_ABSmartHouse firmware-ABSmartHouse-PresenceMR16 uf2 AB-SmartHouse-PresenceMR16
+    if (!$?) { exit 1 }
+
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceWALL_ABSmartHouse firmware-ABSmartHouse-PresenceWALL uf2 AB-SmartHouse-PresenceWALL
     if (!$?) { exit 1 }
 }
 

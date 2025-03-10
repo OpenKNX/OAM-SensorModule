@@ -40,7 +40,7 @@ if ($releaseIndication -eq "Big") {
     # if (!$?) { exit 1 }
 
     # build firmware productive RP2040 sensormodule
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040 firmware-Sensormodul-v4x-RP2040 uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_v40_RP2040 firmware-SmartMF-Sensormodul-RP2040 uf2
     if (!$?) { exit 1 }
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PiPico_BCU_Connector firmware-PiPico-BCU-Connector uf2
@@ -78,7 +78,7 @@ if ($releaseIndication -eq "Big") {
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMR16_ABSmartHouse firmware-ABSmartHouse-PresenceMR16 uf2 AB-SmartHouse-PresenceMR16
     if (!$?) { exit 1 }
 
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceWALL_ABSmartHouse firmware-ABSmartHouse-PresenceWALL uf2 AB-SmartHouse-PresenceWALL
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceWall_ABSmartHouse firmware-ABSmartHouse-PresenceWall uf2 AB-SmartHouse-PresenceWall
     if (!$?) { exit 1 }
 }
 

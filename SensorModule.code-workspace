@@ -55,7 +55,8 @@
 			"*.tcc": "cpp",
 			"algorithm": "cpp",
 			"mutex": "cpp",
-			"stop_token": "cpp"
+			"stop_token": "cpp",
+			"cstdint": "cpp"
 		},
 		"cSpell.language": "en,de-DE",
 		"workbench.colorCustomizations": {

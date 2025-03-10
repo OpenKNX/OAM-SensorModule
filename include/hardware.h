@@ -38,12 +38,12 @@
         #define OKNXHW_SENSOR_J40_SCL 11
 
 
-        #define PRESENCE_LED_PIN 27 // red channel of central RGB LED
-        #define PRESENCE_LED_PIN_ACTIVE_ON HIGH
+        #define PRESENCE_LED_PIN 25 // red channel of central RGB LED
+        #define PRESENCE_LED_PIN_ACTIVE_ON LOW
         // #define MOVE_LED_PIN 26 // green channel of central RGB LED
-        // #define MOVE_LED_PIN_ACTIVE_ON HIGH
-        #define MOVE_LED_PIN 25 // blue channel of central RGB LED
-        #define MOVE_LED_PIN_ACTIVE_ON HIGH
+        // #define MOVE_LED_PIN_ACTIVE_ON LOW
+        #define MOVE_LED_PIN 27 // blue channel of central RGB LED
+        #define MOVE_LED_PIN_ACTIVE_ON LOW
 
 
         #define I2C_WIRE Wire

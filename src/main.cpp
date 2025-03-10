@@ -43,6 +43,10 @@ void setup()
     #endif
 #endif
 
+#ifdef DEVICE_UP1_PM_HF
+pinMode(26, INPUT_PULLUP);
+#endif
+
     openknx.init(firmwareRevision);
     openknx.addModule(1, openknxLogic);
 #ifdef WIREMODULE

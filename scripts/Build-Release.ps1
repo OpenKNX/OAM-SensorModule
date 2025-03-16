@@ -66,8 +66,8 @@ if ($releaseIndication -eq "Big") {
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_RealPresence firmware-RealPresence uf2
     if (!$?) { exit 1 }
 
-    # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_RealPresence_v20 firmware-RealPresence_v2.0 uf2
-    # if (!$?) { exit 1 }
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_RealPresence_v20 firmware-RealPresence_v2.0 uf2
+    if (!$?) { exit 1 }
 
     # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_RealPresence_HLK firmware-Smart-MF-RealPresence-2.0 uf2
     # if (!$?) { exit 1 }

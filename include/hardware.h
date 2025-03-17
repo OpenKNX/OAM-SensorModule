@@ -54,8 +54,8 @@
         #define HF_POWER_PIN 18
         #define HF_UART_TX_PIN 20
         #define HF_UART_RX_PIN 21
-        #define OPENKNX_BI_GPIO_PINS 19,22,23,24
-        #define OPENKNX_BI_GPIO_COUNT 4
+        #define OPENKNX_BI_GPIO_PINS 19,22,23,24,11,10
+        #define OPENKNX_BI_GPIO_COUNT 6
         #define OPENKNX_BI_ONLEVEL LOW
 
 

@@ -17,6 +17,50 @@
         #define OPENKNX_BI_ONLEVEL LOW
     #endif
 
+    // UP1-PM-HF
+    // https://github.com/OpenKNX/OpenKNX/wiki/UP1-PM-HF
+    #ifdef DEVICE_UP1_PM_HF
+        #define DEVICE_ID "UP1-PM-HF"
+        #define DEVICE_NAME "OpenKNX UP1 Präsenzmelder+"
+
+
+        #define OKNXHW_UP1_CONTROLLER2040
+
+
+        #define OKNXHW_SENSOR_HF_SERIAL Serial2
+        #define OKNXHW_SENSOR_HF_RX_PIN
+        #define OKNXHW_SENSOR_HF_TX_PIN
+        #define OKNXHW_SENSOR_HF_PWR_PIN
+
+
+        #define OKNXHW_SENSOR_J40_WIRE Wire1
+        #define OKNXHW_SENSOR_J40_SDA 10
+        #define OKNXHW_SENSOR_J40_SCL 11
+
+
+        #define PRESENCE_LED_PIN 25 // red channel of central RGB LED
+        #define PRESENCE_LED_PIN_ACTIVE_ON LOW
+        // #define MOVE_LED_PIN 26 // green channel of central RGB LED
+        // #define MOVE_LED_PIN_ACTIVE_ON LOW
+        #define MOVE_LED_PIN 27 // blue channel of central RGB LED
+        #define MOVE_LED_PIN_ACTIVE_ON LOW
+
+
+        #define I2C_WIRE Wire
+        #define I2C_SDA_PIN 28
+        #define I2C_SCL_PIN 29
+        #define HF_SERIAL Serial2
+        #define HF_SERIAL_SPEED 115200
+        #define HF_POWER_PIN 18
+        #define HF_UART_TX_PIN 20
+        #define HF_UART_RX_PIN 21
+        #define OPENKNX_BI_GPIO_PINS 19,22,23,24,11,10
+        #define OPENKNX_BI_GPIO_COUNT 6
+        #define OPENKNX_BI_ONLEVEL LOW
+
+
+    #endif
+
     #include <OpenKNXHardware.h>
 
     #ifdef DEVICE_REG1_BASE_V1
@@ -154,6 +198,8 @@
         #define COUNT_1WIRE_CHANNEL 30
         #define I2C_1WIRE_DEVICE_ADDRESSS 0x18 // Address of DS2484 1-Wire-Busmaster chip
         #define I2C_BUS_1WIRE Wire1
+        #define I2C_SDA_1WIRE_PIN 14
+        #define I2C_SCL_1WIRE_PIN 15
         #define ONEWIRE_5V_ENABLE 5
         #define ONEWIRE_5V_SHORT 4
         // Buzzer
@@ -166,6 +212,11 @@
         #define HW_REVISION_ID3 12
         #define OPENKNX_BI_GPIO_PINS 2, 4, 6, 7
         #define OPENKNX_BI_GPIO_COUNT 4
+        #define OPENKNX_ADC_ADS_ADDR 0x49
+        #define OPENKNX_ADC_ADS_GAIN 2
+        #define OPENKNX_ADC_ADS_WIRE I2C_BUS_1WIRE
+        #define OPENKNX_ADC_ADS_SDA I2C_SDA_1WIRE_PIN
+        #define OPENKNX_ADC_ADS_SCL I2C_SCL_1WIRE_PIN
     #endif
 
     #ifdef BOARD_SMARTMF_1TE_RP2040
@@ -276,6 +327,13 @@
         #define DEVICE_ID "AB-PRE-MR16"
         #define HARDWARE_NAME "AB-PRE-MR16"
         #define DEVICE_NAME "AB-SmartHouse Presence MR16"
+    #endif
+
+    #ifdef BOARD_AB_PRE_WALL
+        #define BOARD_AB_PRE_BASE
+        #define DEVICE_ID "AB-PRE-WALL"
+        #define HARDWARE_NAME "AB-PRE-WALL"
+        #define DEVICE_NAME "AB-SmartHouse Presence Wall"
     #endif
 
     // Sensormodul auf RP2040 Basis

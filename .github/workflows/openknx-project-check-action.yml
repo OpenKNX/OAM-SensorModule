@@ -28,9 +28,13 @@ jobs:
         run: cd OpenKNXproducer && cp -av tools/Linux/OpenKNXproducer /usr/local/bin/OpenKNXproducer
 
       - name: Create knxprod (DEV)
-        run: OpenKNXproducer create --Debug -h include/knxprod.h src/StateEngine
-      - name: Create knxprod (DFA16 Release)
-        run: OpenKNXproducer create --Debug -h include/knxprod.h src/StateEngine-DFA16-Release
+        run: OpenKNXproducer create --Debug -h include/knxprod.h src/Sensormodul
+      - name: Create knxprod (Release "Big")
+        run: OpenKNXproducer create --Debug -h include/knxprod.h src/Sensormodul-Big
+      - name: Create knxprod (Release "OneWire")
+        run: OpenKNXproducer create --Debug -h include/knxprod.h src/Sensormodul-OneWire
+      - name: Create knxprod (Release "Vpm")
+        run: OpenKNXproducer create --Debug -h include/knxprod.h src/Sensormodul-Vpm
 
       - name: Install Python
         uses: actions/setup-python@v5
@@ -48,8 +52,12 @@ jobs:
       # - name: Build with PlatformIO
       #  run: pio run
 
-      - name: OpenKNX Release Build
-        run: pwsh ./scripts/Build-Release.ps1 DFA16-Release
+      - name: OpenKNX Release Build (Big)
+        run: pwsh ./scripts/Build-Release.ps1 Big
+      - name: OpenKNX Release Build (OneWire)
+        run: pwsh ./scripts/Build-Release.ps1 OneWire
+      - name: OpenKNX Release Build (Vpm)
+        run: pwsh ./scripts/Build-Release.ps1 Vpm
 
       - name: Show Changed Files
         run: git diff

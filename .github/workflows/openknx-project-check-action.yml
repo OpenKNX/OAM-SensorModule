@@ -9,6 +9,7 @@ jobs:
   variant-check:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         include:
           - variant: Big
@@ -22,7 +23,7 @@ jobs:
             build_target: Vpm
           - variant: DEV
             knxprod_xml: Sensormodul
-            build_target: ""        # Kein Build für DEV
+            build_target: ""
     steps:
       - uses: actions/checkout@v4
 
@@ -59,7 +60,7 @@ jobs:
           pip install platformio          
 
       - name: OpenKNX Release Build
-        if: ${{ matrix.build_target != '' }}
+        if: ${{ matrix.build_target != '#' }}
         run: pwsh ./scripts/Build-Release.ps1 ${{ matrix.build_target }}
 
       - name: Show Changed Files

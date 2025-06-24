@@ -38,6 +38,9 @@
 		},
 		{
 			"path": "../OFM-ADCInput"
+		},
+		{
+			"path": "../OGM-HardwareConfig"
 		}
 	],
 	"settings": {
@@ -62,6 +65,7 @@
 		"workbench.colorCustomizations": {
 			"activityBar.background": "#2aa5b3",
 			"activityBar.foreground": "#000000",
+			"activityBar.inactiveForeground": "#000000a0",
 			"activityBar.activeBackground": "#1d7b85",
 			"statusBar.foreground": "#000000",
 			"statusBar.background": "#2aa5b3",

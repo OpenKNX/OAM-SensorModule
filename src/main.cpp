@@ -9,10 +9,14 @@
 #endif
 #include "SensorDevices.h"
 #include "SensorModule.h"
+
 #ifdef ARDUINO_ARCH_RP2040
     #include "FileTransferModule.h"
+    #include "UsbExchangeModule.h"
+    #if defined(KNX_IP_LAN) || defined(KNX_IP_WIFI)
+        #include "NetworkModule.h"
+    #endif
 #endif
-
 #ifdef ARDUINO_ARCH_RP2040
     #pragma message "Pico Core Version: " ARDUINO_PICO_VERSION_STR
 #endif
@@ -34,17 +38,10 @@
 
 void setup()
 {
-    const uint8_t firmwareRevision = 1;
-
-#ifdef ARDUINO_ARCH_RP2040
-    #ifdef ONEWIRE_5V_ENABLE
-    pinMode(ONEWIRE_5V_ENABLE, OUTPUT);
-    digitalWrite(ONEWIRE_5V_ENABLE, HIGH);
-    #endif
-#endif
+    const uint8_t firmwareRevision = 0;
 
 #ifdef DEVICE_UP1_PM_HF
-pinMode(26, INPUT_PULLUP);
+    pinMode(26, INPUT_PULLUP);
 #endif
 
     openknx.init(firmwareRevision);

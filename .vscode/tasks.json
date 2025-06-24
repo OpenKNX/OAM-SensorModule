@@ -4,6 +4,30 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Start debug JLink server für RP2350",
+            "type": "shell",
+            "command": "C:/Program Files/SEGGER/JLink_V810c/JLinkGDBServer",
+            "args": [
+                "-singlerun",
+                "-nohalt",
+                "-nologtofile",
+                "-endian",
+                "little",
+                "-if",
+                "SWD",
+                "-speed",
+                "1000",
+                "-select",
+                "USB",
+                "-port",
+                "2331",
+                "-device",
+                "RP2350_M33_0"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
             "label": "Develop SAMD Vpm",
             "type": "shell",
             "command": "scripts/OpenKNX-Build.ps1",

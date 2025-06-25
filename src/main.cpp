@@ -23,6 +23,10 @@
     #endif
 #endif
 
+#ifdef OPENKNX_ADC_ADS_GAIN
+    #include "ADCInputModule.h"
+#endif
+
 #include "Sensor.h"
 #ifdef BTN_ChannelCount
     #include "VirtualButtonModule.h"
@@ -30,13 +34,17 @@
 
 void setup()
 {
-    const uint8_t firmwareRevision = 3;
+    const uint8_t firmwareRevision = 0;
 
 #ifdef ARDUINO_ARCH_RP2040
     #ifdef ONEWIRE_5V_ENABLE
     pinMode(ONEWIRE_5V_ENABLE, OUTPUT);
     digitalWrite(ONEWIRE_5V_ENABLE, HIGH);
     #endif
+#endif
+
+#ifdef DEVICE_UP1_PM_HF
+pinMode(26, INPUT_PULLUP);
 #endif
 
     openknx.init(firmwareRevision);
@@ -60,6 +68,10 @@ void setup()
     openknx.addModule(8, openknxGpioBinaryInputModule);
     #endif
 #endif
+#ifdef OPENKNX_ADC_ADS_GAIN
+    openknx.addModule(9, openknxADCInputModule);
+#endif
+
     openknx.setup();
 }
 

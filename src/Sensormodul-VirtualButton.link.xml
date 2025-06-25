@@ -14,6 +14,8 @@
                   <Enumeration Text="Binäreingang B" Value="46" Id="%ENID%" />
                   <Enumeration Text="Binäreingang C" Value="47" Id="%ENID%" />
                   <Enumeration Text="Binäreingang D" Value="48" Id="%ENID%" />
+                  <Enumeration Text="Binäreingang E" Value="49" Id="%ENID%" />
+                  <Enumeration Text="Binäreingang F" Value="50" Id="%ENID%" />
                 </TypeRestriction>
               </ParameterType>
             </ParameterTypes>

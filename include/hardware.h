@@ -4,73 +4,26 @@
 
     #define FIRMWARE_NAME "Sensormodul-Big"
     
-    // UP1 als 1-Kanal-Sensormodul
-    #ifdef BOARD_UP1_SENSOR_1KANAL
-        #define OKNXHW_UP1_CONTROLLER2040   // this loads the pin definitions from OpenKNXHardware.h
-        #define HARDWARE_NAME "SEN-UP1-8xTH"
-
-        #define I2C_SDA_PIN 20 // Channel E on SEN-UP1-8xTH
-        #define I2C_SCL_PIN 21 // Channel E on SEN-UP1-8xTH
-
-        #define OPENKNX_BI_GPIO_PINS 25, 24, 23, 22 // Channel C, D on SEN-UP1-8xTH
-        #define OPENKNX_BI_GPIO_COUNT 4
-        #define OPENKNX_BI_ONLEVEL LOW
-    #endif
-
-    // UP1-PM-HF
-    // https://github.com/OpenKNX/OpenKNX/wiki/UP1-PM-HF
-    #ifdef DEVICE_UP1_PM_HF
-        #define DEVICE_ID "UP1-PM-HF"
-        #define DEVICE_NAME "OpenKNX UP1 Präsenzmelder+"
-
-
-        #define OKNXHW_UP1_CONTROLLER2040
-
-
-        #define OKNXHW_SENSOR_HF_SERIAL Serial2
-        #define OKNXHW_SENSOR_HF_RX_PIN
-        #define OKNXHW_SENSOR_HF_TX_PIN
-        #define OKNXHW_SENSOR_HF_PWR_PIN
-
-
-        #define OKNXHW_SENSOR_J40_WIRE Wire1
-        #define OKNXHW_SENSOR_J40_SDA 10
-        #define OKNXHW_SENSOR_J40_SCL 11
-
-
-        #define PRESENCE_LED_PIN 25 // red channel of central RGB LED
-        #define PRESENCE_LED_PIN_ACTIVE_ON LOW
-        // #define MOVE_LED_PIN 26 // green channel of central RGB LED
-        // #define MOVE_LED_PIN_ACTIVE_ON LOW
-        #define MOVE_LED_PIN 27 // blue channel of central RGB LED
-        #define MOVE_LED_PIN_ACTIVE_ON LOW
-
-
-        #define I2C_WIRE Wire
-        #define I2C_SDA_PIN 28
-        #define I2C_SCL_PIN 29
-        #define HF_SERIAL Serial2
-        #define HF_SERIAL_SPEED 115200
-        #define HF_POWER_PIN 18
-        #define HF_UART_TX_PIN 20
-        #define HF_UART_RX_PIN 21
-        #define OPENKNX_BI_GPIO_PINS 19,22,23,24,11,10
-        #define OPENKNX_BI_GPIO_COUNT 6
-        #define OPENKNX_BI_ONLEVEL LOW
-
-
-    #endif
-
     #include <HardwareConfig.h>
-
-    #ifdef DEVICE_REG1_BASE_V1
-        #define I2C_SDA_PIN OKNXHW_REG1_SENSOR_SDA_TX_PIN
+    
+    #ifdef DEVICE_REG1_BASE
+    #define I2C_SDA_PIN OKNXHW_REG1_SENSOR_SDA_TX_PIN
         #define I2C_SCL_PIN OKNXHW_REG1_SENSOR_SCL_RX_PIN
     #endif
 
     #ifdef DEVICE_REG1_BASE_V0
         #define I2C_SDA_PIN OKNXHW_REG1_SENSOR_SDA_TX_PIN
         #define I2C_SCL_PIN OKNXHW_REG1_SENSOR_SCL_RX_PIN
+    #endif
+        
+    // UP1 als 1-Kanal-Sensormodul
+    #ifdef DEVICE_SEN_UP1_8XTH
+        #define I2C_SDA_PIN OKNXHW_SENSOR_E2_SDA_PIN // Channel E on SEN-UP1-8xTH
+        #define I2C_SCL_PIN OKNXHW_SENSOR_E1_SCL_PIN // Channel E on SEN-UP1-8xTH
+
+        #define OPENKNX_BI_GPIO_PINS OKNXHW_SENSOR_C1_SCL_PIN, OKNXHW_SENSOR_C2_SDA_PIN, OKNXHW_SENSOR_D1_SCL_PIN, OKNXHW_SENSOR_D2_SDA_PIN // Channel C, D on SEN-UP1-8xTH
+        #define OPENKNX_BI_GPIO_COUNT 4
+        #define OPENKNX_BI_ONLEVEL LOW
     #endif
 
     // // Board specific definitions

@@ -4,76 +4,11 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Start debug JLink server für RP2350",
-            "type": "shell",
-            "command": "C:/Program Files/SEGGER/JLink_V810c/JLinkGDBServer",
-            "args": [
-                "-singlerun",
-                "-nohalt",
-                "-nologtofile",
-                "-endian",
-                "little",
-                "-if",
-                "SWD",
-                "-speed",
-                "1000",
-                "-select",
-                "USB",
-                "-port",
-                "2331",
-                "-device",
-                "RP2350_M33_0"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Develop SAMD Vpm",
-            "type": "shell",
-            "command": "scripts/OpenKNX-Build.ps1",
-            "args": [
-                "develop_SAMD_Vpm"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Develop SAMD Wire",
-            "type": "shell",
-            "command": "scripts/OpenKNX-Build.ps1",
-            "args": [
-                "develop_SAMD_Wire"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
             "label": "Develop RP2040 Big",
             "type": "shell",
             "command": "scripts/OpenKNX-Build.ps1",
             "args": [
                 "develop_RP2040_Big"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Develop RP2040 Vpm",
-            "type": "shell",
-            "command": "scripts/OpenKNX-Build.ps1",
-            "args": [
-                "develop_RP2040_Vpm"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Upload JLINK SAMD",
-            "type": "shell",
-            "command": "scripts/OpenKNX-Build.ps1",
-            "args": [
-                "upload_JLINK_SAMD",
-                "upload"
             ],
             "group": "build",
             "problemMatcher": []
@@ -90,55 +25,11 @@
             "problemMatcher": []
         },
         {
-            "label": "Upload JLINK RP2040 VPM",
-            "type": "shell",
-            "command": "scripts/OpenKNX-Build.ps1",
-            "args": [
-                "upload_JLINK_RP2040_Vpm",
-                "upload"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Upload USB SAMD",
-            "type": "shell",
-            "command": "scripts/OpenKNX-Build.ps1",
-            "args": [
-                "upload_USB_SAMD",
-                "upload"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
             "label": "Upload USB RP2040",
             "type": "shell",
             "command": "scripts/OpenKNX-Build.ps1",
             "args": [
                 "upload_USB_RP2040",
-                "upload"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Upload USB RP2040 VPM",
-            "type": "shell",
-            "command": "scripts/OpenKNX-Build.ps1",
-            "args": [
-                "upload_USB_RP2040_Vpm",
-                "upload"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Upload ENDUSER",
-            "type": "shell",
-            "command": "scripts/OpenKNX-Build.ps1",
-            "args": [
-                "upload_enduser",
                 "upload"
             ],
             "group": "build",
@@ -174,26 +65,6 @@
             "group": "test"
         },
         {
-            "label": "Build-OneWire (release)",
-            "type": "shell",
-            "command": "scripts/Build-Release.ps1",
-            "args": [
-                "OneWire"
-            ],
-            "problemMatcher": [],
-            "group": "test"
-        },
-        {
-            "label": "Build-Vpm (release)",
-            "type": "shell",
-            "command": "scripts/Build-Release.ps1",
-            "args": [
-                "Vpm"
-            ],
-            "problemMatcher": [],
-            "group": "test"
-        },
-        {
             "label": "Build-Big (release)",
             "type": "shell",
             "command": "scripts/Build-Release.ps1",
@@ -204,7 +75,7 @@
             "group": "test"
         },
         {
-            "label": "Build-Dev",
+            "label": "Build-Beta",
             "type": "shell",
             "command": "scripts/Build-Release.ps1",
             "args": [],

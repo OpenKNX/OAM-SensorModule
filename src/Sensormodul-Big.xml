@@ -43,7 +43,7 @@
     <op:verify File="../lib/OFM-SensorModule/library.json" ModuleVersion="%SENS_VerifyVersion%" />
   </op:define>
 
-  <!-- <op:define prefix="WIRE" 
+  <op:define prefix="WIRE" 
              share="../lib/OFM-OneWireModule/src/WireGateway.share.xml"
              template="../lib/OFM-OneWireModule/src/WireGateway.templ.xml"
              NumChannels="30" 
@@ -52,7 +52,7 @@
              KoSingleOffset="10" >
     <op:verify File="../lib/OFM-OneWireModule/library.json" ModuleVersion="%WIRE_VerifyVersion%" />
   </op:define>
- -->
+
   <op:define prefix="PM" 
              share="../lib/OFM-PresenceModule/src/PMmodul.share.xml"
              template="../lib/OFM-PresenceModule/src/PMmodul.templ.xml"

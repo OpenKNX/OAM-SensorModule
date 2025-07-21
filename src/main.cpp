@@ -38,14 +38,14 @@
 
 void setup()
 {
-    const uint8_t firmwareRevision = 0;
+    const uint8_t firmwareRevision = 5;
 
-// #ifdef ARDUINO_ARCH_RP2040
-//     #ifdef ONEWIRE_5V_ENABLE
-//     pinMode(ONEWIRE_5V_ENABLE, OUTPUT);
-//     digitalWrite(ONEWIRE_5V_ENABLE, HIGH);
-//     #endif
-// #endif
+#ifdef ARDUINO_ARCH_RP2040
+    #ifdef ONEWIRE_5V_ENABLE
+    pinMode(ONEWIRE_5V_ENABLE, OUTPUT);
+    digitalWrite(ONEWIRE_5V_ENABLE, HIGH);
+    #endif
+#endif
 
 #ifdef DEVICE_UP1_PM_HF
     pinMode(26, INPUT_PULLUP);

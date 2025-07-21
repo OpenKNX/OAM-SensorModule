@@ -37,17 +37,30 @@ if (Test-Path -Path scripts/data -PathType Container) {
 if ($releaseIndication -eq "Beta") {
     # build BETA firmware 
 
-    # build firmware for 1TE-RP2040-SmartMF
+    # build firmware productive RP2040 sensormodule
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_DEVICE_SMARTMF_SENSORMODUL firmware-SmartMF-Sensormodul-RP2040 uf2
     if (!$?) { exit 1 }
 
-    # build firmware productive RP2040 sensormodule
+    # Dominiks HF-PM
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_DEVICE_UP1_PM_HF firmware-UP1-PM-HF uf2
     if (!$?) { exit 1 }
 
     # build firmware for 1TE-RP2040-SmartMF
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_DEVICE_SMARTMF_1TE_REG firmware-1TE-RP2040-SmartMF uf2
+    # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_DEVICE_SMARTMF_1TE_REG firmware-1TE-RP2040-SmartMF uf2
     if (!$?) { exit 1 }
+
+    # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2 AB-SmartHouse-PresenceMultiSensor
+    if (!$?) { exit 1 }
+
+    # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMR16_ABSmartHouse firmware-ABSmartHouse-PresenceMR16 uf2 AB-SmartHouse-PresenceMR16
+    if (!$?) { exit 1 }
+
+    # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceWall_ABSmartHouse firmware-ABSmartHouse-PresenceWall uf2 AB-SmartHouse-PresenceWall
+    if (!$?) { exit 1 }
+
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_DEVICE_PIPICO_BCU_CONNECTOR firmware-PiPico-BCU-Connector uf2
+    if (!$?) { exit 1 }
+
 }
 
 
@@ -116,6 +129,10 @@ if ($releaseIndication -eq "Big") {
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_AB_TouchRound_RP2350 firmware-AB-TouchRound-RP2350 uf2
     if (!$?) { exit 1 }
 }
+
+# Remove unnecessary OTA upload scripts
+Remove-Item -Path release/OTA-Upload-Firmware-*.ps1 -ErrorAction SilentlyContinue -Force
+
 
 # execute generic post-build steps
 lib/OGM-Common/scripts/setup/reusable/Build-Release-Postprocess.ps1 $args[0]

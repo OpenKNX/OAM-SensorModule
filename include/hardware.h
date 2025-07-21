@@ -2,8 +2,6 @@
 
 #ifndef BOARD_ENDUSER
 
-    #define FIRMWARE_NAME "Sensormodul-Big"
-    
     #include <HardwareConfig.h>
     
     #ifdef DEVICE_REG1_BASE

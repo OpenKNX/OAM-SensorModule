@@ -38,7 +38,7 @@
 
 void setup()
 {
-    const uint8_t firmwareRevision = 7;
+    const uint8_t firmwareRevision = 8;
 
 #ifdef ARDUINO_ARCH_RP2040
     #ifdef ONEWIRE_5V_ENABLE

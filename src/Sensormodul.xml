@@ -12,8 +12,8 @@
   
   <op:ETS OpenKnxId="0xA0"
     ApplicationNumber="0x11"
-    ApplicationVersion="12.11"
-    ReplacesVersions="12.10 12.9 12.8 12.7 12.6 12.5 12.4 12.3 12.2 12.1 12.0 11.15 11.14 11.13 11.12 11.11 11.10 11.9 11.8 11.7 11.6 11.5 11.4 11.3 11.2 11.1 11.0"
+    ApplicationVersion="12.14"
+    ReplacesVersions="12.13 12.12 12.11 12.10 12.9 12.8 12.7 12.6 12.5 12.4 12.3 12.2 12.1 12.0 11.15 11.14 11.13 11.12 11.11 11.10 11.9 11.8 11.7 11.6 11.5 11.4 11.3 11.2 11.1 11.0"
     ApplicationRevision="0"
     ProductName="Sensormodul-Big"
     ApplicationName="WP-Sensor-Wire-PM-Logic"
@@ -103,5 +103,5 @@
     <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="%LOG_VerifyVersion%" />
   </op:define>
 
-  <generate />
+  <generate base="LocalApplication.xml" />
 </KNX>

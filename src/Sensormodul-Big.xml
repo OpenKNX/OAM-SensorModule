@@ -99,5 +99,5 @@
     <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="%LOG_VerifyVersion%" />
   </op:define>
 
-  <generate />
+  <generate base="LocalApplication.xml" />
 </KNX>

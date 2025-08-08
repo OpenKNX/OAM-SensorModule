@@ -65,11 +65,11 @@
             "group": "test"
         },
         {
-            "label": "Build-Big (release)",
+            "label": "Build-Release",
             "type": "shell",
             "command": "scripts/Build-Release.ps1",
             "args": [
-                "Big"
+                "Release"
             ],
             "problemMatcher": [],
             "group": "test"

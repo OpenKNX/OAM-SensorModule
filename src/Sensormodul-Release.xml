@@ -5,15 +5,15 @@
   
   <op:config href="Sensormodul.conf.xml" />
   
-  <op:nowarn id="1" regex="%WIRE_" />
+  <!-- <op:nowarn id="1" regex="%WIRE_" /> -->
 
   <op:ETS OpenKnxId="0xA0"
     ApplicationNumber="0x12"
     ApplicationVersion="%SENS_ApplicationVersion%"
     ReplacesVersions="%SENS_ReplacesVersions%"
     ApplicationRevision="0"
-    ProductName="Sensormodul-Big"
-    ApplicationName="Sensor-Wire-PM-Logic-Button-BI"
+    ProductName="Sensormodul"
+    ApplicationName="Sensor-Wire-PM-Logic-Button-Meter-BI"
     OrderNumber="OpenKnxSensorBig"
     SerialNumber="0xA012"
   />
@@ -56,17 +56,17 @@
   <op:define prefix="PM" 
              share="../lib/OFM-PresenceModule/src/PMmodul.share.xml"
              template="../lib/OFM-PresenceModule/src/PMmodul.templ.xml"
-             NumChannels="40" 
+             NumChannels="20"
              KoOffset="120" 
-             ModuleType="30" >
+             ModuleType="30">
     <op:verify File="../lib/OFM-PresenceModule/library.json" ModuleVersion="%PM_VerifyVersion%" />
   </op:define>
 
   <op:define prefix="BTN"
     share="../lib/OFM-VirtualButton/src/VirtualButton.share.xml"
     template="../lib/OFM-VirtualButton/src/VirtualButton.templ.xml"
-    NumChannels="30"
-    KoOffset="1220"
+    NumChannels="10"
+    KoOffset="520"
     ModuleType="50">
     <op:verify File="../lib/OFM-VirtualButton/library.json" ModuleVersion="%BTN_VerifyVersion%" />
   </op:define>
@@ -90,6 +90,15 @@
     <op:verify File="../lib/OFM-ADCInput/library.json" ModuleVersion="%ADC_VerifyVersion%" />
   </op:define>
 
+  <op:define prefix="MTR"
+    share="../lib/OFM-Meter/src/MeterModule.share.xml"
+    template="../lib/OFM-Meter/src/MeterModule.templ.xml"
+    NumChannels="10" 
+    KoOffset="640"
+    ModuleType="80">
+    <op:verify File="../lib/OFM-Meter/library.json" ModuleVersion="%MTR_VerifyVersion%" /> 
+  </op:define>
+
   <op:define prefix="LOG" 
              share="../lib/OFM-LogicModule/src/Logikmodul.share.xml" 
              template="../lib/OFM-LogicModule/src/Logikmodul.templ.xml" 
@@ -99,5 +108,5 @@
     <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="%LOG_VerifyVersion%" />
   </op:define>
 
-  <generate base="LocalApplication.xml" />
+  <generate />
 </KNX>

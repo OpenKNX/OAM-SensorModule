@@ -64,7 +64,7 @@ if ($releaseIndication -eq "Beta") {
 }
 
 
-if ($releaseIndication -eq "Big") {
+if ($releaseIndication -eq "Release") {
     # build firmware for RP2040 sensormodule breakout board
     # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_Sensormodul_Breakout_RP2040 firmware-Sensormodul-Breakout-RP2040 uf2 Sensormodul-Breakout-Board-Just-for-testers
     # if (!$?) { exit 1 }
@@ -91,7 +91,7 @@ if ($releaseIndication -eq "Big") {
     if (!$?) { exit 1 }
 
     # build firmware for 1TE-RP2040-SmartMF
-    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_DEVICE_SMARTMF_1TE_REG firmware-1TE-RP2040-SmartMF uf2
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_DEVICE_SMARTMF_1TE_REG firmware-SmartMF-1TE-RP2040 uf2
     if (!$?) { exit 1 }
 
     # build firmware for RP2040 sensormodule 

@@ -12,11 +12,11 @@
   
   <op:ETS OpenKnxId="0xA0"
     ApplicationNumber="0x11"
-    ApplicationVersion="12.14"
-    ReplacesVersions="12.13 12.12 12.11 12.10 12.9 12.8 12.7 12.6 12.5 12.4 12.3 12.2 12.1 12.0 11.15 11.14 11.13 11.12 11.11 11.10 11.9 11.8 11.7 11.6 11.5 11.4 11.3 11.2 11.1 11.0"
+    ApplicationVersion="13.4"
+    ReplacesVersions="13.0 12.15 12.14 12.13 12.12 12.11 12.10 12.9 12.8 12.7 12.6 12.5 12.4 12.3 12.2 12.1 12.0 11.15 11.14 11.13 11.12 11.11 11.10 11.9 11.8 11.7 11.6 11.5 11.4 11.3 11.2 11.1 11.0"
     ApplicationRevision="0"
-    ProductName="Sensormodul-Big"
-    ApplicationName="WP-Sensor-Wire-PM-Logic"
+    ProductName="Sensormodul"
+    ApplicationName="Sensor-Wire-PM-Logic-Button-Meter-BI"
     BuildSuffix="-dev"
     BuildSuffixText=" (dev)"
     OrderNumber="OpenKnxSensorBig"
@@ -26,7 +26,7 @@
   <op:define prefix="BUTTONLINK"
              share="Sensormodul-VirtualButton.link.xml"
              noConfigTransfer="true"
-             ModuleType="99" >
+             ModuleType="22" >
   </op:define>
 
   <op:define prefix="BASE"
@@ -38,7 +38,7 @@
   <op:define prefix="UCT"
     share="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml"
     noConfigTransfer="true"
-    ModuleType="98">
+    ModuleType="21">
     <op:verify File="../../OFM-ConfigTransfer/library.json" ModuleVersion="%UCT_VerifyVersion%" />
   </op:define>
 
@@ -48,6 +48,11 @@
     <op:verify File="../lib/OFM-SensorModule/library.json" ModuleVersion="%SENS_VerifyVersion%" />
   </op:define>
 
+  <!-- 
+  1 KOs / Channel
+  => 99*1=99 KOs
+  => [20,119[
+  -->
   <op:define prefix="WIRE" 
              share="../lib/OFM-OneWireModule/src/WireGateway.share.xml"
              template="../lib/OFM-OneWireModule/src/WireGateway.templ.xml"
@@ -58,20 +63,30 @@
     <op:verify File="../lib/OFM-OneWireModule/library.json" ModuleVersion="%WIRE_VerifyVersion%" />
   </op:define>
 
+  <!-- 
+  20 KOs / Channel
+  => 20*20=400 KOs
+  => [120,520[
+  -->
   <op:define prefix="PM"
     share="../lib/OFM-PresenceModule/src/PMmodul.share.xml"
     template="../lib/OFM-PresenceModule/src/PMmodul.templ.xml"
-    NumChannels="40"
+    NumChannels="20"
     KoOffset="120"
     ModuleType="30">
     <op:verify File="../lib/OFM-PresenceModule/library.json" ModuleVersion="%PM_VerifyVersion%" />
   </op:define>
 
+  <!-- 
+  12 KOs / Channel
+  => 10*12=120 KOs
+  => [520,640[
+  -->
   <op:define prefix="BTN"
     share="../lib/OFM-VirtualButton/src/VirtualButton.share.xml"
     template="../lib/OFM-VirtualButton/src/VirtualButton.templ.xml"
-    NumChannels="30"
-    KoOffset="1220"
+    NumChannels="10"
+    KoOffset="520"
     ModuleType="50">
     <op:verify File="../lib/OFM-VirtualButton/library.json" ModuleVersion="%BTN_VerifyVersion%" />
   </op:define>
@@ -94,6 +109,41 @@
     <op:verify File="../lib/OFM-ADCInput/library.json" ModuleVersion="%ADC_VerifyVersion%" />
   </op:define>
 
+  <!-- 
+  4 KOs / Channel
+  => 10*4=40 KOs
+  => [640,680[
+  -->
+  <op:define prefix="MTR"
+    share="../lib/OFM-Meter/src/MeterModule.share.xml"
+    template="../lib/OFM-Meter/src/MeterModule.templ.xml"
+    NumChannels="10" 
+    KoOffset="640"
+    ModuleType="22">
+    <op:verify File="../lib/OFM-Meter/library.json" ModuleVersion="%MTR_VerifyVersion%" /> 
+  </op:define>
+
+  <!-- 
+  30 KOs / Channel
+  => 4*30=120 KOs
+  => [680,800[
+  -->
+  <op:define prefix="DFA"
+             share="../lib/OFM-DFA/src/DfaModule.share.xml"
+             template="../lib/OFM-DFA/src/DfaModule.templ.xml"
+             NumChannels="4"
+             KoOffset="680"
+             ModuleType="9" >
+    <op:verify File="../lib/OFM-DFA/library.json" ModuleVersion="%DFA_VerifyVersion%" />
+  </op:define>
+
+  <!-- 120 KO free -->
+   
+  <!-- 
+  3 KOs / Channel
+  => 99*3=297 KOs
+  => [920,1217[
+  -->
   <op:define prefix="LOG"
     share="../lib/OFM-LogicModule/src/Logikmodul.share.xml"
     template="../lib/OFM-LogicModule/src/Logikmodul.templ.xml"
@@ -103,5 +153,5 @@
     <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="%LOG_VerifyVersion%" />
   </op:define>
 
-  <generate base="LocalApplication.xml" />
+  <generate />
 </KNX>

@@ -13,6 +13,9 @@
 			"path": "../OFM-PresenceModule"
 		},
 		{
+			"path": "../OFM-DFA"
+		},
+		{
 			"path": "../OFM-LogicModule"
 		},
 		{
@@ -20,6 +23,9 @@
 		},
 		{
 			"path": "../OFM-BinaryInput"
+		},
+		{
+			"path": "../OFM-Meter"
 		},
 		{
 			"path": "../OFM-FileTransferModule"

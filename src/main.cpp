@@ -1,4 +1,5 @@
 #include "Logic.h"
+#include "MeterModule.h"
 #include "OpenKNX.h"
 #ifdef WIREMODULE
     #include "OneWireDS2482.h"
@@ -9,6 +10,7 @@
 #endif
 #include "SensorDevices.h"
 #include "SensorModule.h"
+#include "DfaModule.h"
 
 #ifdef ARDUINO_ARCH_RP2040
     #include "FileTransferModule.h"
@@ -38,7 +40,7 @@
 
 void setup()
 {
-    const uint8_t firmwareRevision = 8;
+    const uint8_t firmwareRevision = 0;
 
 #ifdef ARDUINO_ARCH_RP2040
     #ifdef ONEWIRE_5V_ENABLE
@@ -75,7 +77,8 @@ void setup()
 #ifdef OPENKNX_ADC_ADS_GAIN
     openknx.addModule(9, openknxADCInputModule);
 #endif
-
+    openknx.addModule(10, openknxMeterModule);
+    openknx.addModule(11, openknxDfaModule);
     openknx.setup();
 }
 

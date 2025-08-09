@@ -16,6 +16,7 @@
   <op:config name="%ADC_VerifyVersion%" value="0.1" />
   <op:config name="%MTR_VerifyVersion%" value="0.5" />
   <op:config name="%DFA_VerifyVersion%" value="0.5" />
+  <op:config name="%SHC_VerifyVersion%" value="0.3" />
 
   <op:config name="%BASE_ManualSave%" value="3" />
   <op:config name="%LOG_EnableHardware%" value="1" />
@@ -35,7 +36,8 @@
   <op:config name="%BI_NumChannelsDefault%" value="2" />
   <op:config name="%ADC_NumChannelsDefault%" value="2" />
   <op:config name="%MTR_NumChannelsDefault%" value="2" />
-  
+  <op:config name="%SHC_NumChannelsDefault%" value="2" />
+
   <!-- <op:nowarn id="1" regex="WIRE_VerifyVersion" /> -->
   <op:nowarn id="3" regex="PM_getCalibrationData" />
   <op:nowarn id="3" regex="PM_setCalibrationData" />

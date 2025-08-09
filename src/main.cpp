@@ -11,6 +11,7 @@
 #include "SensorDevices.h"
 #include "SensorModule.h"
 #include "DfaModule.h"
+#include "ShutterControllerModule.h"
 
 #ifdef ARDUINO_ARCH_RP2040
     #include "FileTransferModule.h"
@@ -79,6 +80,7 @@ void setup()
 #endif
     openknx.addModule(10, openknxMeterModule);
     openknx.addModule(11, openknxDfaModule);
+    openknx.addModule(12, openknxShutterControllerModule);
     openknx.setup();
 }
 

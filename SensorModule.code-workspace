@@ -13,6 +13,9 @@
 			"path": "../OFM-PresenceModule"
 		},
 		{
+			"path": "../OFM-ShutterControllerModule"
+		},
+		{
 			"path": "../OFM-DFA"
 		},
 		{

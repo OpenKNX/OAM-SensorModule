@@ -2,6 +2,8 @@
 <?xml-model href="../../Organization/knxprod-support/knx_project_20/knx-editor.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <KNX xmlns="http://knx.org/xml/project/20" xmlns:op="http://github.com/OpenKNX/OpenKNXproducer">
 
+
+  <op:config name="%WIRE_BusMasterCount%" value="1" />
   
   <op:config href="Sensormodul.conf.xml" />
   
@@ -12,16 +14,17 @@
     ApplicationVersion="%SENS_ApplicationVersion%"
     ReplacesVersions="%SENS_ReplacesVersions%"
     ApplicationRevision="0"
-    ProductName="Sensormodul"
-    ApplicationName="Sensor-Wire-PM-Logic-Button-Meter-BI"
+    ProductName="Raumcontroller"
+    ApplicationName="Sensor-Wire-PM-Shutter-Button-StateEngine-Logic-Meter-BI-Net"
     OrderNumber="OpenKnxSensorBig"
     SerialNumber="0xA012"
+    MediumTypes="MT-0 MT-5"
   />
 
   <op:define prefix="BUTTONLINK"
              share="Sensormodul-VirtualButton.link.xml"
              noConfigTransfer="true"
-             ModuleType="99" >
+             ModuleType="22" >
   </op:define>
 
   <op:define prefix="BASE"
@@ -30,10 +33,16 @@
     <op:verify File="../lib/OGM-Common/library.json" ModuleVersion="%BASE_VerifyVersion%" />
   </op:define>
 
+  <op:define prefix="NET" 
+            share="../lib/OFM-Network/src/Network.share.xml"
+            ModuleType="11">
+    <op:verify File="../lib/OFM-Network/library.json" ModuleVersion="%NET_VerifyVersion%" /> 
+  </op:define>
+ 
   <op:define prefix="UCT"
     share="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml"
     noConfigTransfer="true"
-    ModuleType="98">
+    ModuleType="21">
     <op:verify File="../../OFM-ConfigTransfer/library.json" ModuleVersion="%UCT_VerifyVersion%" />
   </op:define>
 
@@ -43,6 +52,11 @@
     <op:verify File="../lib/OFM-SensorModule/library.json" ModuleVersion="%SENS_VerifyVersion%" />
   </op:define>
 
+  <!-- 
+  1 KOs / Channel
+  => 30*1=30 KOs
+  => [90,120[
+  -->
   <op:define prefix="WIRE" 
              share="../lib/OFM-OneWireModule/src/WireGateway.share.xml"
              template="../lib/OFM-OneWireModule/src/WireGateway.templ.xml"
@@ -53,20 +67,45 @@
     <op:verify File="../lib/OFM-OneWireModule/library.json" ModuleVersion="%WIRE_VerifyVersion%" />
   </op:define>
 
+  <!-- 
+  20 KOs / Channel
+  => 20*16=320 KOs
+  => [120,440[
+  -->
   <op:define prefix="PM" 
              share="../lib/OFM-PresenceModule/src/PMmodul.share.xml"
              template="../lib/OFM-PresenceModule/src/PMmodul.templ.xml"
-             NumChannels="20"
+             NumChannels="16"
              KoOffset="120" 
              ModuleType="30">
     <op:verify File="../lib/OFM-PresenceModule/library.json" ModuleVersion="%PM_VerifyVersion%" />
   </op:define>
 
+  <!-- 
+  49 KOs / Channel + 20 constant KOs
+  => 3*49+20=166 KOs
+  => [440,606[
+  -->
+  <op:define prefix="SHC" 
+    ModuleType="23" 
+    share="../lib/OFM-ShutterControllerModule/src/ShutterControllerModule.share.xml" 
+    template="../lib/OFM-ShutterControllerModule/src/ShutterControllerModule.templ.xml" 
+    NumChannels="3" 
+    KoSingleOffset="440" 
+    KoOffset="460">
+    <op:verify File="../lib/OFM-ShutterControllerModule/library.json" ModuleVersion="%SHC_VerifyVersion%" />
+  </op:define>
+
+  <!-- 
+  12 KOs / Channel
+  => 10*12=120 KOs
+  => [610,730[
+  -->
   <op:define prefix="BTN"
     share="../lib/OFM-VirtualButton/src/VirtualButton.share.xml"
     template="../lib/OFM-VirtualButton/src/VirtualButton.templ.xml"
     NumChannels="10"
-    KoOffset="520"
+    KoOffset="610"
     ModuleType="50">
     <op:verify File="../lib/OFM-VirtualButton/library.json" ModuleVersion="%BTN_VerifyVersion%" />
   </op:define>
@@ -77,7 +116,7 @@
     template="../lib/OFM-BinaryInput/src/BinaryInputChannel.templ.xml"
     NumChannels="6" 
     KoOffset="45"
-    ModuleType="60">
+    ModuleType="24">
     <op:verify File="../lib/OFM-BinaryInput/library.json" ModuleVersion="%BI_VerifyVersion%" />
   </op:define>
 
@@ -86,26 +125,64 @@
     template="../lib/OFM-ADCInput/src/ADCInputChannel.templ.xml"
     NumChannels="4"
     KoOffset="56"
-    ModuleType="70">
+    ModuleType="25">
     <op:verify File="../lib/OFM-ADCInput/library.json" ModuleVersion="%ADC_VerifyVersion%" />
   </op:define>
 
+  <!-- 
+  4 KOs / Channel
+  => 10*4=40 KOs
+  => [730,770[
+  -->
   <op:define prefix="MTR"
     share="../lib/OFM-Meter/src/MeterModule.share.xml"
     template="../lib/OFM-Meter/src/MeterModule.templ.xml"
     NumChannels="10" 
-    KoOffset="640"
-    ModuleType="80">
+    KoOffset="730"
+    ModuleType="22">
     <op:verify File="../lib/OFM-Meter/library.json" ModuleVersion="%MTR_VerifyVersion%" /> 
   </op:define>
 
+  <!-- 
+  30 KOs / Channel
+  => 5*30=150 KOs
+  => [770,920[
+  -->
+  <op:define prefix="DFA"
+             share="../lib/OFM-DFA/src/DfaModule.share.xml"
+             template="../lib/OFM-DFA/src/DfaModule.templ.xml"
+             NumChannels="5"
+             KoOffset="770"
+             ModuleType="9" >
+    <op:verify File="../lib/OFM-DFA/library.json" ModuleVersion="%DFA_VerifyVersion%" />
+  </op:define>
+
+  <!-- 
+  3 KOs / Channel
+  => 99*3=297 KOs
+  => [920,1217[
+  -->
   <op:define prefix="LOG" 
              share="../lib/OFM-LogicModule/src/Logikmodul.share.xml" 
              template="../lib/OFM-LogicModule/src/Logikmodul.templ.xml" 
              NumChannels="99" 
              KoOffset="920" 
-             ModuleType="10" >
+             ModuleType="10">
     <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="%LOG_VerifyVersion%" />
+  </op:define>
+
+  <!-- 
+  10 KOs / Channel
+  => 10*10=100 KOs
+  => [1220,1320[
+  -->
+  <op:define prefix="FCB"
+    share="../lib/OFM-FunctionBlocks/src/FunctionBlocks.share.xml"
+    template="../lib/OFM-FunctionBlocks/src/FunctionBlocks.templ.xml"
+    NumChannels="10"
+    KoOffset="1220"
+    ModuleType="26">
+    <op:verify File="../lib/OFM-FunctionBlocks/library.json" ModuleVersion="%FCB_VerifyVersion%" />
   </op:define>
 
   <generate />

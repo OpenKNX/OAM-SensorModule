@@ -12,6 +12,7 @@
 #include "SensorModule.h"
 #include "DfaModule.h"
 #include "ShutterControllerModule.h"
+#include "FunctionBlocksModule.h"
 
 #ifdef ARDUINO_ARCH_RP2040
     #include "FileTransferModule.h"
@@ -81,6 +82,10 @@ void setup()
     openknx.addModule(10, openknxMeterModule);
     openknx.addModule(11, openknxDfaModule);
     openknx.addModule(12, openknxShutterControllerModule);
+    openknx.addModule(13, openknxFunctionBlocksModule);
+#if defined(KNX_IP_LAN) || defined(KNX_IP_WIFI)
+    openknx.addModule(14, openknxNetwork);
+#endif
     openknx.setup();
 }
 

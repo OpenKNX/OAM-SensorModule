@@ -45,17 +45,15 @@ if ($releaseIndication -eq "Beta") {
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_DEVICE_UP1_PM_HF firmware-UP1-PM-HF uf2
     if (!$?) { exit 1 }
 
+    # build firmware for OpenKNX-REG1-Base-V1
+    lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_DEVICE_REG1_BASE firmware-OpenKNX-REG1-BASE uf2
+    if (!$?) { exit 1 }
+    
     # build firmware for 1TE-RP2040-SmartMF
     # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_DEVICE_SMARTMF_1TE_REG firmware-1TE-RP2040-SmartMF uf2
     if (!$?) { exit 1 }
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMultiSensor_ABSmartHouse firmware-ABSmartHouse-PresenceMultiSensor uf2 AB-SmartHouse-PresenceMultiSensor
-    if (!$?) { exit 1 }
-
-    # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceMR16_ABSmartHouse firmware-ABSmartHouse-PresenceMR16 uf2 AB-SmartHouse-PresenceMR16
-    if (!$?) { exit 1 }
-
-    # lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_PresenceWall_ABSmartHouse firmware-ABSmartHouse-PresenceWall uf2 AB-SmartHouse-PresenceWall
     if (!$?) { exit 1 }
 
     lib/OGM-Common/scripts/setup/reusable/Build-Step.ps1 release_DEVICE_PIPICO_BCU_CONNECTOR firmware-PiPico-BCU-Connector uf2

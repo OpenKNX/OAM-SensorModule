@@ -16,19 +16,25 @@
 			"path": "../OFM-ShutterControllerModule"
 		},
 		{
-			"path": "../OFM-DFA"
-		},
-		{
-			"path": "../OFM-LogicModule"
-		},
-		{
 			"path": "../OFM-VirtualButton"
 		},
 		{
 			"path": "../OFM-BinaryInput"
 		},
 		{
+			"path": "../OFM-ADCInput"
+		},
+		{
 			"path": "../OFM-Meter"
+		},
+		{
+			"path": "../OFM-DFA"
+		},
+		{
+			"path": "../OFM-LogicModule"
+		},
+		{
+			"path": "../OFM-FunctionBlocks"
 		},
 		{
 			"path": "../OFM-FileTransferModule"
@@ -44,9 +50,6 @@
 		},
 		{
 			"path": "../OFM-ConfigTransfer"
-		},
-		{
-			"path": "../OFM-ADCInput"
 		},
 		{
 			"path": "../OGM-HardwareConfig"

@@ -1,3 +1,11 @@
+This application development is discontinued.
+
+There is an update compatible successor project [OAM-RaumController](https://github.com/OpenKNX/OAM-RaumController), which continues this development.
+
+===
+
+
+
 OAM-SensorModule
 ===
 
